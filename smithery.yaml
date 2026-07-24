@@ -1,0 +1,28 @@
+# Smithery config for the ParseAddr MCP server.
+# Publish: `smithery mcp publish <deployed-url> -n parseaddr/address-parse`
+# Smithery scans the server to extract tool metadata and renders a config UI.
+name: parseaddr/address-parse
+displayName: ParseAddr — Address Parsing & Normalization
+description: >-
+  Parse and normalize messy free-text postal addresses into structured fields
+  via hosted libpostal. No 2-4GB self-host, no C build. Free tier available.
+homepage: https://parseaddr.com
+
+# stdio server distributed via the PyPI package `parseaddr` (entry: parseaddr-mcp).
+startCommand:
+  type: stdio
+  command: parseaddr-mcp
+  configSchema:
+    type: object
+    required: [parseaddrApiKey]
+    properties:
+      parseaddrApiKey:
+        type: string
+        title: ParseAddr API key
+        description: Get a free key at https://parseaddr.com
+  # Map user-supplied config to the process environment the server reads.
+  commandFunction: |
+    (config) => ({
+      command: "parseaddr-mcp",
+      env: { PARSEADDR_API_KEY: config.parseaddrApiKey }
+    })

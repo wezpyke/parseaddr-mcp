@@ -1,0 +1,20 @@
+{
+  "name": "parseaddr",
+  "version": "0.1.0",
+  "description": "Parse & normalize messy postal addresses via the hosted ParseAddr (libpostal) API — no 2-4GB self-host. Includes an MCP server for AI agents.",
+  "mcpName": "com.parseaddr/address-parse",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "parseaddr-mcp": "bin/parseaddr-mcp.js"
+  },
+  "files": ["index.js", "bin/"],
+  "keywords": ["address", "libpostal", "parsing", "geocoding", "normalization", "mcp", "postal"],
+  "homepage": "https://parseaddr.com",
+  "repository": { "type": "git", "url": "https://github.com/wezpyke/parseaddr-mcp" },
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

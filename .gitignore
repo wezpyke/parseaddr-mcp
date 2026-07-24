@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+*.whl
+
+# Node
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# Secrets / local env — API keys never belong in the tree
+.env
+.env.*
+*.key
+*.pem
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/

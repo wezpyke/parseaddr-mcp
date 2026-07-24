@@ -1,0 +1,44 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.parseaddr/address-parse",
+  "title": "ParseAddr — Address Parsing & Normalization",
+  "description": "Parse and normalize messy free-text postal addresses into structured fields (house number, road, unit, city, postcode, country) via hosted libpostal. No 2-4GB self-host, no C build.",
+  "websiteUrl": "https://parseaddr.com",
+  "repository": {
+    "url": "https://github.com/wezpyke/parseaddr-mcp",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "parseaddr",
+      "version": "0.1.0",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        {
+          "name": "PARSEADDR_API_KEY",
+          "description": "Your ParseAddr API key (free tier available at https://parseaddr.com).",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    },
+    {
+      "registryType": "npm",
+      "identifier": "parseaddr",
+      "version": "0.1.0",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        {
+          "name": "PARSEADDR_API_KEY",
+          "description": "Your ParseAddr API key (free tier available at https://parseaddr.com).",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}

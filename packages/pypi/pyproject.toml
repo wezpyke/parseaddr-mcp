@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "parseaddr"
+version = "0.1.0"
+description = "Parse & normalize messy postal addresses via the hosted ParseAddr (libpostal) API — no 2-4GB self-host. Includes an MCP server for AI agents."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+keywords = ["address", "libpostal", "parsing", "geocoding", "normalization", "mcp", "postal"]
+dependencies = ["httpx>=0.27"]
+
+[project.optional-dependencies]
+# `pip install parseaddr[mcp]` to run the stdio MCP server for coding agents.
+mcp = ["mcp>=1.2"]
+
+[project.urls]
+Homepage = "https://parseaddr.com"
+Documentation = "https://api.parseaddr.com/docs"
+Repository = "https://github.com/wezpyke/parseaddr-mcp"
+
+[project.scripts]
+# MCP registry / Smithery launch this stdio server.
+parseaddr-mcp = "parseaddr.server:main"
+
+# NOTE (pre-publish): the official MCP registry validates PyPI package ownership against
+# the server name in server.json (com.parseaddr/address-parse). Confirm the exact required
+# marker in the registry package-types doc before `mcp-publisher publish`
+# (npm uses package.json `mcpName`; verify the PyPI equivalent). Flagged in DISTRIBUTION.md.
