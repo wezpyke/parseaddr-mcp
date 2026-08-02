@@ -22,6 +22,10 @@ pip install parseaddr          # Python:  from parseaddr import parse
 npm  install parseaddr         # Node:    import { parse } from "parseaddr"
 ```
 
+> PyPI and npm publish are pending — until the packages land on the registries,
+> install from this repo: `pip install ./packages/pypi` · `npm install ./packages/npm`
+> (or add them to your toolchain from source). The API itself is live today.
+
 Get a free API key at <https://parseaddr.com>, then:
 
 ```python
@@ -31,11 +35,12 @@ parse("flat 2, 10 downing st, london sw1a 2aa", api_key="pa_...")
 ```
 
 ## MCP (coding agents)
-stdio server **`parseaddr-mcp`** — tools `parse_address`, `expand_address`. Listed on the MCP
-registries as **`com.parseaddr/address-parse`** (Official Registry · mcp.so · Smithery · Glama · LobeHub).
+stdio server **`parseaddr-mcp`** — tools `parse_address`, `expand_address`. MCP registry
+listings (`com.parseaddr/address-parse` on the Official Registry · mcp.so · Smithery ·
+Glama · LobeHub) are being submitted; until they go live, run the server from source:
 
 ```bash
-npx parseaddr-mcp             # or configure it in your agent's MCP settings
+npm install ./packages/npm && npx parseaddr-mcp   # or add ./packages/npm to your MCP config
 ```
 
 Set `PARSEADDR_API_KEY` in the environment; the server calls `https://api.parseaddr.com` on your behalf.

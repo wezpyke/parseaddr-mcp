@@ -23,7 +23,7 @@ with an API key. Best for: e-commerce checkout, delivery/logistics, CRM dedup, f
 ## Docs
 - OpenAPI: https://api.parseaddr.com/openapi.json
 - Interactive docs: https://api.parseaddr.com/docs
-- MCP server: install "parseaddr" from mcp.so / Smithery / Glama / LobeHub
+- MCP server: stdio server in this repo (packages/npm) — registry listings (mcp.so / Smithery / Glama / LobeHub) pending
 
 ## Not
 - Not authoritative deliverability validation (no Royal Mail PAF licence). Parsing/standardisation only.
