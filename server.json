@@ -9,34 +9,16 @@
     "source": "github"
   },
   "version": "0.1.0",
-  "packages": [
+  "remotes": [
     {
-      "registryType": "pypi",
-      "identifier": "parseaddr",
-      "version": "0.1.0",
-      "transport": { "type": "stdio" },
-      "environmentVariables": [
+      "type": "streamable-http",
+      "url": "https://api.parseaddr.com/mcp",
+      "headers": [
         {
-          "name": "PARSEADDR_API_KEY",
-          "description": "Your ParseAddr API key (free tier available at https://parseaddr.com).",
+          "name": "Authorization",
+          "description": "Bearer ParseAddr API key from https://parseaddr.com",
           "isRequired": true,
-          "isSecret": true,
-          "format": "string"
-        }
-      ]
-    },
-    {
-      "registryType": "npm",
-      "identifier": "parseaddr",
-      "version": "0.1.0",
-      "transport": { "type": "stdio" },
-      "environmentVariables": [
-        {
-          "name": "PARSEADDR_API_KEY",
-          "description": "Your ParseAddr API key (free tier available at https://parseaddr.com).",
-          "isRequired": true,
-          "isSecret": true,
-          "format": "string"
+          "isSecret": true
         }
       ]
     }
