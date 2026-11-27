@@ -85,27 +85,36 @@ Set `PARSEADDR_API_KEY` and you can omit `api_key=`.
 ## MCP (coding agents)
 
 **[Get a free API key](https://parseaddr.com/?utm_source=jev&utm_medium=mcp&utm_campaign=traffic_2026_09#get-key)**
-— then set `PARSEADDR_API_KEY` and run the stdio server (`parse_address`, `expand_address`).
+— email only, no card, 2,000 calls/month.
 
-MCP registry listings (`com.parseaddr/address-parse` on the Official Registry · mcp.so · Smithery ·
-Glama · LobeHub) are being submitted; until they go live, run the server from source:
+The hosted server is live at `https://api.parseaddr.com/mcp` (Streamable HTTP) and listed on the
+[Official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=parseaddr) as
+`com.parseaddr/address-parse`. Nothing to install. Tools: `parse_address`, `expand_address`.
+
+Claude Code:
 
 ```bash
-npm install ./packages/npm && npx parseaddr-mcp
+claude mcp add --transport http parseaddr https://api.parseaddr.com/mcp \
+  --header "Authorization: Bearer pa_YOUR_KEY"
 ```
 
-Example MCP config (point `command`/`args` at the local install):
+Cursor and other clients that take a JSON config:
 
 ```json
 {
   "mcpServers": {
     "parseaddr": {
-      "command": "npx",
-      "args": ["parseaddr-mcp"],
-      "env": { "PARSEADDR_API_KEY": "pa_YOUR_KEY" }
+      "url": "https://api.parseaddr.com/mcp",
+      "headers": { "Authorization": "Bearer pa_YOUR_KEY" }
     }
   }
 }
+```
+
+Prefer a local stdio server? Run it from this repo (the npm package is not published yet):
+
+```bash
+npm install ./packages/npm && npx parseaddr-mcp   # reads PARSEADDR_API_KEY
 ```
 
 Activate the key with a first parse before relying on the tools:
