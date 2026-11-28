@@ -146,4 +146,4 @@ NPM_TOKEN=npm_... PYPI_TOKEN=pypi-... scripts/publish.sh   # DRY_RUN=1 to stop b
 ```
 
 Tests on their own: `cd packages/npm && npm install && npm test` (8 tests, including an MCP
-stdio handshake) and `cd packages/pypi && pip install -e ".[mcp,test]" && pytest` (9 tests).
+stdio handshake) and `cd packages/pypi && pip install -e ".[mcp,test]" && pytest` (10 tests).

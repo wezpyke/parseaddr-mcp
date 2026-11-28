@@ -19,6 +19,7 @@ before(async () => {
       const [status, json] = key === "Bearer bad" ? [401, { detail: "Invalid API key." }]
         : key === "Bearer capped" ? [429, { detail: "Monthly cap reached." }]
         : replies[req.url] || [404, { detail: "not found" }];
+      if (key === "Bearer text") { res.writeHead(502); return res.end("Bad Gateway"); }
       res.writeHead(status, { "Content-Type": "application/json" });
       res.end(JSON.stringify(json));
     });
@@ -81,4 +82,5 @@ test("HTTP errors raise ParseAddrError with status and detail", async () => {
     return true;
   });
   await assert.rejects(expand("x", { apiKey: "capped", baseUrl: base }), { status: 429 });
+  await assert.rejects(parse("x", { apiKey: "text", baseUrl: base }), { status: 502, detail: "Bad Gateway" });
 });

@@ -56,7 +56,7 @@ pip install "parseaddr[mcp]"
 PARSEADDR_API_KEY=pa_YOUR_KEY parseaddr-mcp
 ```
 
-That starts a stdio MCP server with tools `parse_address` and `expand_address`.
+The `mcp` extra needs Python 3.10 or later. That starts a stdio MCP server with tools `parse_address` and `expand_address`.
 Or skip the install and use the hosted server:
 `claude mcp add --transport http parseaddr https://api.parseaddr.com/mcp --header "Authorization: Bearer pa_YOUR_KEY"`.
 

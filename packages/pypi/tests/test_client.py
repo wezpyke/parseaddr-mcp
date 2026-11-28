@@ -22,11 +22,13 @@ class Handler(BaseHTTPRequestHandler):
         auth = self.headers.get("Authorization")
         if auth == "Bearer bad":
             status, payload = 401, {"detail": "Invalid API key."}
+        elif auth == "Bearer text":
+            status, payload = 502, "Bad Gateway"
         elif auth == "Bearer capped":
             status, payload = 429, {"detail": "Monthly cap reached."}
         else:
             status, payload = REPLIES.get(self.path, (404, {"detail": "not found"}))
-        data = json.dumps(payload).encode()
+        data = payload.encode() if isinstance(payload, str) else json.dumps(payload).encode()
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(data)))
@@ -90,7 +92,7 @@ def test_empty_address_fails_before_request(base):
     assert LAST == {}
 
 
-@pytest.mark.parametrize("key,status,detail", [("bad", 401, "Invalid API key."), ("capped", 429, "Monthly cap reached.")])
+@pytest.mark.parametrize("key,status,detail", [("bad", 401, "Invalid API key."), ("capped", 429, "Monthly cap reached."), ("text", 502, "Bad Gateway")])
 def test_http_errors_raise_parseaddr_error(base, key, status, detail):
     with pytest.raises(ParseAddrError) as e:
         parse("x", api_key=key, base_url=base)

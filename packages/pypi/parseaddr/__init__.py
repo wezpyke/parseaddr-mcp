@@ -51,9 +51,10 @@ def _post(path: str, body: dict, api_key: Optional[str], base_url: Optional[str]
     )
     if r.is_error:
         try:
-            detail = r.json().get("detail", r.text)
+            payload = r.json()
         except ValueError:
-            detail = r.text
+            payload = None
+        detail = payload.get("detail", r.text) if isinstance(payload, dict) else r.text
         raise ParseAddrError(r.status_code, detail)
     return r.json()
 
