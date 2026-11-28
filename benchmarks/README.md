@@ -31,3 +31,21 @@ PARSEADDR_API_KEY=pa_... python benchmarks/run.py > results.json
 ```
 
 It uses 300 calls of your monthly allowance and needs only the Python standard library.
+
+## Two open-source parsers on the same inputs
+
+`compare_oss.py` sends the 300 inputs stored in `results.json` through [usaddress](https://github.com/datamade/usaddress) 0.5.16 (Python) and [parse-address](https://www.npmjs.com/package/parse-address) 1.1.2 (npm), and scores all three parsers with one rule: `run.py`'s matching plus street types counted either way (street or st), because parse-address abbreviates them. Both libraries are built for US addresses, so the US cases are counted on their own. Every output is in `oss-results.json` (run 28 November 2026).
+
+| Every labelled field right | usaddress | parse-address | parseaddr |
+|---|---|---|---|
+| US (24) | 24/24 | 12/24 (it has no country field) | 24/24 |
+| UK (200) | 0/200 | 0/200 | 197/200 |
+| Other countries (76) | 3/76 | 0/76 | 72/76 |
+
+On UK input usaddress finds 0 of 200 postcodes: "14 High Street, Oxford OX1 4AG" becomes `OccupancyType: Oxford`, `OccupancyIdentifier: OX1 4AG`. parse-address returns `{ number: '14', street: 'High', type: 'St' }` and drops the rest.
+
+```
+pip install usaddress
+npm install --prefix /tmp/pa parse-address
+python benchmarks/compare_oss.py benchmarks/results.json /tmp/pa > benchmarks/oss-results.json
+```
