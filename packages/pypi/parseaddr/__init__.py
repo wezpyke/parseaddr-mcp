@@ -20,8 +20,6 @@ __all__ = ["parse", "expand", "ParseAddrError", "__version__"]
 
 DEFAULT_BASE = "https://api.parseaddr.com"
 _CLIENT = f"pkg-pypi/{__version__}"
-# One pooled client, so a loop over many addresses reuses the TLS connection.
-_http = httpx.Client()
 
 
 class ParseAddrError(Exception):
@@ -47,7 +45,7 @@ def _post(
     if not isinstance(address, str) or not address.strip():
         raise ValueError("address must be a non-empty string")
     base = (base_url or os.getenv("PARSEADDR_API_BASE") or DEFAULT_BASE).rstrip("/")
-    r = _http.post(
+    r = httpx.post(
         f"{base}{path}",
         json=body,
         headers={"Authorization": f"Bearer {_key(api_key)}", "X-Parseaddr-Client": client},
