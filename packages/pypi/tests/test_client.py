@@ -22,6 +22,12 @@ class Handler(BaseHTTPRequestHandler):
         auth = self.headers.get("Authorization")
         if auth == "Bearer bad":
             status, payload = 401, {"detail": "Invalid API key."}
+        elif auth == "Bearer redirect":
+            self.send_response(302)
+            self.send_header("Location", "/elsewhere")
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return
         elif auth == "Bearer text":
             status, payload = 502, "Bad Gateway"
         elif auth == "Bearer capped":
@@ -98,3 +104,9 @@ def test_http_errors_raise_parseaddr_error(base, key, status, detail):
         parse("x", api_key=key, base_url=base)
     assert e.value.status == status
     assert e.value.detail == detail
+
+
+def test_redirect_is_an_error_not_a_json_crash(base):
+    with pytest.raises(ParseAddrError) as e:
+        parse("x", api_key="redirect", base_url=base)
+    assert e.value.status == 302

@@ -145,5 +145,5 @@ already live, then uploads:
 NPM_TOKEN=npm_... PYPI_TOKEN=pypi-... scripts/publish.sh   # DRY_RUN=1 to stop before upload
 ```
 
-Tests on their own: `cd packages/npm && npm install && npm test` (8 tests, including an MCP
-stdio handshake) and `cd packages/pypi && pip install -e ".[mcp,test]" && pytest` (10 tests).
+Tests on their own: `cd packages/npm && npm install && npm test` (9 tests, including two MCP
+stdio checks) and `cd packages/pypi && pip install -e ".[mcp,test]" && pytest` (12 tests).

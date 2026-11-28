@@ -38,7 +38,9 @@ def _key(api_key: Optional[str]) -> str:
     return k
 
 
-def _post(path: str, body: dict, api_key: Optional[str], base_url: Optional[str], timeout: float) -> dict:
+def _post(
+    path: str, body: dict, api_key: Optional[str], base_url: Optional[str], timeout: float, client: str = _CLIENT
+) -> dict:
     address = body.get("address")
     if not isinstance(address, str) or not address.strip():
         raise ValueError("address must be a non-empty string")
@@ -46,10 +48,10 @@ def _post(path: str, body: dict, api_key: Optional[str], base_url: Optional[str]
     r = httpx.post(
         f"{base}{path}",
         json=body,
-        headers={"Authorization": f"Bearer {_key(api_key)}", "X-Parseaddr-Client": _CLIENT},
+        headers={"Authorization": f"Bearer {_key(api_key)}", "X-Parseaddr-Client": client},
         timeout=timeout,
     )
-    if r.is_error:
+    if not r.is_success:
         try:
             payload = r.json()
         except ValueError:

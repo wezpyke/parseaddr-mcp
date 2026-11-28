@@ -8,28 +8,17 @@ Requires the `mcp` extra:  pip install "parseaddr[mcp]"
 """
 from __future__ import annotations
 
-import os
-
-import httpx
 from mcp.server.fastmcp import FastMCP
 
-__version__ = "0.1.0"
-API_BASE = os.getenv("PARSEADDR_API_BASE", "https://api.parseaddr.com")
-API_KEY = os.getenv("PARSEADDR_API_KEY", "")
-_HEADERS = {"X-Parseaddr-Client": f"mcp/{__version__}"}
+from . import __version__
+from . import _post as _client_post
 
 mcp = FastMCP("parseaddr")
 
 
 def _post(path: str, address: str) -> dict:
-    r = httpx.post(
-        f"{API_BASE}{path}",
-        json={"address": address},
-        headers={"Authorization": f"Bearer {API_KEY}", **_HEADERS},
-        timeout=15,
-    )
-    r.raise_for_status()
-    return r.json()
+    # Same request, key lookup and errors as the library; tagged mcp/<ver> instead of pkg-pypi/<ver>.
+    return _client_post(path, {"address": address}, None, None, 15, client=f"mcp/{__version__}")
 
 
 @mcp.tool()

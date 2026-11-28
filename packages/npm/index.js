@@ -27,7 +27,8 @@ function resolveKey(apiKey) {
   return k;
 }
 
-async function post(path, body, { apiKey, baseUrl, timeoutMs = 15000 } = {}) {
+// `client` is internal: the MCP bin passes "mcp/<ver>" so its calls are counted separately.
+async function post(path, body, { apiKey, baseUrl, timeoutMs = 15000, client = CLIENT } = {}) {
   if (typeof body.address !== "string" || !body.address.trim()) {
     throw new TypeError("address must be a non-empty string");
   }
@@ -37,7 +38,7 @@ async function post(path, body, { apiKey, baseUrl, timeoutMs = 15000 } = {}) {
     headers: {
       "Authorization": `Bearer ${resolveKey(apiKey)}`,
       "Content-Type": "application/json",
-      "X-Parseaddr-Client": CLIENT,
+      "X-Parseaddr-Client": client,
     },
     body: JSON.stringify(body),
     signal: AbortSignal.timeout(timeoutMs),
