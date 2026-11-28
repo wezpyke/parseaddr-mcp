@@ -4,6 +4,7 @@
 
 - 50 UK and 25 international base addresses are in `addresses.json`. Each one is sent in 4 formats (tidy with commas, lower case with no commas, upper case, and with a flat or apartment number, or without the country), so there are 200 UK cases and 100 international ones.
 - The addresses are written in real formats. They are not checked for existence, and we wrote the set ourselves, so treat it as a sanity check, not an independent benchmark. Real customer data will be messier.
+- A first run found 3 mistakes in our own labels, which we fixed before this run: the apartment cases expected a country the input did not contain, upper-casing turned ß into SS, and the Irish and New Zealand addresses were written in European order. No parser output was changed.
 - `results.json` holds every input, label, parsed output and time from the run on 28 November 2026 (10:57 UTC), from a cloud machine over HTTPS.
 
 ## Result, 28 November 2026
