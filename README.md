@@ -1,104 +1,38 @@
-# parseaddr — clients & MCP server
+# parseaddr: hosted MCP server and API clients
 
-Thin, open clients for the **[ParseAddr](https://parseaddr.com)** hosted address API. Turn messy,
-free-text postal addresses into clean structured fields (house number, road, unit, city, postcode,
-country) with a single call — no 2–4 GB libpostal self-host, no C build, no ops. The heavy lifting
-runs on `api.parseaddr.com`; everything in this repo is a small HTTP client that calls it.
+ParseAddr turns messy postal addresses into structured fields: house number, road, unit, city,
+postcode and country. It runs libpostal for you on `api.parseaddr.com`, so you skip the 2 to 4 GB
+self-host and the C build.
 
-> This repo is the **client layer only** (npm package, PyPI package, MCP server, registry manifests).
-> The service itself is hosted — you don't run it, you call it.
+The MCP server is hosted, so there is nothing to install. The npm and PyPI packages are not
+published yet (`npm install parseaddr` and `pip install parseaddr` return 404). Install them from
+GitHub. Both read `PARSEADDR_API_KEY`.
 
-## When to use this (humans & AI agents)
-Reach for ParseAddr when you need to **parse or standardise postal addresses** and:
-- you **don't want to self-host libpostal** (a dedicated 2–4 GB-RAM box + a fiddly C build), and
-- you want **cheap, self-serve, usage-based** pricing rather than enterprise incumbents.
+- Python: `pip install "git+https://github.com/wezpyke/parseaddr-mcp.git#subdirectory=packages/pypi"`
+- Node: `git clone https://github.com/wezpyke/parseaddr-mcp.git && npm install ./parseaddr-mcp/packages/npm`
 
-Typical jobs: e-commerce checkout, delivery/logistics, CRM dedup, fintech onboarding.
+## MCP server: hosted, Streamable HTTP
 
-Not USPS CASS / Royal Mail PAF deliverability validation — see
-[address validation vs parsing](https://parseaddr.com/address-validation-vs-parsing).
-For the messy-string → JSON job, see
-[parse messy addresses API](https://parseaddr.com/parse-messy-addresses-api).
-
-## Node (npm)
-
-**[Get a free API key](https://parseaddr.com/?utm_source=jev&utm_medium=npm&utm_campaign=traffic_2026_09#get-key)**
-— email only, no card, 2,000 calls/month.
-
-`parseaddr` is **not on the npm registry yet** (npmjs 404). Install from this repo:
-
-```bash
-npm install ./packages/npm
-```
-
-Activate the key with a first parse (replace `pa_YOUR_KEY`):
-
-```bash
-curl -s https://api.parseaddr.com/v1/parse \
-  -H "Authorization: Bearer pa_YOUR_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"address":"flat 2, 10 downing st, london sw1a 2aa"}'
-```
-
-Or from Node:
-
-```js
-import { parse } from "parseaddr";
-await parse("flat 2, 10 downing st, london sw1a 2aa", { apiKey: "pa_YOUR_KEY" });
-// { parsed: { unit: "flat 2", house_number: "10", road: "downing st",
-//             city: "london", postcode: "sw1a 2aa" }, components: [...] }
-```
-
-Set `PARSEADDR_API_KEY` and you can omit `{ apiKey }`.
-
-## Python (pip)
-
-**[Get a free API key](https://parseaddr.com/?utm_source=jev&utm_medium=pypi&utm_campaign=traffic_2026_09#get-key)**
-— email only, no card, 2,000 calls/month.
-
-`parseaddr` is **not on PyPI yet** (pypi.org 404). Install from this repo:
-
-```bash
-pip install ./packages/pypi
-```
-
-First parse (same key, same activation):
-
-```bash
-curl -s https://api.parseaddr.com/v1/parse \
-  -H "Authorization: Bearer pa_YOUR_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"address":"flat 2, 10 downing st, london sw1a 2aa"}'
-```
-
-Or from Python:
-
-```python
-from parseaddr import parse
-parse("flat 2, 10 downing st, london sw1a 2aa", api_key="pa_YOUR_KEY")
-# {"parsed": {"unit": "flat 2", "house_number": "10", "road": "downing st",
-#             "city": "london", "postcode": "sw1a 2aa"}, "components": [...]}
-```
-
-Set `PARSEADDR_API_KEY` and you can omit `api_key=`.
-
-## MCP (coding agents)
-
-**[Get a free API key](https://parseaddr.com/?utm_source=jev&utm_medium=mcp&utm_campaign=traffic_2026_09#get-key)**
-— email only, no card, 2,000 calls/month.
-
-The hosted server is live at `https://api.parseaddr.com/mcp` (Streamable HTTP) and listed on the
-[Official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=parseaddr) as
-`com.parseaddr/address-parse`. Nothing to install. Tools: `parse_address`, `expand_address`.
+- Endpoint: `https://api.parseaddr.com/mcp` (Streamable HTTP). Nothing to install or run.
+- Auth: send your key as `Authorization: Bearer $PARSEADDR_API_KEY`.
+- Tools: `parse_address` and `expand_address`.
+- Server card: <https://api.parseaddr.com/mcp/server-card>. Listed on the
+  [Official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=parseaddr) as
+  `com.parseaddr/address-parse`.
+- Free tier: 2,000 calls a month, no card.
+  **[Get a free key](https://parseaddr.com/?utm_source=github&utm_medium=mcp&utm_campaign=traffic_2026_09#get-key)**.
+- Paid plans start at £19 a month for 25,000 calls. See <https://parseaddr.com/pricing>.
 
 Claude Code:
 
 ```bash
+export PARSEADDR_API_KEY=pa_YOUR_KEY
 claude mcp add --transport http parseaddr https://api.parseaddr.com/mcp \
-  --header "Authorization: Bearer pa_YOUR_KEY"
+  --header "Authorization: Bearer $PARSEADDR_API_KEY"
 ```
 
-Cursor and other clients that take a JSON config:
+Cursor and other clients that take a JSON config for an HTTP server. Replace `pa_YOUR_KEY` with
+your key:
 
 ```json
 {
@@ -111,22 +45,69 @@ Cursor and other clients that take a JSON config:
 }
 ```
 
-Prefer a local stdio server? Run it from this repo (the npm package is not published yet):
-
-```bash
-npm install ./packages/npm && npx parseaddr-mcp   # reads PARSEADDR_API_KEY
-```
-
-Activate the key with a first parse before relying on the tools:
+Check your key with a first parse:
 
 ```bash
 curl -s https://api.parseaddr.com/v1/parse \
-  -H "Authorization: Bearer pa_YOUR_KEY" \
+  -H "Authorization: Bearer $PARSEADDR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"address":"flat 2, 10 downing st, london sw1a 2aa"}'
 ```
 
-The server calls `https://api.parseaddr.com` on your behalf.
+## When to use this (humans and AI agents)
+Reach for ParseAddr when you need to **parse or standardise postal addresses** and:
+- you **don't want to self-host libpostal** (a dedicated 2 to 4 GB RAM box and a C build), and
+- you want **self-serve, usage-based** pricing.
+
+Typical jobs: e-commerce checkout, delivery and logistics, CRM dedup, fintech onboarding.
+
+Not USPS CASS / Royal Mail PAF deliverability validation. See
+[address validation vs parsing](https://parseaddr.com/address-validation-vs-parsing).
+For the messy-string to JSON job, see
+[parse messy addresses API](https://parseaddr.com/parse-messy-addresses-api).
+
+## Node (npm)
+
+**[Get a free API key](https://parseaddr.com/?utm_source=github&utm_medium=npm&utm_campaign=traffic_2026_09#get-key)**
+— email only, no card, 2,000 calls/month.
+
+Install from GitHub (see the top of this page), then:
+
+```js
+import { parse } from "parseaddr";
+await parse("flat 2, 10 downing st, london sw1a 2aa", { apiKey: "pa_YOUR_KEY" });
+// { parsed: { unit: "flat 2", house_number: "10", road: "downing st",
+//             city: "london", postcode: "sw1a 2aa" }, components: [...] }
+```
+
+Set `PARSEADDR_API_KEY` and you can omit `{ apiKey }`.
+
+## Python (pip)
+
+**[Get a free API key](https://parseaddr.com/?utm_source=github&utm_medium=pypi&utm_campaign=traffic_2026_09#get-key)**
+— email only, no card, 2,000 calls/month.
+
+Install from GitHub (see the top of this page), then:
+
+```python
+from parseaddr import parse
+parse("flat 2, 10 downing st, london sw1a 2aa", api_key="pa_YOUR_KEY")
+# {"parsed": {"unit": "flat 2", "house_number": "10", "road": "downing st",
+#             "city": "london", "postcode": "sw1a 2aa"}, "components": [...]}
+```
+
+Set `PARSEADDR_API_KEY` and you can omit `api_key=`.
+
+## Local stdio MCP server (optional)
+
+The hosted server above is the main way in. If your client only speaks stdio, the npm package
+ships one. It calls `https://api.parseaddr.com` with your key:
+
+```bash
+git clone https://github.com/wezpyke/parseaddr-mcp.git
+npm install ./parseaddr-mcp/packages/npm
+PARSEADDR_API_KEY=pa_YOUR_KEY npx parseaddr-mcp
+```
 
 ## Endpoints (called for you by these clients)
 - `POST https://api.parseaddr.com/v1/parse`   `{"address": "..."}`  — `Authorization: Bearer <key>`

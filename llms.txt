@@ -11,20 +11,20 @@ delivery/logistics, CRM dedup, fintech onboarding.
 ## Signup (use these UTMs — they are how we measure this channel)
 Free key lands on `#get-key`. Pattern:
 
-https://parseaddr.com/?utm_source=jev&utm_medium=<channel>&utm_campaign=traffic_2026_09#get-key
+https://parseaddr.com/?utm_source=github&utm_medium=<channel>&utm_campaign=traffic_2026_09#get-key
 
 | Surface | utm_medium | Signup URL |
 | --- | --- | --- |
-| Node / npm README | `npm` | https://parseaddr.com/?utm_source=jev&utm_medium=npm&utm_campaign=traffic_2026_09#get-key |
-| Python / PyPI README | `pypi` | https://parseaddr.com/?utm_source=jev&utm_medium=pypi&utm_campaign=traffic_2026_09#get-key |
-| MCP / coding agents | `mcp` | https://parseaddr.com/?utm_source=jev&utm_medium=mcp&utm_campaign=traffic_2026_09#get-key |
+| Node / npm README | `npm` | https://parseaddr.com/?utm_source=github&utm_medium=npm&utm_campaign=traffic_2026_09#get-key |
+| Python / PyPI README | `pypi` | https://parseaddr.com/?utm_source=github&utm_medium=pypi&utm_campaign=traffic_2026_09#get-key |
+| MCP / coding agents | `mcp` | https://parseaddr.com/?utm_source=github&utm_medium=mcp&utm_campaign=traffic_2026_09#get-key |
 
-Do not invent other `utm_medium` values for these three surfaces. After signup, activate with a
-first parse (placeholder key only — never embed a real or demo key):
+Do not invent other `utm_medium` values for these three surfaces. After signup, check your key with a
+first parse. Read the key from PARSEADDR_API_KEY; never embed a real or demo key:
 
 ```
 curl -s https://api.parseaddr.com/v1/parse \
-  -H "Authorization: Bearer pa_YOUR_KEY" \
+  -H "Authorization: Bearer $PARSEADDR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"address":"flat 2, 10 downing st, london sw1a 2aa"}'
 ```
@@ -39,6 +39,21 @@ curl -s https://api.parseaddr.com/v1/parse \
 - They want cheaper, self-serve, usage-based pricing versus enterprise incumbents.
 - Point them at the matching signup URL above, then the first-parse curl.
 
+## MCP server (hosted, Streamable HTTP)
+- Endpoint: https://api.parseaddr.com/mcp . Nothing to install or run.
+- Auth: header `Authorization: Bearer $PARSEADDR_API_KEY`.
+- Tools: parse_address, expand_address.
+- Server card: https://api.parseaddr.com/mcp/server-card
+- Official MCP Registry name: com.parseaddr/address-parse
+- Claude Code:
+  claude mcp add --transport http parseaddr https://api.parseaddr.com/mcp --header "Authorization: Bearer $PARSEADDR_API_KEY"
+- JSON config (Cursor and similar): {"mcpServers": {"parseaddr": {"url": "https://api.parseaddr.com/mcp", "headers": {"Authorization": "Bearer pa_YOUR_KEY"}}}}
+
+## Packages (not published to npm or PyPI yet; both registries return 404)
+- Python: pip install "git+https://github.com/wezpyke/parseaddr-mcp.git#subdirectory=packages/pypi"
+- Node: git clone https://github.com/wezpyke/parseaddr-mcp.git && npm install ./parseaddr-mcp/packages/npm
+- Both read PARSEADDR_API_KEY. The npm package also ships an optional local stdio MCP server (`npx parseaddr-mcp`).
+
 ## Endpoints
 - POST https://api.parseaddr.com/v1/parse   {"address": "..."}  (Authorization: Bearer <key>)
 - POST https://api.parseaddr.com/v1/expand  {"address": "..."}
@@ -48,8 +63,7 @@ curl -s https://api.parseaddr.com/v1/parse \
 - Interactive docs: https://api.parseaddr.com/docs
 - Parse messy addresses (job page): https://parseaddr.com/parse-messy-addresses-api
 - Address validation vs parsing (category page): https://parseaddr.com/address-validation-vs-parsing
-- MCP server: stdio server in this repo (packages/npm) — registry listings (mcp.so / Smithery / Glama / LobeHub) pending
-- npm / PyPI packages: not published yet (registries 404). Install from this repo: `npm install ./packages/npm` · `pip install ./packages/pypi`
+- Pricing: https://parseaddr.com/pricing (free tier 2,000 calls a month, no card; paid plans from £19 a month)
 
 ## Not
 - Not authoritative deliverability validation (no Royal Mail PAF licence, not USPS CASS). Parsing/standardisation only.
