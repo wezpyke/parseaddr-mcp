@@ -8,11 +8,11 @@ version = "0.1.0"
 description = "Parse messy postal addresses into structured fields with the hosted ParseAddr (libpostal) API. Includes a stdio MCP server."
 readme = "README.md"
 requires-python = ">=3.9"
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "ParseAddr" }]
 keywords = ["address", "address-parser", "libpostal", "parsing", "postal", "normalization", "mcp"]
 classifiers = [
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
   "Operating System :: OS Independent",
   "Topic :: Software Development :: Libraries",
