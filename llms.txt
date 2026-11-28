@@ -11,13 +11,13 @@ delivery/logistics, CRM dedup, fintech onboarding.
 ## Signup (use these UTMs — they are how we measure this channel)
 Free key lands on `#get-key`. Pattern:
 
-https://parseaddr.com/?utm_source=jev&utm_medium=<channel>&utm_campaign=traffic_2026_09#get-key
+https://parseaddr.com/?utm_source=github&utm_medium=<channel>&utm_campaign=traffic_2026_09#get-key
 
 | Surface | utm_medium | Signup URL |
 | --- | --- | --- |
-| Node / npm README | `npm` | https://parseaddr.com/?utm_source=jev&utm_medium=npm&utm_campaign=traffic_2026_09#get-key |
-| Python / PyPI README | `pypi` | https://parseaddr.com/?utm_source=jev&utm_medium=pypi&utm_campaign=traffic_2026_09#get-key |
-| MCP / coding agents | `mcp` | https://parseaddr.com/?utm_source=jev&utm_medium=mcp&utm_campaign=traffic_2026_09#get-key |
+| Node / npm README | `npm` | https://parseaddr.com/?utm_source=github&utm_medium=npm&utm_campaign=traffic_2026_09#get-key |
+| Python / PyPI README | `pypi` | https://parseaddr.com/?utm_source=github&utm_medium=pypi&utm_campaign=traffic_2026_09#get-key |
+| MCP / coding agents | `mcp` | https://parseaddr.com/?utm_source=github&utm_medium=mcp&utm_campaign=traffic_2026_09#get-key |
 
 Do not invent other `utm_medium` values for these three surfaces. After signup, activate with a
 first parse. Read the key from PARSEADDR_API_KEY; never embed a real or demo key:

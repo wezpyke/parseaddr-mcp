@@ -20,7 +20,7 @@ GitHub. Both read `PARSEADDR_API_KEY`.
   [Official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=parseaddr) as
   `com.parseaddr/address-parse`.
 - Free tier: 2,000 calls a month, no card.
-  **[Get a free key](https://parseaddr.com/?utm_source=jev&utm_medium=mcp&utm_campaign=traffic_2026_09#get-key)**.
+  **[Get a free key](https://parseaddr.com/?utm_source=github&utm_medium=mcp&utm_campaign=traffic_2026_09#get-key)**.
 - Paid plans start at £19 a month for 25,000 calls. See <https://parseaddr.com/pricing>.
 
 Claude Code:
@@ -68,7 +68,7 @@ For the messy-string to JSON job, see
 
 ## Node (npm)
 
-**[Get a free API key](https://parseaddr.com/?utm_source=jev&utm_medium=npm&utm_campaign=traffic_2026_09#get-key)**
+**[Get a free API key](https://parseaddr.com/?utm_source=github&utm_medium=npm&utm_campaign=traffic_2026_09#get-key)**
 — email only, no card, 2,000 calls/month.
 
 Install from GitHub (see the top of this page), then:
@@ -84,7 +84,7 @@ Set `PARSEADDR_API_KEY` and you can omit `{ apiKey }`.
 
 ## Python (pip)
 
-**[Get a free API key](https://parseaddr.com/?utm_source=jev&utm_medium=pypi&utm_campaign=traffic_2026_09#get-key)**
+**[Get a free API key](https://parseaddr.com/?utm_source=github&utm_medium=pypi&utm_campaign=traffic_2026_09#get-key)**
 — email only, no card, 2,000 calls/month.
 
 Install from GitHub (see the top of this page), then:

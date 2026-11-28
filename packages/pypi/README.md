@@ -4,7 +4,7 @@ Turn a messy address string into structured fields with one call to the hosted
 [ParseAddr](https://parseaddr.com) API. It runs libpostal for you, so you skip the 2-4 GB
 model download and the C build that `pip install postal` needs.
 
-**[Get a free API key](https://parseaddr.com/?utm_source=jev&utm_medium=pypi&utm_campaign=traffic_2026_09#get-key)**:
+**[Get a free API key](https://parseaddr.com/?utm_source=github&utm_medium=pypi&utm_campaign=traffic_2026_09#get-key)**:
 email only, no card, 2,000 calls a month.
 
 ```bash
