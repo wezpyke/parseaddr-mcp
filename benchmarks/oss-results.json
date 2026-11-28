@@ -1,0 +1,7733 @@
+{
+ "source": "results.json run_at 2026-11-28T10:57:09Z",
+ "usaddress": "0.5.16",
+ "parse_address": "1.1.2",
+ "summary": {
+  "parseaddr": {
+   "uk": {
+    "cases": 200,
+    "all_fields_correct": 197,
+    "per_field": {
+     "city": "197/200",
+     "house_number": "200/200",
+     "postcode": "200/200",
+     "road": "200/200",
+     "unit": "50/50"
+    }
+   },
+   "international_non_us": {
+    "cases": 76,
+    "all_fields_correct": 72,
+    "per_field": {
+     "city": "72/76",
+     "country": "51/51",
+     "house_number": "76/76",
+     "postcode": "76/76",
+     "road": "76/76",
+     "state": "16/16",
+     "unit": "6/6"
+    }
+   },
+   "us": {
+    "cases": 24,
+    "all_fields_correct": 24,
+    "per_field": {
+     "city": "24/24",
+     "country": "12/12",
+     "house_number": "24/24",
+     "postcode": "24/24",
+     "road": "24/24",
+     "state": "24/24",
+     "unit": "6/6"
+    }
+   }
+  },
+  "usaddress": {
+   "uk": {
+    "cases": 200,
+    "all_fields_correct": 0,
+    "per_field": {
+     "city": "102/200",
+     "house_number": "190/200",
+     "postcode": "0/200",
+     "road": "181/200",
+     "unit": "20/50"
+    }
+   },
+   "international_non_us": {
+    "cases": 76,
+    "all_fields_correct": 3,
+    "per_field": {
+     "city": "28/76",
+     "country": "0/51",
+     "house_number": "22/76",
+     "postcode": "7/76",
+     "road": "23/76",
+     "state": "7/16",
+     "unit": "4/6"
+    }
+   },
+   "us": {
+    "cases": 24,
+    "all_fields_correct": 24,
+    "per_field": {
+     "city": "24/24",
+     "country": "12/12",
+     "house_number": "24/24",
+     "postcode": "24/24",
+     "road": "24/24",
+     "state": "24/24",
+     "unit": "6/6"
+    }
+   }
+  },
+  "parse-address": {
+   "uk": {
+    "cases": 200,
+    "all_fields_correct": 0,
+    "per_field": {
+     "city": "0/200",
+     "house_number": "147/200",
+     "postcode": "0/200",
+     "road": "138/200",
+     "unit": "0/50"
+    }
+   },
+   "international_non_us": {
+    "cases": 76,
+    "all_fields_correct": 0,
+    "per_field": {
+     "city": "0/76",
+     "country": "0/51",
+     "house_number": "24/76",
+     "postcode": "0/76",
+     "road": "40/76",
+     "state": "0/16",
+     "unit": "6/6"
+    }
+   },
+   "us": {
+    "cases": 24,
+    "all_fields_correct": 12,
+    "per_field": {
+     "city": "24/24",
+     "country": "0/12",
+     "house_number": "24/24",
+     "postcode": "24/24",
+     "road": "24/24",
+     "state": "24/24",
+     "unit": "6/6"
+    }
+   }
+  }
+ },
+ "cases": [
+  {
+   "parser": "usaddress",
+   "input": "14 High Street, Oxford OX1 4AG",
+   "parsed": {
+    "house_number": "14",
+    "road": "High Street,",
+    "unit": "Oxford OX1 4AG"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "14 high street oxford ox1 4ag",
+   "parsed": {
+    "house_number": "14",
+    "road": "high street",
+    "unit": "oxford ox1 4ag"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "14 HIGH STREET, OXFORD, OX14AG",
+   "parsed": {
+    "house_number": "14",
+    "city": "OXFORD,",
+    "state": "OX14AG",
+    "road": "HIGH STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 14 high street, oxford ox1 4ag",
+   "parsed": {
+    "house_number": "14",
+    "road": "high street,",
+    "unit": "flat 2, oxford ox1 4ag"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "10 Downing Street, London SW1A 2AA",
+   "parsed": {
+    "house_number": "10",
+    "road": "Downing Street,",
+    "unit": "London SW1A 2AA"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "10 downing street london sw1a 2aa",
+   "parsed": {
+    "house_number": "10",
+    "road": "downing street",
+    "unit": "london sw1a 2aa"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "10 DOWNING STREET, LONDON, SW1A2AA",
+   "parsed": {
+    "house_number": "10",
+    "city": "LONDON,",
+    "state": "SW1A2AA",
+    "road": "DOWNING STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 10 downing street, london sw1a 2aa",
+   "parsed": {
+    "house_number": "10",
+    "road": "downing street,",
+    "unit": "flat 2, london sw1a 2aa"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "221B Baker Street, London NW1 6XE",
+   "parsed": {
+    "house_number": "221B",
+    "road": "Baker Street,",
+    "unit": "London NW1 6XE"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "221b baker street london nw1 6xe",
+   "parsed": {
+    "house_number": "221b",
+    "road": "baker street",
+    "unit": "london nw1 6xe"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "221B BAKER STREET, LONDON, NW16XE",
+   "parsed": {
+    "house_number": "221B",
+    "city": "LONDON,",
+    "state": "NW16XE",
+    "road": "BAKER STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 221b baker street, london nw1 6xe",
+   "parsed": {
+    "house_number": "221b",
+    "road": "baker street,",
+    "unit": "flat 2, london nw1 6xe"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1 Victoria Street, Bristol BS1 6AA",
+   "parsed": {
+    "house_number": "1",
+    "road": "Victoria Street,",
+    "unit": "Bristol BS1 6AA"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1 victoria street bristol bs1 6aa",
+   "parsed": {
+    "house_number": "1",
+    "road": "victoria street",
+    "unit": "bristol bs1 6aa"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1 VICTORIA STREET, BRISTOL, BS16AA",
+   "parsed": {
+    "house_number": "1",
+    "city": "BRISTOL,",
+    "state": "BS16AA",
+    "road": "VICTORIA STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 1 victoria street, bristol bs1 6aa",
+   "parsed": {
+    "house_number": "1",
+    "road": "victoria street,",
+    "unit": "flat 2, bristol bs1 6aa"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "25 Deansgate, Manchester M3 4LQ",
+   "parsed": {
+    "house_number": "25",
+    "city": "Manchester",
+    "state": "M3",
+    "postcode": "4LQ",
+    "road": "Deansgate,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "25 deansgate manchester m3 4lq",
+   "parsed": {
+    "house_number": "25",
+    "city": "manchester",
+    "state": "m3",
+    "postcode": "4lq",
+    "road": "deansgate"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "25 DEANSGATE, MANCHESTER, M34LQ",
+   "parsed": {
+    "house_number": "25",
+    "road": "DEANSGATE,",
+    "unit": "MANCHESTER, M34LQ"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 25 deansgate, manchester m3 4lq",
+   "parsed": {
+    "city": "deansgate, manchester",
+    "state": "m3",
+    "postcode": "4lq",
+    "unit": "flat 2, 25"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "7 Bold Street, Liverpool L1 4DJ",
+   "parsed": {
+    "house_number": "7",
+    "city": "Liverpool",
+    "state": "L1",
+    "postcode": "4DJ",
+    "road": "Bold Street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "7 bold street liverpool l1 4dj",
+   "parsed": {
+    "house_number": "7",
+    "city": "liverpool",
+    "state": "l1",
+    "postcode": "4dj",
+    "road": "bold street"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "7 BOLD STREET, LIVERPOOL, L14DJ",
+   "parsed": {
+    "house_number": "7",
+    "city": "LIVERPOOL,",
+    "state": "L14DJ",
+    "road": "BOLD STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 7 bold street, liverpool l1 4dj",
+   "parsed": {
+    "house_number": "7",
+    "city": "liverpool",
+    "state": "l1",
+    "postcode": "4dj",
+    "road": "bold street,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "48 Princes Street, Edinburgh EH2 2YJ",
+   "parsed": {
+    "house_number": "48",
+    "city": "Edinburgh",
+    "state": "EH2",
+    "postcode": "2YJ",
+    "road": "Princes Street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "48 princes street edinburgh eh2 2yj",
+   "parsed": {
+    "house_number": "48",
+    "city": "edinburgh",
+    "state": "eh2",
+    "postcode": "2yj",
+    "road": "princes street"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "48 PRINCES STREET, EDINBURGH, EH22YJ",
+   "parsed": {
+    "house_number": "48",
+    "city": "EDINBURGH,",
+    "state": "EH22YJ",
+    "road": "PRINCES STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 48 princes street, edinburgh eh2 2yj",
+   "parsed": {
+    "house_number": "48",
+    "city": "edinburgh",
+    "state": "eh2",
+    "postcode": "2yj",
+    "road": "princes street,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "150 Buchanan Street, Glasgow G1 2LL",
+   "parsed": {
+    "house_number": "150",
+    "city": "Glasgow",
+    "state": "G1",
+    "postcode": "2LL",
+    "road": "Buchanan Street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "150 buchanan street glasgow g1 2ll",
+   "parsed": {
+    "house_number": "150",
+    "city": "glasgow",
+    "state": "g1",
+    "postcode": "2ll",
+    "road": "buchanan street"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "150 BUCHANAN STREET, GLASGOW, G12LL",
+   "parsed": {
+    "house_number": "150",
+    "city": "GLASGOW,",
+    "state": "G12LL",
+    "road": "BUCHANAN STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 150 buchanan street, glasgow g1 2ll",
+   "parsed": {
+    "house_number": "150",
+    "city": "glasgow",
+    "state": "g1",
+    "postcode": "2ll",
+    "road": "buchanan street,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "3 Queen Street, Cardiff CF10 2BH",
+   "parsed": {
+    "house_number": "3",
+    "road": "Queen Street,",
+    "unit": "Cardiff CF10 2BH"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "3 queen street cardiff cf10 2bh",
+   "parsed": {
+    "house_number": "3",
+    "road": "queen street",
+    "unit": "cardiff cf10 2bh"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "3 QUEEN STREET, CARDIFF, CF102BH",
+   "parsed": {
+    "house_number": "3",
+    "city": "CARDIFF,",
+    "state": "CF102BH",
+    "road": "QUEEN STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 3 queen street, cardiff cf10 2bh",
+   "parsed": {
+    "house_number": "3",
+    "road": "queen street,",
+    "unit": "flat 2, cardiff cf10 2bh"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "19 Donegall Place, Belfast BT1 5AB",
+   "parsed": {
+    "house_number": "19",
+    "road": "Donegall Place,",
+    "unit": "Belfast BT1 5AB"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "19 donegall place belfast bt1 5ab",
+   "parsed": {
+    "house_number": "19",
+    "road": "donegall place",
+    "unit": "belfast bt1 5ab"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "19 DONEGALL PLACE, BELFAST, BT15AB",
+   "parsed": {
+    "house_number": "19",
+    "road": "DONEGALL PLACE,",
+    "unit": "BELFAST, BT15AB"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 19 donegall place, belfast bt1 5ab",
+   "parsed": {
+    "city": "donegall place,",
+    "state": "belfast",
+    "unit": "flat 2, 19 bt1 5ab"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "62 New Street, Birmingham B2 4DU",
+   "parsed": {
+    "house_number": "62",
+    "road": "New Street,",
+    "unit": "Birmingham B2 4DU"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "62 new street birmingham b2 4du",
+   "parsed": {
+    "house_number": "62",
+    "road": "new street",
+    "unit": "birmingham b2 4du"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "62 NEW STREET, BIRMINGHAM, B24DU",
+   "parsed": {
+    "house_number": "62",
+    "city": "BIRMINGHAM,",
+    "state": "B24DU",
+    "road": "NEW STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 62 new street, birmingham b2 4du",
+   "parsed": {
+    "house_number": "62",
+    "road": "new street,",
+    "unit": "flat 2, birmingham b2 4du"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "9 Briggate, Leeds LS1 6HD",
+   "parsed": {
+    "house_number": "9",
+    "road": "Briggate,",
+    "unit": "Leeds LS1 6HD"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "9 briggate leeds ls1 6hd",
+   "parsed": {
+    "house_number": "9",
+    "road": "briggate leeds",
+    "unit": "ls1 6hd"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "9 BRIGGATE, LEEDS, LS16HD",
+   "parsed": {
+    "house_number": "9",
+    "road": "BRIGGATE,",
+    "unit": "LEEDS, LS16HD"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 9 briggate, leeds ls1 6hd",
+   "parsed": {
+    "city": "briggate,",
+    "state": "leeds ls1",
+    "postcode": "6hd",
+    "unit": "flat 2, 9"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "31 Grey Street, Newcastle Upon Tyne NE1 6EE",
+   "parsed": {
+    "house_number": "31",
+    "city": "Newcastle Upon Tyne",
+    "road": "Grey Street,",
+    "unit": "NE1 6EE"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "31 grey street newcastle upon tyne ne1 6ee",
+   "parsed": {
+    "house_number": "31",
+    "road": "grey street",
+    "unit": "ne1 6ee"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "31 GREY STREET, NEWCASTLE UPON TYNE, NE16EE",
+   "parsed": {
+    "house_number": "31",
+    "city": "NEWCASTLE UPON TYNE,",
+    "state": "NE16EE",
+    "road": "GREY STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 31 grey street, newcastle upon tyne ne1 6ee",
+   "parsed": {
+    "house_number": "31",
+    "city": "newcastle upon tyne",
+    "road": "grey street,",
+    "unit": "flat 2, ne1 6ee"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "5 King Street, Cambridge CB1 1LH",
+   "parsed": {
+    "house_number": "5",
+    "city": "Cambridge",
+    "state": "CB1",
+    "postcode": "1LH",
+    "road": "King Street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "5 king street cambridge cb1 1lh",
+   "parsed": {
+    "house_number": "5",
+    "city": "cambridge",
+    "state": "cb1",
+    "postcode": "1lh",
+    "road": "king street"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "5 KING STREET, CAMBRIDGE, CB11LH",
+   "parsed": {
+    "house_number": "5",
+    "city": "CAMBRIDGE,",
+    "state": "CB11LH",
+    "road": "KING STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 5 king street, cambridge cb1 1lh",
+   "parsed": {
+    "house_number": "5",
+    "city": "cambridge",
+    "state": "cb1",
+    "postcode": "1lh",
+    "road": "king street,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "88 London Road, Brighton BN1 4JF",
+   "parsed": {
+    "house_number": "88",
+    "city": "Brighton",
+    "state": "BN1",
+    "postcode": "4JF",
+    "road": "London Road,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "88 london road brighton bn1 4jf",
+   "parsed": {
+    "house_number": "88",
+    "road": "london road",
+    "unit": "brighton bn1 4jf"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "88 LONDON ROAD, BRIGHTON, BN14JF",
+   "parsed": {
+    "house_number": "88",
+    "city": "BRIGHTON,",
+    "state": "BN14JF",
+    "road": "LONDON ROAD,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 88 london road, brighton bn1 4jf",
+   "parsed": {
+    "house_number": "88",
+    "city": "brighton",
+    "state": "bn1",
+    "postcode": "4jf",
+    "road": "london road,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "12 The Parade, Leamington Spa CV32 4AT",
+   "parsed": {
+    "house_number": "12",
+    "city": "Leamington",
+    "state": "Spa",
+    "road": "The Parade,",
+    "unit": "CV32 4AT"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "12 the parade leamington spa cv32 4at",
+   "parsed": {
+    "house_number": "12",
+    "road": "the parade leamington",
+    "unit": "spa cv32 4at"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "12 THE PARADE, LEAMINGTON SPA, CV324AT",
+   "parsed": {
+    "house_number": "12",
+    "city": "LEAMINGTON SPA,",
+    "state": "CV324AT",
+    "road": "THE PARADE,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 12 the parade, leamington spa cv32 4at",
+   "parsed": {
+    "unit": "flat 2, 12 cv32 4at"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "44 Fore Street, Exeter EX4 3AN",
+   "parsed": {
+    "house_number": "44",
+    "road": "Fore Street,",
+    "unit": "Exeter EX4 3AN"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "44 fore street exeter ex4 3an",
+   "parsed": {
+    "house_number": "44",
+    "road": "fore street",
+    "unit": "exeter ex4 3an"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "44 FORE STREET, EXETER, EX43AN",
+   "parsed": {
+    "house_number": "44",
+    "city": "EXETER,",
+    "state": "EX43AN",
+    "road": "FORE STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 44 fore street, exeter ex4 3an",
+   "parsed": {
+    "house_number": "44",
+    "road": "fore street,",
+    "unit": "flat 2, exeter ex4 3an"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "2 Castle Street, York YO1 9RY",
+   "parsed": {
+    "house_number": "2",
+    "city": "York",
+    "state": "YO1",
+    "postcode": "9RY",
+    "road": "Castle Street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "2 castle street york yo1 9ry",
+   "parsed": {
+    "house_number": "2",
+    "road": "castle street",
+    "unit": "york yo1 9ry"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "2 CASTLE STREET, YORK, YO19RY",
+   "parsed": {
+    "house_number": "2",
+    "road": "CASTLE STREET,",
+    "unit": "YORK, YO19RY"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 2 castle street, york yo1 9ry",
+   "parsed": {
+    "house_number": "2",
+    "city": "york",
+    "state": "yo1",
+    "postcode": "9ry",
+    "road": "castle street,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "101 Lord Street, Southport PR8 1RH",
+   "parsed": {
+    "house_number": "101",
+    "city": "Southport",
+    "state": "PR8",
+    "postcode": "1RH",
+    "road": "Lord Street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "101 lord street southport pr8 1rh",
+   "parsed": {
+    "house_number": "101",
+    "city": "southport",
+    "state": "pr8",
+    "postcode": "1rh",
+    "road": "lord street"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "101 LORD STREET, SOUTHPORT, PR81RH",
+   "parsed": {
+    "house_number": "101",
+    "city": "SOUTHPORT,",
+    "state": "PR81RH",
+    "road": "LORD STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 101 lord street, southport pr8 1rh",
+   "parsed": {
+    "house_number": "101",
+    "city": "southport",
+    "state": "pr8",
+    "postcode": "1rh",
+    "road": "lord street,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "17 Church Road, Bath BA1 1AA",
+   "parsed": {
+    "house_number": "17",
+    "road": "Church Road,",
+    "unit": "Bath BA1 1AA"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "17 church road bath ba1 1aa",
+   "parsed": {
+    "house_number": "17",
+    "road": "church road",
+    "unit": "bath ba1 1aa"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "17 CHURCH ROAD, BATH, BA11AA",
+   "parsed": {
+    "house_number": "17",
+    "road": "CHURCH ROAD,",
+    "unit": "BATH, BA11AA"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 17 church road, bath ba1 1aa",
+   "parsed": {
+    "house_number": "17",
+    "road": "church road,",
+    "unit": "flat 2, bath ba1 1aa"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "6 Market Place, Norwich NR2 1ND",
+   "parsed": {
+    "house_number": "6",
+    "state": "Norwich NR2",
+    "postcode": "1ND",
+    "road": "Market Place,"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "6 market place norwich nr2 1nd",
+   "parsed": {
+    "house_number": "6",
+    "road": "market place",
+    "unit": "norwich nr2 1nd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "6 MARKET PLACE, NORWICH, NR21ND",
+   "parsed": {
+    "house_number": "6",
+    "road": "MARKET PLACE,",
+    "unit": "NORWICH, NR21ND"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 6 market place, norwich nr2 1nd",
+   "parsed": {
+    "city": "market place,",
+    "state": "norwich nr2",
+    "postcode": "1nd",
+    "unit": "flat 2, 6"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "73 London Road, Leicester LE2 0PF",
+   "parsed": {
+    "house_number": "73",
+    "city": "Leicester",
+    "state": "LE2",
+    "postcode": "0PF",
+    "road": "London Road,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "73 london road leicester le2 0pf",
+   "parsed": {
+    "house_number": "73",
+    "city": "leicester",
+    "state": "le2",
+    "postcode": "0pf",
+    "road": "london road"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "73 LONDON ROAD, LEICESTER, LE20PF",
+   "parsed": {
+    "house_number": "73",
+    "city": "LEICESTER,",
+    "state": "LE20PF",
+    "road": "LONDON ROAD,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 73 london road, leicester le2 0pf",
+   "parsed": {
+    "house_number": "73",
+    "city": "leicester",
+    "state": "le2",
+    "postcode": "0pf",
+    "road": "london road,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "28 Station Road, Reading RG1 1LG",
+   "parsed": {
+    "house_number": "28",
+    "city": "Reading",
+    "state": "RG1",
+    "postcode": "1LG",
+    "road": "Station Road,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "28 station road reading rg1 1lg",
+   "parsed": {
+    "house_number": "28",
+    "road": "station road",
+    "unit": "reading rg1 1lg"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "28 STATION ROAD, READING, RG11LG",
+   "parsed": {
+    "house_number": "28",
+    "city": "READING,",
+    "state": "RG11LG",
+    "road": "STATION ROAD,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 28 station road, reading rg1 1lg",
+   "parsed": {
+    "house_number": "28",
+    "city": "reading",
+    "state": "rg1",
+    "postcode": "1lg",
+    "road": "station road,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "11 West Street, Sheffield S1 4EW",
+   "parsed": {
+    "house_number": "11",
+    "road": "West Street,",
+    "unit": "Sheffield S1 4EW"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "11 west street sheffield s1 4ew",
+   "parsed": {
+    "house_number": "11",
+    "road": "west street",
+    "unit": "sheffield s1 4ew"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "11 WEST STREET, SHEFFIELD, S14EW",
+   "parsed": {
+    "house_number": "11",
+    "city": "SHEFFIELD,",
+    "state": "S14EW",
+    "road": "WEST STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 11 west street, sheffield s1 4ew",
+   "parsed": {
+    "house_number": "11",
+    "road": "west street,",
+    "unit": "flat 2, sheffield s1 4ew"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "39 Union Street, Aberdeen AB11 6BD",
+   "parsed": {
+    "house_number": "39",
+    "road": "Union Street,",
+    "unit": "Aberdeen AB11 6BD"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "39 union street aberdeen ab11 6bd",
+   "parsed": {
+    "house_number": "39",
+    "road": "union street",
+    "unit": "aberdeen ab11 6bd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "39 UNION STREET, ABERDEEN, AB116BD",
+   "parsed": {
+    "house_number": "39",
+    "city": "ABERDEEN,",
+    "state": "AB116BD",
+    "road": "UNION STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 39 union street, aberdeen ab11 6bd",
+   "parsed": {
+    "house_number": "39",
+    "road": "union street,",
+    "unit": "flat 2, aberdeen ab11 6bd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "4 High Street, Swansea SA1 1LE",
+   "parsed": {
+    "house_number": "4",
+    "road": "High Street,",
+    "unit": "Swansea SA1 1LE"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "4 high street swansea sa1 1le",
+   "parsed": {
+    "house_number": "4",
+    "road": "high street",
+    "unit": "swansea sa1 1le"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "4 HIGH STREET, SWANSEA, SA11LE",
+   "parsed": {
+    "house_number": "4",
+    "city": "SWANSEA,",
+    "state": "SA11LE",
+    "road": "HIGH STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 4 high street, swansea sa1 1le",
+   "parsed": {
+    "house_number": "4",
+    "road": "high street,",
+    "unit": "flat 2, swansea sa1 1le"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "56 Commercial Road, Portsmouth PO1 1EJ",
+   "parsed": {
+    "house_number": "56",
+    "road": "Commercial Road,",
+    "unit": "Portsmouth PO1 1EJ"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "56 commercial road portsmouth po1 1ej",
+   "parsed": {
+    "house_number": "56",
+    "road": "commercial road",
+    "unit": "portsmouth po1 1ej"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "56 COMMERCIAL ROAD, PORTSMOUTH, PO11EJ",
+   "parsed": {
+    "house_number": "56",
+    "city": "PORTSMOUTH,",
+    "state": "PO11EJ",
+    "road": "COMMERCIAL ROAD,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 56 commercial road, portsmouth po1 1ej",
+   "parsed": {
+    "house_number": "56",
+    "road": "commercial road,",
+    "unit": "flat 2, portsmouth po1 1ej"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "8 Above Bar Street, Southampton SO14 7DU",
+   "parsed": {
+    "house_number": "8",
+    "road": "Above Bar Street,",
+    "unit": "Southampton SO14 7DU"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "8 above bar street southampton so14 7du",
+   "parsed": {
+    "house_number": "8",
+    "road": "above bar street",
+    "unit": "southampton so14 7du"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "8 ABOVE BAR STREET, SOUTHAMPTON, SO147DU",
+   "parsed": {
+    "house_number": "8",
+    "city": "SOUTHAMPTON,",
+    "state": "SO147DU",
+    "road": "ABOVE BAR STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 8 above bar street, southampton so14 7du",
+   "parsed": {
+    "house_number": "8",
+    "road": "above bar street,",
+    "unit": "flat 2, southampton so14 7du"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "120 Mansfield Road, Nottingham NG5 2BT",
+   "parsed": {
+    "house_number": "120",
+    "city": "Nottingham",
+    "state": "NG5",
+    "postcode": "2BT",
+    "road": "Mansfield Road,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "120 mansfield road nottingham ng5 2bt",
+   "parsed": {
+    "house_number": "120",
+    "city": "nottingham",
+    "state": "ng5",
+    "postcode": "2bt",
+    "road": "mansfield road"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "120 MANSFIELD ROAD, NOTTINGHAM, NG52BT",
+   "parsed": {
+    "house_number": "120",
+    "city": "NOTTINGHAM,",
+    "state": "NG52BT",
+    "road": "MANSFIELD ROAD,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 120 mansfield road, nottingham ng5 2bt",
+   "parsed": {
+    "house_number": "120",
+    "city": "nottingham",
+    "state": "ng5",
+    "postcode": "2bt",
+    "road": "mansfield road,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "15 Broad Street, Worcester WR1 3LH",
+   "parsed": {
+    "house_number": "15",
+    "city": "Worcester",
+    "state": "WR1",
+    "postcode": "3LH",
+    "road": "Broad Street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "15 broad street worcester wr1 3lh",
+   "parsed": {
+    "house_number": "15",
+    "city": "worcester",
+    "state": "wr1",
+    "postcode": "3lh",
+    "road": "broad street"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "15 BROAD STREET, WORCESTER, WR13LH",
+   "parsed": {
+    "house_number": "15",
+    "city": "WORCESTER,",
+    "state": "WR13LH",
+    "road": "BROAD STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 15 broad street, worcester wr1 3lh",
+   "parsed": {
+    "house_number": "15",
+    "city": "worcester",
+    "state": "wr1",
+    "postcode": "3lh",
+    "road": "broad street,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "22 North Street, Chichester PO19 1LB",
+   "parsed": {
+    "house_number": "22",
+    "city": "Chichester",
+    "state": "PO19",
+    "postcode": "1LB",
+    "road": "North Street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "22 north street chichester po19 1lb",
+   "parsed": {
+    "house_number": "22",
+    "city": "chichester",
+    "state": "po19",
+    "postcode": "1lb",
+    "road": "north street"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "22 NORTH STREET, CHICHESTER, PO191LB",
+   "parsed": {
+    "house_number": "22",
+    "city": "CHICHESTER,",
+    "state": "PO191LB",
+    "road": "NORTH STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 22 north street, chichester po19 1lb",
+   "parsed": {
+    "house_number": "22",
+    "city": "chichester",
+    "state": "po19",
+    "postcode": "1lb",
+    "road": "north street,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "67 Park Lane, Croydon CR0 1JD",
+   "parsed": {
+    "house_number": "67",
+    "city": "Croydon",
+    "state": "CR0",
+    "postcode": "1JD",
+    "road": "Park Lane,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "67 park lane croydon cr0 1jd",
+   "parsed": {
+    "house_number": "67",
+    "city": "croydon",
+    "state": "cr0",
+    "postcode": "1jd",
+    "road": "park lane"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "67 PARK LANE, CROYDON, CR01JD",
+   "parsed": {
+    "house_number": "67",
+    "city": "CROYDON,",
+    "state": "CR01JD",
+    "road": "PARK LANE,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 67 park lane, croydon cr0 1jd",
+   "parsed": {
+    "house_number": "67",
+    "city": "croydon",
+    "state": "cr0",
+    "postcode": "1jd",
+    "road": "park lane,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "3 Mill Lane, Derby DE1 1AA",
+   "parsed": {
+    "house_number": "3",
+    "road": "Mill Lane,",
+    "unit": "Derby DE1 1AA"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "3 mill lane derby de1 1aa",
+   "parsed": {
+    "house_number": "3",
+    "road": "mill lane",
+    "unit": "derby de1 1aa"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "3 MILL LANE, DERBY, DE11AA",
+   "parsed": {
+    "house_number": "3",
+    "city": "DERBY,",
+    "state": "DE11AA",
+    "road": "MILL LANE,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 3 mill lane, derby de1 1aa",
+   "parsed": {
+    "house_number": "3",
+    "road": "mill lane,",
+    "unit": "flat 2, derby de1 1aa"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "90 Oxford Street, London W1D 1BS",
+   "parsed": {
+    "house_number": "90",
+    "city": "London",
+    "state": "W1D",
+    "postcode": "1BS",
+    "road": "Oxford Street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "90 oxford street london w1d 1bs",
+   "parsed": {
+    "house_number": "90",
+    "road": "oxford street",
+    "unit": "london w1d 1bs"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "90 OXFORD STREET, LONDON, W1D1BS",
+   "parsed": {
+    "house_number": "90",
+    "city": "LONDON,",
+    "state": "W1D1BS",
+    "road": "OXFORD STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 90 oxford street, london w1d 1bs",
+   "parsed": {
+    "house_number": "90",
+    "city": "london",
+    "state": "w1d",
+    "postcode": "1bs",
+    "road": "oxford street,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "18 Regent Street, Cheltenham GL50 1HE",
+   "parsed": {
+    "house_number": "18",
+    "road": "Regent Street,",
+    "unit": "Cheltenham GL50 1HE"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "18 regent street cheltenham gl50 1he",
+   "parsed": {
+    "house_number": "18",
+    "road": "regent street",
+    "unit": "cheltenham gl50 1he"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "18 REGENT STREET, CHELTENHAM, GL501HE",
+   "parsed": {
+    "house_number": "18",
+    "city": "CHELTENHAM,",
+    "state": "GL501HE",
+    "road": "REGENT STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 18 regent street, cheltenham gl50 1he",
+   "parsed": {
+    "house_number": "18",
+    "road": "regent street,",
+    "unit": "flat 2, cheltenham gl50 1he"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "5 The Strand, Plymouth PL1 2RD",
+   "parsed": {
+    "house_number": "5",
+    "road": "The Strand, Plymouth",
+    "unit": "PL1 2RD"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "5 the strand plymouth pl1 2rd",
+   "parsed": {
+    "house_number": "5",
+    "road": "the strand plymouth",
+    "unit": "pl1 2rd"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "5 THE STRAND, PLYMOUTH, PL12RD",
+   "parsed": {
+    "house_number": "5",
+    "road": "THE STRAND, PLYMOUTH,",
+    "unit": "PL12RD"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 5 the strand, plymouth pl1 2rd",
+   "parsed": {
+    "city": "the strand,",
+    "state": "plymouth pl1",
+    "postcode": "2rd",
+    "unit": "flat 2, 5"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "41 High Street, Guildford GU1 3DY",
+   "parsed": {
+    "house_number": "41",
+    "city": "Guildford",
+    "state": "GU1",
+    "postcode": "3DY",
+    "road": "High Street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "41 high street guildford gu1 3dy",
+   "parsed": {
+    "house_number": "41",
+    "city": "guildford",
+    "state": "gu1",
+    "postcode": "3dy",
+    "road": "high street"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "41 HIGH STREET, GUILDFORD, GU13DY",
+   "parsed": {
+    "house_number": "41",
+    "city": "GUILDFORD,",
+    "state": "GU13DY",
+    "road": "HIGH STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 41 high street, guildford gu1 3dy",
+   "parsed": {
+    "house_number": "41",
+    "city": "guildford",
+    "state": "gu1",
+    "postcode": "3dy",
+    "road": "high street,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "27 Bridge Street, Chester CH1 1NQ",
+   "parsed": {
+    "house_number": "27",
+    "city": "Chester",
+    "state": "CH1",
+    "postcode": "1NQ",
+    "road": "Bridge Street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "27 bridge street chester ch1 1nq",
+   "parsed": {
+    "house_number": "27",
+    "city": "chester",
+    "state": "ch1",
+    "postcode": "1nq",
+    "road": "bridge street"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "27 BRIDGE STREET, CHESTER, CH11NQ",
+   "parsed": {
+    "house_number": "27",
+    "city": "CHESTER,",
+    "state": "CH11NQ",
+    "road": "BRIDGE STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 27 bridge street, chester ch1 1nq",
+   "parsed": {
+    "house_number": "27",
+    "city": "chester",
+    "state": "ch1",
+    "postcode": "1nq",
+    "road": "bridge street,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "13 Silver Street, Lincoln LN2 1DY",
+   "parsed": {
+    "house_number": "13",
+    "city": "Lincoln",
+    "state": "LN2",
+    "postcode": "1DY",
+    "road": "Silver Street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "13 silver street lincoln ln2 1dy",
+   "parsed": {
+    "house_number": "13",
+    "city": "lincoln",
+    "state": "ln2",
+    "postcode": "1dy",
+    "road": "silver street"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "13 SILVER STREET, LINCOLN, LN21DY",
+   "parsed": {
+    "house_number": "13",
+    "city": "LINCOLN,",
+    "state": "LN21DY",
+    "road": "SILVER STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 13 silver street, lincoln ln2 1dy",
+   "parsed": {
+    "house_number": "13",
+    "city": "lincoln",
+    "state": "ln2",
+    "postcode": "1dy",
+    "road": "silver street,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "70 Corporation Street, Coventry CV1 1GF",
+   "parsed": {
+    "house_number": "70",
+    "city": "Coventry",
+    "state": "CV1",
+    "postcode": "1GF",
+    "road": "Corporation Street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "70 corporation street coventry cv1 1gf",
+   "parsed": {
+    "house_number": "70",
+    "city": "coventry",
+    "state": "cv1",
+    "postcode": "1gf",
+    "road": "corporation street"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "70 CORPORATION STREET, COVENTRY, CV11GF",
+   "parsed": {
+    "house_number": "70",
+    "city": "COVENTRY,",
+    "state": "CV11GF",
+    "road": "CORPORATION STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 70 corporation street, coventry cv1 1gf",
+   "parsed": {
+    "house_number": "70",
+    "city": "coventry",
+    "state": "cv1",
+    "postcode": "1gf",
+    "road": "corporation street,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "9 Victoria Road, Darlington DL1 5SF",
+   "parsed": {
+    "house_number": "9",
+    "city": "Darlington",
+    "state": "DL1",
+    "postcode": "5SF",
+    "road": "Victoria Road,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "9 victoria road darlington dl1 5sf",
+   "parsed": {
+    "house_number": "9",
+    "city": "darlington",
+    "state": "dl1",
+    "postcode": "5sf",
+    "road": "victoria road"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "9 VICTORIA ROAD, DARLINGTON, DL15SF",
+   "parsed": {
+    "house_number": "9",
+    "city": "DARLINGTON,",
+    "state": "DL15SF",
+    "road": "VICTORIA ROAD,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 9 victoria road, darlington dl1 5sf",
+   "parsed": {
+    "house_number": "9",
+    "city": "darlington",
+    "state": "dl1",
+    "postcode": "5sf",
+    "road": "victoria road,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "35 Albert Road, Middlesbrough TS1 2PA",
+   "parsed": {
+    "house_number": "35",
+    "road": "Albert Road,",
+    "unit": "Middlesbrough TS1 2PA"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "35 albert road middlesbrough ts1 2pa",
+   "parsed": {
+    "house_number": "35",
+    "road": "albert road",
+    "unit": "middlesbrough ts1 2pa"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "35 ALBERT ROAD, MIDDLESBROUGH, TS12PA",
+   "parsed": {
+    "house_number": "35",
+    "city": "MIDDLESBROUGH,",
+    "state": "TS12PA",
+    "road": "ALBERT ROAD,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 35 albert road, middlesbrough ts1 2pa",
+   "parsed": {
+    "house_number": "35",
+    "road": "albert road,",
+    "unit": "flat 2, middlesbrough ts1 2pa"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "2 Abbey Road, London NW8 9AY",
+   "parsed": {
+    "house_number": "2",
+    "road": "Abbey Road,",
+    "unit": "London NW8 9AY"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "2 abbey road london nw8 9ay",
+   "parsed": {
+    "house_number": "2",
+    "road": "abbey road",
+    "unit": "london nw8 9ay"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "2 ABBEY ROAD, LONDON, NW89AY",
+   "parsed": {
+    "house_number": "2",
+    "city": "LONDON,",
+    "state": "NW89AY",
+    "road": "ABBEY ROAD,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 2 abbey road, london nw8 9ay",
+   "parsed": {
+    "house_number": "2",
+    "road": "abbey road,",
+    "unit": "flat 2, london nw8 9ay"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "84 Promenade, Blackpool FY1 1HB",
+   "parsed": {
+    "house_number": "84",
+    "road": "Promenade,",
+    "unit": "Blackpool FY1 1HB"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "84 promenade blackpool fy1 1hb",
+   "parsed": {
+    "house_number": "84",
+    "road": "promenade blackpool",
+    "unit": "fy1 1hb"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "84 PROMENADE, BLACKPOOL, FY11HB",
+   "parsed": {
+    "house_number": "84",
+    "road": "PROMENADE,",
+    "unit": "BLACKPOOL, FY11HB"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 84 promenade, blackpool fy1 1hb",
+   "parsed": {
+    "city": "promenade,",
+    "state": "blackpool fy1",
+    "postcode": "1hb",
+    "unit": "flat 2, 84"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "16 Sidwell Street, Exeter EX4 6NN",
+   "parsed": {
+    "house_number": "16",
+    "city": "Exeter",
+    "state": "EX4",
+    "postcode": "6NN",
+    "road": "Sidwell Street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "16 sidwell street exeter ex4 6nn",
+   "parsed": {
+    "house_number": "16",
+    "road": "sidwell street",
+    "unit": "exeter ex4 6nn"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "16 SIDWELL STREET, EXETER, EX46NN",
+   "parsed": {
+    "house_number": "16",
+    "city": "EXETER,",
+    "state": "EX46NN",
+    "road": "SIDWELL STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 16 sidwell street, exeter ex4 6nn",
+   "parsed": {
+    "house_number": "16",
+    "city": "exeter",
+    "state": "ex4",
+    "postcode": "6nn",
+    "road": "sidwell street,",
+    "unit": "flat 2,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "53 Fishergate, Preston PR1 2NJ",
+   "parsed": {
+    "house_number": "53",
+    "road": "Fishergate,",
+    "unit": "Preston PR1 2NJ"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "53 fishergate preston pr1 2nj",
+   "parsed": {
+    "house_number": "53",
+    "road": "fishergate preston",
+    "unit": "pr1 2nj"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "53 FISHERGATE, PRESTON, PR12NJ",
+   "parsed": {
+    "house_number": "53",
+    "road": "FISHERGATE,",
+    "unit": "PRESTON, PR12NJ"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 53 fishergate, preston pr1 2nj",
+   "parsed": {
+    "city": "fishergate,",
+    "state": "preston pr1",
+    "postcode": "2nj",
+    "unit": "flat 2, 53"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "7 Queens Road, Aberdeen AB15 4YL",
+   "parsed": {
+    "house_number": "7",
+    "road": "Queens Road,",
+    "unit": "Aberdeen AB15 4YL"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "7 queens road aberdeen ab15 4yl",
+   "parsed": {
+    "house_number": "7",
+    "road": "queens road",
+    "unit": "aberdeen ab15 4yl"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "7 QUEENS ROAD, ABERDEEN, AB154YL",
+   "parsed": {
+    "house_number": "7",
+    "city": "ABERDEEN,",
+    "state": "AB154YL",
+    "road": "QUEENS ROAD,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 7 queens road, aberdeen ab15 4yl",
+   "parsed": {
+    "house_number": "7",
+    "road": "queens road,",
+    "unit": "flat 2, aberdeen ab15 4yl"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "29 Marine Parade, Great Yarmouth NR30 2EN",
+   "parsed": {
+    "house_number": "29",
+    "road": "Marine Parade, Great Yarmouth",
+    "unit": "NR30 2EN"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "29 marine parade great yarmouth nr30 2en",
+   "parsed": {
+    "house_number": "29",
+    "road": "marine parade great yarmouth",
+    "unit": "nr30 2en"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "29 MARINE PARADE, GREAT YARMOUTH, NR302EN",
+   "parsed": {
+    "house_number": "29",
+    "city": "GREAT YARMOUTH,",
+    "state": "NR302EN",
+    "road": "MARINE PARADE,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 29 marine parade, great yarmouth nr30 2en",
+   "parsed": {
+    "city": "marine parade,",
+    "state": "great yarmouth",
+    "unit": "flat 2, 29 nr30 2en"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "1 The Crescent, Salford M5 4WT",
+   "parsed": {
+    "house_number": "1",
+    "city": "Salford",
+    "state": "M5",
+    "postcode": "4WT",
+    "road": "The Crescent,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1 the crescent salford m5 4wt",
+   "parsed": {
+    "house_number": "1",
+    "city": "salford",
+    "state": "m5",
+    "postcode": "4wt",
+    "road": "the crescent"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1 THE CRESCENT, SALFORD, M54WT",
+   "parsed": {
+    "house_number": "1",
+    "road": "THE CRESCENT,",
+    "unit": "SALFORD, M54WT"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 1 the crescent, salford m5 4wt",
+   "parsed": {
+    "city": "salford",
+    "state": "m5",
+    "postcode": "4wt",
+    "unit": "flat 2, 1"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "46 Northgate Street, Gloucester GL1 2AN",
+   "parsed": {
+    "house_number": "46",
+    "road": "Northgate Street,",
+    "unit": "Gloucester GL1 2AN"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "46 northgate street gloucester gl1 2an",
+   "parsed": {
+    "house_number": "46",
+    "road": "northgate street",
+    "unit": "gloucester gl1 2an"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "46 NORTHGATE STREET, GLOUCESTER, GL12AN",
+   "parsed": {
+    "house_number": "46",
+    "city": "GLOUCESTER,",
+    "state": "GL12AN",
+    "road": "NORTHGATE STREET,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "flat 2, 46 northgate street, gloucester gl1 2an",
+   "parsed": {
+    "house_number": "46",
+    "road": "northgate street,",
+    "unit": "flat 2, gloucester gl1 2an"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "350 5Th Ave, New York, NY 10118, USA",
+   "parsed": {
+    "house_number": "350",
+    "city": "New York,",
+    "state": "NY",
+    "postcode": "10118,",
+    "country": "USA",
+    "road": "5Th Ave,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "350 5th ave new york ny 10118 usa",
+   "parsed": {
+    "house_number": "350",
+    "city": "new york",
+    "state": "ny",
+    "postcode": "10118",
+    "country": "usa",
+    "road": "5th ave"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "350 5th ave, new york, NY 10118",
+   "parsed": {
+    "house_number": "350",
+    "city": "new york,",
+    "state": "NY",
+    "postcode": "10118",
+    "road": "5th ave,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "apt 3, 350 5th ave, new york, NY 10118",
+   "parsed": {
+    "house_number": "350",
+    "city": "new york,",
+    "state": "NY",
+    "postcode": "10118",
+    "road": "5th ave,",
+    "unit": "apt 3,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1600 Pennsylvania Ave Nw, Washington, DC 20500, USA",
+   "parsed": {
+    "house_number": "1600",
+    "city": "Washington,",
+    "state": "DC",
+    "postcode": "20500,",
+    "country": "USA",
+    "road": "Pennsylvania Ave Nw,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1600 pennsylvania ave nw washington dc 20500 usa",
+   "parsed": {
+    "house_number": "1600",
+    "city": "washington",
+    "state": "dc",
+    "postcode": "20500",
+    "country": "usa",
+    "road": "pennsylvania ave nw"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1600 pennsylvania ave nw, washington, DC 20500",
+   "parsed": {
+    "house_number": "1600",
+    "city": "washington,",
+    "state": "DC",
+    "postcode": "20500",
+    "road": "pennsylvania ave nw,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "apt 3, 1600 pennsylvania ave nw, washington, DC 20500",
+   "parsed": {
+    "house_number": "1600",
+    "city": "washington,",
+    "state": "DC",
+    "postcode": "20500",
+    "road": "pennsylvania ave nw,",
+    "unit": "apt 3,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "233 S Wacker Dr, Chicago, IL 60606, USA",
+   "parsed": {
+    "house_number": "233",
+    "city": "Chicago,",
+    "state": "IL",
+    "postcode": "60606,",
+    "country": "USA",
+    "road": "S Wacker Dr,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "233 s wacker dr chicago il 60606 usa",
+   "parsed": {
+    "house_number": "233",
+    "city": "chicago",
+    "state": "il",
+    "postcode": "60606",
+    "country": "usa",
+    "road": "s wacker dr"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "233 s wacker dr, chicago, IL 60606",
+   "parsed": {
+    "house_number": "233",
+    "city": "chicago,",
+    "state": "IL",
+    "postcode": "60606",
+    "road": "s wacker dr,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "apt 3, 233 s wacker dr, chicago, IL 60606",
+   "parsed": {
+    "house_number": "233",
+    "city": "chicago,",
+    "state": "IL",
+    "postcode": "60606",
+    "road": "s wacker dr,",
+    "unit": "apt 3,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1 Infinite Loop, Cupertino, CA 95014, USA",
+   "parsed": {
+    "house_number": "1",
+    "city": "Cupertino,",
+    "state": "CA",
+    "postcode": "95014,",
+    "country": "USA",
+    "road": "Infinite Loop,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1 infinite loop cupertino ca 95014 usa",
+   "parsed": {
+    "house_number": "1",
+    "city": "cupertino",
+    "state": "ca",
+    "postcode": "95014",
+    "country": "usa",
+    "road": "infinite loop"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1 infinite loop, cupertino, CA 95014",
+   "parsed": {
+    "house_number": "1",
+    "city": "cupertino,",
+    "state": "CA",
+    "postcode": "95014",
+    "road": "infinite loop,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "apt 3, 1 infinite loop, cupertino, CA 95014",
+   "parsed": {
+    "house_number": "1",
+    "city": "cupertino,",
+    "state": "CA",
+    "postcode": "95014",
+    "road": "infinite loop,",
+    "unit": "apt 3,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "400 Broad St, Seattle, WA 98109, USA",
+   "parsed": {
+    "house_number": "400",
+    "city": "Seattle,",
+    "state": "WA",
+    "postcode": "98109,",
+    "country": "USA",
+    "road": "Broad St,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "400 broad st seattle wa 98109 usa",
+   "parsed": {
+    "house_number": "400",
+    "city": "seattle",
+    "state": "wa",
+    "postcode": "98109",
+    "country": "usa",
+    "road": "broad st"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "400 broad st, seattle, WA 98109",
+   "parsed": {
+    "house_number": "400",
+    "city": "seattle,",
+    "state": "WA",
+    "postcode": "98109",
+    "road": "broad st,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "apt 3, 400 broad st, seattle, WA 98109",
+   "parsed": {
+    "house_number": "400",
+    "city": "seattle,",
+    "state": "WA",
+    "postcode": "98109",
+    "road": "broad st,",
+    "unit": "apt 3,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "700 Congress Ave, Austin, TX 78701, USA",
+   "parsed": {
+    "house_number": "700",
+    "city": "Austin,",
+    "state": "TX",
+    "postcode": "78701,",
+    "country": "USA",
+    "road": "Congress Ave,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "700 congress ave austin tx 78701 usa",
+   "parsed": {
+    "house_number": "700",
+    "city": "austin",
+    "state": "tx",
+    "postcode": "78701",
+    "country": "usa",
+    "road": "congress ave"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "700 congress ave, austin, TX 78701",
+   "parsed": {
+    "house_number": "700",
+    "city": "austin,",
+    "state": "TX",
+    "postcode": "78701",
+    "road": "congress ave,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "apt 3, 700 congress ave, austin, TX 78701",
+   "parsed": {
+    "house_number": "700",
+    "city": "austin,",
+    "state": "TX",
+    "postcode": "78701",
+    "road": "congress ave,",
+    "unit": "apt 3,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "290 Bremner Blvd, Toronto, ON M5V 3L9, Canada",
+   "parsed": {
+    "house_number": "290",
+    "city": "Toronto, Canada",
+    "state": "ON",
+    "road": "Bremner Blvd,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "state"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "290 bremner blvd toronto on m5v 3l9 canada",
+   "parsed": {
+    "house_number": "290",
+    "road": "bremner blvd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "290 bremner blvd, toronto, ON M5V 3L9",
+   "parsed": {
+    "house_number": "290",
+    "city": "toronto,",
+    "state": "ON M5V",
+    "postcode": "3L9",
+    "road": "bremner blvd,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "apt 3, 290 bremner blvd, toronto, ON M5V 3L9",
+   "parsed": {
+    "house_number": "290",
+    "city": "toronto,",
+    "state": "ON M5V",
+    "postcode": "3L9",
+    "road": "bremner blvd,",
+    "unit": "apt 3,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1055 W Georgia St, Vancouver, BC V6E 3P3, Canada",
+   "parsed": {
+    "house_number": "1055",
+    "city": "Vancouver, Canada",
+    "state": "BC",
+    "road": "W Georgia St,",
+    "unit": "V6E 3P3,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "state"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1055 w georgia st vancouver bc v6e 3p3 canada",
+   "parsed": {
+    "house_number": "1055",
+    "city": "vancouver",
+    "state": "bc v6e 3p3 canada",
+    "road": "w georgia st"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1055 w georgia st, vancouver, BC V6E 3P3",
+   "parsed": {
+    "house_number": "1055",
+    "city": "vancouver,",
+    "state": "BC V6E",
+    "postcode": "3P3",
+    "road": "w georgia st,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "apt 3, 1055 w georgia st, vancouver, BC V6E 3P3",
+   "parsed": {
+    "house_number": "1055",
+    "city": "vancouver,",
+    "state": "BC V6E",
+    "postcode": "3P3",
+    "road": "w georgia st,",
+    "unit": "apt 3,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1 Macquarie St, Sydney, NSW 2000, Australia",
+   "parsed": {
+    "house_number": "1",
+    "city": "Sydney,",
+    "state": "NSW 2000, Australia",
+    "road": "Macquarie St,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1 macquarie st sydney nsw 2000 australia",
+   "parsed": {
+    "house_number": "1",
+    "road": "macquarie st"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "1 macquarie st, sydney, NSW 2000",
+   "parsed": {
+    "house_number": "1",
+    "city": "sydney,",
+    "state": "NSW",
+    "postcode": "2000",
+    "road": "macquarie st,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "apt 3, 1 macquarie st, sydney, NSW 2000",
+   "parsed": {
+    "house_number": "1",
+    "city": "sydney,",
+    "state": "NSW",
+    "postcode": "2000",
+    "road": "macquarie st,",
+    "unit": "apt 3,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "100 St Kilda Rd, Melbourne, VIC 3004, Australia",
+   "parsed": {
+    "house_number": "100",
+    "city": "Melbourne, Australia",
+    "state": "VIC",
+    "road": "St Kilda Rd,",
+    "unit": "3004,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "state"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "100 st kilda rd melbourne vic 3004 australia",
+   "parsed": {
+    "house_number": "100",
+    "road": "st kilda rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "100 st kilda rd, melbourne, VIC 3004",
+   "parsed": {
+    "house_number": "100",
+    "city": "melbourne,",
+    "state": "VIC",
+    "postcode": "3004",
+    "road": "st kilda rd,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "apt 3, 100 st kilda rd, melbourne, VIC 3004",
+   "parsed": {
+    "city": "melbourne,",
+    "state": "VIC",
+    "postcode": "3004",
+    "road": "st kilda rd,",
+    "unit": "apt 3, 100"
+   },
+   "correct": [
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "Hauptstraße 5, 10115 Berlin, Germany",
+   "parsed": {
+    "city": "Berlin,",
+    "state": "Germany",
+    "unit": "Hauptstraße 5, 10115"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "hauptstraße 5 10115 berlin germany",
+   "parsed": {
+    "house_number": "10115",
+    "road": "berlin germany",
+    "unit": "hauptstraße 5"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "hauptstraße 5, 10115 berlin",
+   "parsed": {
+    "postcode": "10115",
+    "country": "berlin",
+    "unit": "hauptstraße 5,"
+   },
+   "correct": [
+    "postcode"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "HAUPTSTRASSE 5, 10115 BERLIN, GERMANY",
+   "parsed": {
+    "city": "BERLIN,",
+    "state": "GERMANY",
+    "unit": "HAUPTSTRASSE 5, 10115"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "Königstraße 12, 70173 Stuttgart, Germany",
+   "parsed": {
+    "city": "Stuttgart,",
+    "state": "Germany",
+    "unit": "Königstraße 12, 70173"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "königstraße 12 70173 stuttgart germany",
+   "parsed": {
+    "house_number": "70173",
+    "road": "stuttgart germany",
+    "unit": "königstraße 12"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "königstraße 12, 70173 stuttgart",
+   "parsed": {
+    "postcode": "70173",
+    "country": "stuttgart",
+    "unit": "königstraße 12,"
+   },
+   "correct": [
+    "postcode"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "KÖNIGSTRASSE 12, 70173 STUTTGART, GERMANY",
+   "parsed": {
+    "city": "STUTTGART,",
+    "state": "GERMANY",
+    "unit": "KÖNIGSTRASSE 12, 70173"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "Marienplatz 8, 80331 München, Germany",
+   "parsed": {
+    "city": "München,",
+    "state": "Germany",
+    "unit": "Marienplatz 8, 80331"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "marienplatz 8 80331 münchen germany",
+   "parsed": {
+    "house_number": "80331",
+    "road": "münchen germany",
+    "unit": "marienplatz 8"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "marienplatz 8, 80331 münchen",
+   "parsed": {
+    "city": "münchen",
+    "unit": "marienplatz 8, 80331"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "MARIENPLATZ 8, 80331 MÜNCHEN, GERMANY",
+   "parsed": {
+    "city": "MÜNCHEN,",
+    "state": "GERMANY",
+    "unit": "MARIENPLATZ 8, 80331"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "Rue De La Paix 12, 75002 Paris, France",
+   "parsed": {
+    "house_number": "75002",
+    "road": "Paris, France"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "rue de la paix 12 75002 paris france",
+   "parsed": {
+    "house_number": "75002",
+    "road": "rue de la paris france",
+    "unit": "paix 12"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "rue de la paix 12, 75002 paris",
+   "parsed": {
+    "postcode": "75002",
+    "country": "paris",
+    "road": "rue de la paix 12,"
+   },
+   "correct": [
+    "postcode"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "RUE DE LA PAIX 12, 75002 PARIS, FRANCE",
+   "parsed": {
+    "house_number": "75002",
+    "road": "PARIS, FRANCE"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "Rue De La République 45, 69002 Lyon, France",
+   "parsed": {
+    "house_number": "69002",
+    "road": "Lyon, France"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "rue de la république 45 69002 lyon france",
+   "parsed": {
+    "house_number": "69002",
+    "road": "lyon france"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "rue de la république 45, 69002 lyon",
+   "parsed": {
+    "house_number": "69002",
+    "road": "lyon"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "RUE DE LA RÉPUBLIQUE 45, 69002 LYON, FRANCE",
+   "parsed": {
+    "house_number": "69002",
+    "road": "LYON, FRANCE"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "Calle Mayor 3, 28013 Madrid, Spain",
+   "parsed": {
+    "house_number": "28013",
+    "road": "Madrid, Spain"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "calle mayor 3 28013 madrid spain",
+   "parsed": {
+    "house_number": "28013",
+    "road": "madrid spain"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "calle mayor 3, 28013 madrid",
+   "parsed": {
+    "house_number": "28013",
+    "road": "madrid"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "CALLE MAYOR 3, 28013 MADRID, SPAIN",
+   "parsed": {
+    "house_number": "28013",
+    "road": "MADRID, SPAIN"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "Passeig De Gràcia 92, 08008 Barcelona, Spain",
+   "parsed": {
+    "city": "Barcelona,",
+    "state": "Spain",
+    "unit": "92, 08008"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "passeig de gràcia 92 08008 barcelona spain",
+   "parsed": {
+    "house_number": "08008",
+    "road": "barcelona spain",
+    "unit": "92"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "passeig de gràcia 92, 08008 barcelona",
+   "parsed": {
+    "house_number": "08008",
+    "road": "barcelona"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "PASSEIG DE GRÀCIA 92, 08008 BARCELONA, SPAIN",
+   "parsed": {
+    "city": "BARCELONA,",
+    "state": "SPAIN",
+    "unit": "92, 08008"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "Via Del Corso 10, 00186 Roma, Italy",
+   "parsed": {
+    "house_number": "00186",
+    "road": "Roma, Italy"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "via del corso 10 00186 roma italy",
+   "parsed": {
+    "house_number": "10 00186",
+    "road": "roma italy"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "via del corso 10, 00186 roma",
+   "parsed": {
+    "house_number": "00186",
+    "road": "roma"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "VIA DEL CORSO 10, 00186 ROMA, ITALY",
+   "parsed": {
+    "house_number": "00186",
+    "road": "ROMA, ITALY"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "Via Montenapoleone 2, 20121 Milano, Italy",
+   "parsed": {
+    "house_number": "20121",
+    "road": "Milano, Italy"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "via montenapoleone 2 20121 milano italy",
+   "parsed": {
+    "house_number": "20121",
+    "road": "milano italy"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "via montenapoleone 2, 20121 milano",
+   "parsed": {
+    "house_number": "20121",
+    "road": "milano"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "VIA MONTENAPOLEONE 2, 20121 MILANO, ITALY",
+   "parsed": {
+    "house_number": "20121",
+    "road": "MILANO, ITALY"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "Damrak 147, 1012 LP Amsterdam, Netherlands",
+   "parsed": {
+    "house_number": "1012",
+    "city": "Amsterdam,",
+    "state": "Netherlands",
+    "road": "LP",
+    "unit": "Damrak 147,"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "damrak 147 1012 lp amsterdam netherlands",
+   "parsed": {
+    "house_number": "1012",
+    "road": "lp amsterdam netherlands",
+    "unit": "damrak 147"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "damrak 147, 1012 lp amsterdam",
+   "parsed": {
+    "house_number": "1012",
+    "road": "lp amsterdam",
+    "unit": "damrak 147,"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "DAMRAK 147, 1012 LP AMSTERDAM, NETHERLANDS",
+   "parsed": {
+    "house_number": "1012",
+    "city": "AMSTERDAM,",
+    "state": "NETHERLANDS",
+    "road": "LP",
+    "unit": "DAMRAK 147,"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "28 Grafton Street, Dublin, D02 VH85, Ireland",
+   "parsed": {
+    "house_number": "28",
+    "city": "Ireland",
+    "road": "Grafton Street,",
+    "unit": "Dublin, D02 VH85,"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "28 grafton street dublin d02 vh85 ireland",
+   "parsed": {
+    "house_number": "28 d02",
+    "city": "dublin",
+    "road": "grafton street vh85 ireland"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "28 grafton street, dublin, D02 VH85",
+   "parsed": {
+    "house_number": "28",
+    "city": "dublin,",
+    "state": "D02",
+    "postcode": "VH85",
+    "road": "grafton street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "apt 3, 28 grafton street, dublin, D02 VH85",
+   "parsed": {
+    "house_number": "28",
+    "city": "dublin,",
+    "state": "D02",
+    "postcode": "VH85",
+    "road": "grafton street,",
+    "unit": "apt 3,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "unit"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "50 Queen Street, Auckland, 1010, New Zealand",
+   "parsed": {
+    "house_number": "50",
+    "city": "Auckland,",
+    "state": "1010, New Zealand",
+    "road": "Queen Street,"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "50 queen street auckland 1010 new zealand",
+   "parsed": {
+    "house_number": "50",
+    "city": "new zealand",
+    "road": "queen street",
+    "unit": "auckland 1010"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "50 queen street, auckland, 1010",
+   "parsed": {
+    "house_number": "50",
+    "road": "queen street,",
+    "unit": "auckland, 1010"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "apt 3, 50 queen street, auckland, 1010",
+   "parsed": {
+    "house_number": "50",
+    "road": "queen street,",
+    "unit": "apt 3, auckland, 1010"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "Stephansplatz 1, 1010 Wien, Austria",
+   "parsed": {
+    "city": "Wien,",
+    "state": "Austria",
+    "unit": "Stephansplatz 1, 1010"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "stephansplatz 1 1010 wien austria",
+   "parsed": {
+    "house_number": "1010",
+    "road": "wien austria",
+    "unit": "stephansplatz 1"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "stephansplatz 1, 1010 wien",
+   "parsed": {
+    "city": "wien",
+    "unit": "stephansplatz 1, 1010"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "STEPHANSPLATZ 1, 1010 WIEN, AUSTRIA",
+   "parsed": {
+    "city": "WIEN,",
+    "state": "AUSTRIA",
+    "unit": "STEPHANSPLATZ 1, 1010"
+   },
+   "correct": [
+    "city"
+   ]
+  },
+  {
+   "parser": "usaddress",
+   "input": "Bahnhofstrasse 10, 8001 Zürich, Switzerland",
+   "parsed": {
+    "house_number": "8001",
+    "city": "Switzerland",
+    "road": "Zürich,",
+    "unit": "Bahnhofstrasse 10,"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "bahnhofstrasse 10 8001 zürich switzerland",
+   "parsed": {
+    "house_number": "8001",
+    "road": "zürich switzerland",
+    "unit": "bahnhofstrasse 10"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "bahnhofstrasse 10, 8001 zürich",
+   "parsed": {
+    "house_number": "8001",
+    "road": "zürich",
+    "unit": "bahnhofstrasse 10,"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "BAHNHOFSTRASSE 10, 8001 ZÜRICH, SWITZERLAND",
+   "parsed": {
+    "house_number": "8001",
+    "city": "SWITZERLAND",
+    "road": "ZÜRICH,",
+    "unit": "BAHNHOFSTRASSE 10,"
+   },
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "Grote Markt 1, 1000 Brussel, Belgium",
+   "parsed": {},
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "grote markt 1 1000 brussel belgium",
+   "parsed": {},
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "grote markt 1, 1000 brussel",
+   "parsed": {},
+   "correct": []
+  },
+  {
+   "parser": "usaddress",
+   "input": "GROTE MARKT 1, 1000 BRUSSEL, BELGIUM",
+   "parsed": {},
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "14 High Street, Oxford OX1 4AG",
+   "parsed": {
+    "house_number": "14",
+    "road": "High St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "14 high street oxford ox1 4ag",
+   "parsed": {
+    "house_number": "14",
+    "road": "high St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "14 HIGH STREET, OXFORD, OX14AG",
+   "parsed": {
+    "house_number": "14",
+    "road": "HIGH St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 14 high street, oxford ox1 4ag",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "10 Downing Street, London SW1A 2AA",
+   "parsed": {
+    "house_number": "10",
+    "road": "Downing St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "10 downing street london sw1a 2aa",
+   "parsed": {
+    "house_number": "10",
+    "road": "downing St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "10 DOWNING STREET, LONDON, SW1A2AA",
+   "parsed": {
+    "house_number": "10",
+    "road": "DOWNING St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 10 downing street, london sw1a 2aa",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "221B Baker Street, London NW1 6XE",
+   "parsed": {
+    "house_number": "221",
+    "road": "B Baker St"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "221b baker street london nw1 6xe",
+   "parsed": {
+    "house_number": "221",
+    "road": "b baker St"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "221B BAKER STREET, LONDON, NW16XE",
+   "parsed": {
+    "house_number": "221",
+    "road": "B BAKER St"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 221b baker street, london nw1 6xe",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "1 Victoria Street, Bristol BS1 6AA",
+   "parsed": {
+    "house_number": "1",
+    "road": "Victoria St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1 victoria street bristol bs1 6aa",
+   "parsed": {
+    "house_number": "1",
+    "road": "victoria St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1 VICTORIA STREET, BRISTOL, BS16AA",
+   "parsed": {
+    "house_number": "1",
+    "road": "VICTORIA St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 1 victoria street, bristol bs1 6aa",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "25 Deansgate, Manchester M3 4LQ",
+   "parsed": {
+    "house_number": "25",
+    "road": "Deansgate"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "25 deansgate manchester m3 4lq",
+   "parsed": {
+    "house_number": "25",
+    "road": "deansgate"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "25 DEANSGATE, MANCHESTER, M34LQ",
+   "parsed": {
+    "house_number": "25",
+    "road": "DEANSGATE"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 25 deansgate, manchester m3 4lq",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "7 Bold Street, Liverpool L1 4DJ",
+   "parsed": {
+    "house_number": "7",
+    "road": "Bold St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "7 bold street liverpool l1 4dj",
+   "parsed": {
+    "house_number": "7",
+    "road": "bold St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "7 BOLD STREET, LIVERPOOL, L14DJ",
+   "parsed": {
+    "house_number": "7",
+    "road": "BOLD St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 7 bold street, liverpool l1 4dj",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "48 Princes Street, Edinburgh EH2 2YJ",
+   "parsed": {
+    "house_number": "48",
+    "road": "Princes St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "48 princes street edinburgh eh2 2yj",
+   "parsed": {
+    "house_number": "48",
+    "road": "princes St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "48 PRINCES STREET, EDINBURGH, EH22YJ",
+   "parsed": {
+    "house_number": "48",
+    "road": "PRINCES St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 48 princes street, edinburgh eh2 2yj",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "150 Buchanan Street, Glasgow G1 2LL",
+   "parsed": {
+    "house_number": "150",
+    "road": "Buchanan St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "150 buchanan street glasgow g1 2ll",
+   "parsed": {
+    "house_number": "150",
+    "road": "buchanan St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "150 BUCHANAN STREET, GLASGOW, G12LL",
+   "parsed": {
+    "house_number": "150",
+    "road": "BUCHANAN St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 150 buchanan street, glasgow g1 2ll",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "3 Queen Street, Cardiff CF10 2BH",
+   "parsed": {
+    "house_number": "3",
+    "road": "Queen St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "3 queen street cardiff cf10 2bh",
+   "parsed": {
+    "house_number": "3",
+    "road": "queen St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "3 QUEEN STREET, CARDIFF, CF102BH",
+   "parsed": {
+    "house_number": "3",
+    "road": "QUEEN St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 3 queen street, cardiff cf10 2bh",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "19 Donegall Place, Belfast BT1 5AB",
+   "parsed": {
+    "house_number": "19",
+    "road": "Donegall Pl"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "19 donegall place belfast bt1 5ab",
+   "parsed": {
+    "house_number": "19",
+    "road": "donegall Pl"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "19 DONEGALL PLACE, BELFAST, BT15AB",
+   "parsed": {
+    "house_number": "19",
+    "road": "DONEGALL Pl"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 19 donegall place, belfast bt1 5ab",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "62 New Street, Birmingham B2 4DU",
+   "parsed": {
+    "house_number": "62",
+    "road": "New St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "62 new street birmingham b2 4du",
+   "parsed": {
+    "house_number": "62",
+    "road": "new St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "62 NEW STREET, BIRMINGHAM, B24DU",
+   "parsed": {
+    "house_number": "62",
+    "road": "NEW St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 62 new street, birmingham b2 4du",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "9 Briggate, Leeds LS1 6HD",
+   "parsed": {
+    "house_number": "9",
+    "road": "Briggate"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "9 briggate leeds ls1 6hd",
+   "parsed": {
+    "house_number": "9",
+    "road": "briggate"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "9 BRIGGATE, LEEDS, LS16HD",
+   "parsed": {
+    "house_number": "9",
+    "road": "BRIGGATE"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 9 briggate, leeds ls1 6hd",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "31 Grey Street, Newcastle Upon Tyne NE1 6EE",
+   "parsed": {
+    "house_number": "31",
+    "road": "Grey St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "31 grey street newcastle upon tyne ne1 6ee",
+   "parsed": {
+    "house_number": "31",
+    "road": "grey St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "31 GREY STREET, NEWCASTLE UPON TYNE, NE16EE",
+   "parsed": {
+    "house_number": "31",
+    "road": "GREY St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 31 grey street, newcastle upon tyne ne1 6ee",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "5 King Street, Cambridge CB1 1LH",
+   "parsed": {
+    "house_number": "5",
+    "road": "King St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "5 king street cambridge cb1 1lh",
+   "parsed": {
+    "house_number": "5",
+    "road": "king St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "5 KING STREET, CAMBRIDGE, CB11LH",
+   "parsed": {
+    "house_number": "5",
+    "road": "KING St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 5 king street, cambridge cb1 1lh",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "88 London Road, Brighton BN1 4JF",
+   "parsed": {
+    "house_number": "88",
+    "road": "London Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "88 london road brighton bn1 4jf",
+   "parsed": {
+    "house_number": "88",
+    "road": "london Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "88 LONDON ROAD, BRIGHTON, BN14JF",
+   "parsed": {
+    "house_number": "88",
+    "road": "LONDON Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 88 london road, brighton bn1 4jf",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "12 The Parade, Leamington Spa CV32 4AT",
+   "parsed": {
+    "house_number": "12",
+    "road": "The"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "12 the parade leamington spa cv32 4at",
+   "parsed": {
+    "house_number": "12",
+    "road": "the"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "12 THE PARADE, LEAMINGTON SPA, CV324AT",
+   "parsed": {
+    "house_number": "12",
+    "road": "THE"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 12 the parade, leamington spa cv32 4at",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "44 Fore Street, Exeter EX4 3AN",
+   "parsed": {
+    "house_number": "44",
+    "road": "Fore St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "44 fore street exeter ex4 3an",
+   "parsed": {
+    "house_number": "44",
+    "road": "fore St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "44 FORE STREET, EXETER, EX43AN",
+   "parsed": {
+    "house_number": "44",
+    "road": "FORE St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 44 fore street, exeter ex4 3an",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "2 Castle Street, York YO1 9RY",
+   "parsed": {
+    "house_number": "2",
+    "road": "Castle St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "2 castle street york yo1 9ry",
+   "parsed": {
+    "house_number": "2",
+    "road": "castle St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "2 CASTLE STREET, YORK, YO19RY",
+   "parsed": {
+    "house_number": "2",
+    "road": "CASTLE St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 2 castle street, york yo1 9ry",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "101 Lord Street, Southport PR8 1RH",
+   "parsed": {
+    "house_number": "101",
+    "road": "Lord St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "101 lord street southport pr8 1rh",
+   "parsed": {
+    "house_number": "101",
+    "road": "lord St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "101 LORD STREET, SOUTHPORT, PR81RH",
+   "parsed": {
+    "house_number": "101",
+    "road": "LORD St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 101 lord street, southport pr8 1rh",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "17 Church Road, Bath BA1 1AA",
+   "parsed": {
+    "house_number": "17",
+    "road": "Church Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "17 church road bath ba1 1aa",
+   "parsed": {
+    "house_number": "17",
+    "road": "church Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "17 CHURCH ROAD, BATH, BA11AA",
+   "parsed": {
+    "house_number": "17",
+    "road": "CHURCH Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 17 church road, bath ba1 1aa",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "6 Market Place, Norwich NR2 1ND",
+   "parsed": {
+    "house_number": "6",
+    "road": "Market Pl"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "6 market place norwich nr2 1nd",
+   "parsed": {
+    "house_number": "6",
+    "road": "market Pl"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "6 MARKET PLACE, NORWICH, NR21ND",
+   "parsed": {
+    "house_number": "6",
+    "road": "MARKET Pl"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 6 market place, norwich nr2 1nd",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "73 London Road, Leicester LE2 0PF",
+   "parsed": {
+    "house_number": "73",
+    "road": "London Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "73 london road leicester le2 0pf",
+   "parsed": {
+    "house_number": "73",
+    "road": "london Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "73 LONDON ROAD, LEICESTER, LE20PF",
+   "parsed": {
+    "house_number": "73",
+    "road": "LONDON Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 73 london road, leicester le2 0pf",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "28 Station Road, Reading RG1 1LG",
+   "parsed": {
+    "house_number": "28",
+    "road": "Station Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "28 station road reading rg1 1lg",
+   "parsed": {
+    "house_number": "28",
+    "road": "station Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "28 STATION ROAD, READING, RG11LG",
+   "parsed": {
+    "house_number": "28",
+    "road": "STATION Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 28 station road, reading rg1 1lg",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "11 West Street, Sheffield S1 4EW",
+   "parsed": {
+    "house_number": "11",
+    "road": "West St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "11 west street sheffield s1 4ew",
+   "parsed": {
+    "house_number": "11",
+    "road": "west St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "11 WEST STREET, SHEFFIELD, S14EW",
+   "parsed": {
+    "house_number": "11",
+    "road": "WEST St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 11 west street, sheffield s1 4ew",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "39 Union Street, Aberdeen AB11 6BD",
+   "parsed": {
+    "house_number": "39",
+    "road": "Union St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "39 union street aberdeen ab11 6bd",
+   "parsed": {
+    "house_number": "39",
+    "road": "union St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "39 UNION STREET, ABERDEEN, AB116BD",
+   "parsed": {
+    "house_number": "39",
+    "road": "UNION St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 39 union street, aberdeen ab11 6bd",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "4 High Street, Swansea SA1 1LE",
+   "parsed": {
+    "house_number": "4",
+    "road": "High St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "4 high street swansea sa1 1le",
+   "parsed": {
+    "house_number": "4",
+    "road": "high St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "4 HIGH STREET, SWANSEA, SA11LE",
+   "parsed": {
+    "house_number": "4",
+    "road": "HIGH St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 4 high street, swansea sa1 1le",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "56 Commercial Road, Portsmouth PO1 1EJ",
+   "parsed": {
+    "house_number": "56",
+    "road": "Commercial Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "56 commercial road portsmouth po1 1ej",
+   "parsed": {
+    "house_number": "56",
+    "road": "commercial Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "56 COMMERCIAL ROAD, PORTSMOUTH, PO11EJ",
+   "parsed": {
+    "house_number": "56",
+    "road": "COMMERCIAL Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 56 commercial road, portsmouth po1 1ej",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "8 Above Bar Street, Southampton SO14 7DU",
+   "parsed": {
+    "house_number": "8",
+    "road": "Above Bar St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "8 above bar street southampton so14 7du",
+   "parsed": {
+    "house_number": "8",
+    "road": "above bar St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "8 ABOVE BAR STREET, SOUTHAMPTON, SO147DU",
+   "parsed": {
+    "house_number": "8",
+    "road": "ABOVE BAR St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 8 above bar street, southampton so14 7du",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "120 Mansfield Road, Nottingham NG5 2BT",
+   "parsed": {
+    "house_number": "120",
+    "road": "Mansfield Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "120 mansfield road nottingham ng5 2bt",
+   "parsed": {
+    "house_number": "120",
+    "road": "mansfield Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "120 MANSFIELD ROAD, NOTTINGHAM, NG52BT",
+   "parsed": {
+    "house_number": "120",
+    "road": "MANSFIELD Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 120 mansfield road, nottingham ng5 2bt",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "15 Broad Street, Worcester WR1 3LH",
+   "parsed": {
+    "house_number": "15",
+    "road": "Broad St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "15 broad street worcester wr1 3lh",
+   "parsed": {
+    "house_number": "15",
+    "road": "broad St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "15 BROAD STREET, WORCESTER, WR13LH",
+   "parsed": {
+    "house_number": "15",
+    "road": "BROAD St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 15 broad street, worcester wr1 3lh",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "22 North Street, Chichester PO19 1LB",
+   "parsed": {
+    "house_number": "22",
+    "road": "North St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "22 north street chichester po19 1lb",
+   "parsed": {
+    "house_number": "22",
+    "road": "north St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "22 NORTH STREET, CHICHESTER, PO191LB",
+   "parsed": {
+    "house_number": "22",
+    "road": "NORTH St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 22 north street, chichester po19 1lb",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "67 Park Lane, Croydon CR0 1JD",
+   "parsed": {
+    "house_number": "67",
+    "road": "Park Ln"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "67 park lane croydon cr0 1jd",
+   "parsed": {
+    "house_number": "67",
+    "road": "park Ln"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "67 PARK LANE, CROYDON, CR01JD",
+   "parsed": {
+    "house_number": "67",
+    "road": "PARK Ln"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 67 park lane, croydon cr0 1jd",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "3 Mill Lane, Derby DE1 1AA",
+   "parsed": {
+    "house_number": "3",
+    "road": "Mill Ln"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "3 mill lane derby de1 1aa",
+   "parsed": {
+    "house_number": "3",
+    "road": "mill Ln"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "3 MILL LANE, DERBY, DE11AA",
+   "parsed": {
+    "house_number": "3",
+    "road": "MILL Ln"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 3 mill lane, derby de1 1aa",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "90 Oxford Street, London W1D 1BS",
+   "parsed": {
+    "house_number": "90",
+    "road": "Oxford St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "90 oxford street london w1d 1bs",
+   "parsed": {
+    "house_number": "90",
+    "road": "oxford St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "90 OXFORD STREET, LONDON, W1D1BS",
+   "parsed": {
+    "house_number": "90",
+    "road": "OXFORD St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 90 oxford street, london w1d 1bs",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "18 Regent Street, Cheltenham GL50 1HE",
+   "parsed": {
+    "house_number": "18",
+    "road": "Regent St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "18 regent street cheltenham gl50 1he",
+   "parsed": {
+    "house_number": "18",
+    "road": "regent St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "18 REGENT STREET, CHELTENHAM, GL501HE",
+   "parsed": {
+    "house_number": "18",
+    "road": "REGENT St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 18 regent street, cheltenham gl50 1he",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "5 The Strand, Plymouth PL1 2RD",
+   "parsed": {
+    "house_number": "5",
+    "road": "The"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "5 the strand plymouth pl1 2rd",
+   "parsed": {
+    "house_number": "5",
+    "road": "the"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "5 THE STRAND, PLYMOUTH, PL12RD",
+   "parsed": {
+    "house_number": "5",
+    "road": "THE"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 5 the strand, plymouth pl1 2rd",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "41 High Street, Guildford GU1 3DY",
+   "parsed": {
+    "house_number": "41",
+    "road": "High St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "41 high street guildford gu1 3dy",
+   "parsed": {
+    "house_number": "41",
+    "road": "high St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "41 HIGH STREET, GUILDFORD, GU13DY",
+   "parsed": {
+    "house_number": "41",
+    "road": "HIGH St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 41 high street, guildford gu1 3dy",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "27 Bridge Street, Chester CH1 1NQ",
+   "parsed": {
+    "house_number": "27",
+    "road": "Bridge St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "27 bridge street chester ch1 1nq",
+   "parsed": {
+    "house_number": "27",
+    "road": "bridge St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "27 BRIDGE STREET, CHESTER, CH11NQ",
+   "parsed": {
+    "house_number": "27",
+    "road": "BRIDGE St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 27 bridge street, chester ch1 1nq",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "13 Silver Street, Lincoln LN2 1DY",
+   "parsed": {
+    "house_number": "13",
+    "road": "Silver St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "13 silver street lincoln ln2 1dy",
+   "parsed": {
+    "house_number": "13",
+    "road": "silver St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "13 SILVER STREET, LINCOLN, LN21DY",
+   "parsed": {
+    "house_number": "13",
+    "road": "SILVER St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 13 silver street, lincoln ln2 1dy",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "70 Corporation Street, Coventry CV1 1GF",
+   "parsed": {
+    "house_number": "70",
+    "road": "Corporation St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "70 corporation street coventry cv1 1gf",
+   "parsed": {
+    "house_number": "70",
+    "road": "corporation St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "70 CORPORATION STREET, COVENTRY, CV11GF",
+   "parsed": {
+    "house_number": "70",
+    "road": "CORPORATION St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 70 corporation street, coventry cv1 1gf",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "9 Victoria Road, Darlington DL1 5SF",
+   "parsed": {
+    "house_number": "9",
+    "road": "Victoria Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "9 victoria road darlington dl1 5sf",
+   "parsed": {
+    "house_number": "9",
+    "road": "victoria Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "9 VICTORIA ROAD, DARLINGTON, DL15SF",
+   "parsed": {
+    "house_number": "9",
+    "road": "VICTORIA Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 9 victoria road, darlington dl1 5sf",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "35 Albert Road, Middlesbrough TS1 2PA",
+   "parsed": {
+    "house_number": "35",
+    "road": "Albert Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "35 albert road middlesbrough ts1 2pa",
+   "parsed": {
+    "house_number": "35",
+    "road": "albert Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "35 ALBERT ROAD, MIDDLESBROUGH, TS12PA",
+   "parsed": {
+    "house_number": "35",
+    "road": "ALBERT Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 35 albert road, middlesbrough ts1 2pa",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "2 Abbey Road, London NW8 9AY",
+   "parsed": {
+    "house_number": "2",
+    "road": "Abbey Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "2 abbey road london nw8 9ay",
+   "parsed": {
+    "house_number": "2",
+    "road": "abbey Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "2 ABBEY ROAD, LONDON, NW89AY",
+   "parsed": {
+    "house_number": "2",
+    "road": "ABBEY Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 2 abbey road, london nw8 9ay",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "84 Promenade, Blackpool FY1 1HB",
+   "parsed": {
+    "house_number": "84",
+    "road": "Promenade"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "84 promenade blackpool fy1 1hb",
+   "parsed": {
+    "house_number": "84",
+    "road": "promenade"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "84 PROMENADE, BLACKPOOL, FY11HB",
+   "parsed": {
+    "house_number": "84",
+    "road": "PROMENADE"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 84 promenade, blackpool fy1 1hb",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "16 Sidwell Street, Exeter EX4 6NN",
+   "parsed": {
+    "house_number": "16",
+    "road": "Sidwell St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "16 sidwell street exeter ex4 6nn",
+   "parsed": {
+    "house_number": "16",
+    "road": "sidwell St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "16 SIDWELL STREET, EXETER, EX46NN",
+   "parsed": {
+    "house_number": "16",
+    "road": "SIDWELL St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 16 sidwell street, exeter ex4 6nn",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "53 Fishergate, Preston PR1 2NJ",
+   "parsed": {
+    "house_number": "53",
+    "road": "Fishergate"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "53 fishergate preston pr1 2nj",
+   "parsed": {
+    "house_number": "53",
+    "road": "fishergate"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "53 FISHERGATE, PRESTON, PR12NJ",
+   "parsed": {
+    "house_number": "53",
+    "road": "FISHERGATE"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 53 fishergate, preston pr1 2nj",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "7 Queens Road, Aberdeen AB15 4YL",
+   "parsed": {
+    "house_number": "7",
+    "road": "Queens Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "7 queens road aberdeen ab15 4yl",
+   "parsed": {
+    "house_number": "7",
+    "road": "queens Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "7 QUEENS ROAD, ABERDEEN, AB154YL",
+   "parsed": {
+    "house_number": "7",
+    "road": "QUEENS Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 7 queens road, aberdeen ab15 4yl",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "29 Marine Parade, Great Yarmouth NR30 2EN",
+   "parsed": {
+    "house_number": "29",
+    "road": "Marine"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "29 marine parade great yarmouth nr30 2en",
+   "parsed": {
+    "house_number": "29",
+    "road": "marine"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "29 MARINE PARADE, GREAT YARMOUTH, NR302EN",
+   "parsed": {
+    "house_number": "29",
+    "road": "MARINE"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 29 marine parade, great yarmouth nr30 2en",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "1 The Crescent, Salford M5 4WT",
+   "parsed": {
+    "house_number": "1",
+    "road": "The Cres"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1 the crescent salford m5 4wt",
+   "parsed": {
+    "house_number": "1",
+    "road": "the Cres"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1 THE CRESCENT, SALFORD, M54WT",
+   "parsed": {
+    "house_number": "1",
+    "road": "THE Cres"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 1 the crescent, salford m5 4wt",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "46 Northgate Street, Gloucester GL1 2AN",
+   "parsed": {
+    "house_number": "46",
+    "road": "Northgate St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "46 northgate street gloucester gl1 2an",
+   "parsed": {
+    "house_number": "46",
+    "road": "northgate St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "46 NORTHGATE STREET, GLOUCESTER, GL12AN",
+   "parsed": {
+    "house_number": "46",
+    "road": "NORTHGATE St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "flat 2, 46 northgate street, gloucester gl1 2an",
+   "parsed": {
+    "road": "flat"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "350 5Th Ave, New York, NY 10118, USA",
+   "parsed": {
+    "house_number": "350",
+    "road": "5Th Ave",
+    "city": "New York",
+    "state": "NY",
+    "postcode": "10118"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "350 5th ave new york ny 10118 usa",
+   "parsed": {
+    "house_number": "350",
+    "road": "5th Ave",
+    "city": "new york",
+    "state": "ny",
+    "postcode": "10118"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "350 5th ave, new york, NY 10118",
+   "parsed": {
+    "house_number": "350",
+    "road": "5th Ave",
+    "city": "new york",
+    "state": "NY",
+    "postcode": "10118"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "apt 3, 350 5th ave, new york, NY 10118",
+   "parsed": {
+    "house_number": "350",
+    "road": "5th Ave",
+    "unit": "apt 3",
+    "city": "new york",
+    "state": "NY",
+    "postcode": "10118"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1600 Pennsylvania Ave Nw, Washington, DC 20500, USA",
+   "parsed": {
+    "house_number": "1600",
+    "road": "Pennsylvania Ave Nw",
+    "city": "Washington",
+    "state": "DC",
+    "postcode": "20500"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1600 pennsylvania ave nw washington dc 20500 usa",
+   "parsed": {
+    "house_number": "1600",
+    "road": "pennsylvania Ave nw",
+    "city": "washington",
+    "state": "dc",
+    "postcode": "20500"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1600 pennsylvania ave nw, washington, DC 20500",
+   "parsed": {
+    "house_number": "1600",
+    "road": "pennsylvania Ave nw",
+    "city": "washington",
+    "state": "DC",
+    "postcode": "20500"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "apt 3, 1600 pennsylvania ave nw, washington, DC 20500",
+   "parsed": {
+    "house_number": "1600",
+    "road": "pennsylvania Ave nw",
+    "unit": "apt 3",
+    "city": "washington",
+    "state": "DC",
+    "postcode": "20500"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "233 S Wacker Dr, Chicago, IL 60606, USA",
+   "parsed": {
+    "house_number": "233",
+    "road": "S Wacker Dr",
+    "city": "Chicago",
+    "state": "IL",
+    "postcode": "60606"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "233 s wacker dr chicago il 60606 usa",
+   "parsed": {
+    "house_number": "233",
+    "road": "s wacker Dr",
+    "city": "chicago",
+    "state": "il",
+    "postcode": "60606"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "233 s wacker dr, chicago, IL 60606",
+   "parsed": {
+    "house_number": "233",
+    "road": "s wacker Dr",
+    "city": "chicago",
+    "state": "IL",
+    "postcode": "60606"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "apt 3, 233 s wacker dr, chicago, IL 60606",
+   "parsed": {
+    "house_number": "233",
+    "road": "s wacker Dr",
+    "unit": "apt 3",
+    "city": "chicago",
+    "state": "IL",
+    "postcode": "60606"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1 Infinite Loop, Cupertino, CA 95014, USA",
+   "parsed": {
+    "house_number": "1",
+    "road": "Infinite Loop",
+    "city": "Cupertino",
+    "state": "CA",
+    "postcode": "95014"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1 infinite loop cupertino ca 95014 usa",
+   "parsed": {
+    "house_number": "1",
+    "road": "infinite Loop",
+    "city": "cupertino",
+    "state": "ca",
+    "postcode": "95014"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1 infinite loop, cupertino, CA 95014",
+   "parsed": {
+    "house_number": "1",
+    "road": "infinite Loop",
+    "city": "cupertino",
+    "state": "CA",
+    "postcode": "95014"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "apt 3, 1 infinite loop, cupertino, CA 95014",
+   "parsed": {
+    "house_number": "1",
+    "road": "infinite Loop",
+    "unit": "apt 3",
+    "city": "cupertino",
+    "state": "CA",
+    "postcode": "95014"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "400 Broad St, Seattle, WA 98109, USA",
+   "parsed": {
+    "house_number": "400",
+    "road": "Broad St",
+    "city": "Seattle",
+    "state": "WA",
+    "postcode": "98109"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "400 broad st seattle wa 98109 usa",
+   "parsed": {
+    "house_number": "400",
+    "road": "broad St",
+    "city": "seattle",
+    "state": "wa",
+    "postcode": "98109"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "400 broad st, seattle, WA 98109",
+   "parsed": {
+    "house_number": "400",
+    "road": "broad St",
+    "city": "seattle",
+    "state": "WA",
+    "postcode": "98109"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "apt 3, 400 broad st, seattle, WA 98109",
+   "parsed": {
+    "house_number": "400",
+    "road": "broad St",
+    "unit": "apt 3",
+    "city": "seattle",
+    "state": "WA",
+    "postcode": "98109"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "700 Congress Ave, Austin, TX 78701, USA",
+   "parsed": {
+    "house_number": "700",
+    "road": "Congress Ave",
+    "city": "Austin",
+    "state": "TX",
+    "postcode": "78701"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "700 congress ave austin tx 78701 usa",
+   "parsed": {
+    "house_number": "700",
+    "road": "congress Ave",
+    "city": "austin",
+    "state": "tx",
+    "postcode": "78701"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "700 congress ave, austin, TX 78701",
+   "parsed": {
+    "house_number": "700",
+    "road": "congress Ave",
+    "city": "austin",
+    "state": "TX",
+    "postcode": "78701"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "apt 3, 700 congress ave, austin, TX 78701",
+   "parsed": {
+    "house_number": "700",
+    "road": "congress Ave",
+    "unit": "apt 3",
+    "city": "austin",
+    "state": "TX",
+    "postcode": "78701"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "290 Bremner Blvd, Toronto, ON M5V 3L9, Canada",
+   "parsed": {
+    "house_number": "290",
+    "road": "Bremner Blvd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "290 bremner blvd toronto on m5v 3l9 canada",
+   "parsed": {
+    "house_number": "290",
+    "road": "bremner Blvd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "290 bremner blvd, toronto, ON M5V 3L9",
+   "parsed": {
+    "house_number": "290",
+    "road": "bremner Blvd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "apt 3, 290 bremner blvd, toronto, ON M5V 3L9",
+   "parsed": {
+    "house_number": "290",
+    "road": "bremner Blvd",
+    "unit": "apt 3"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "unit"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1055 W Georgia St, Vancouver, BC V6E 3P3, Canada",
+   "parsed": {
+    "house_number": "1055",
+    "road": "W Georgia St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1055 w georgia st vancouver bc v6e 3p3 canada",
+   "parsed": {
+    "house_number": "1055",
+    "road": "w georgia st vancouver bc v6 e"
+   },
+   "correct": [
+    "house_number"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1055 w georgia st, vancouver, BC V6E 3P3",
+   "parsed": {
+    "house_number": "1055",
+    "road": "w georgia St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "apt 3, 1055 w georgia st, vancouver, BC V6E 3P3",
+   "parsed": {
+    "house_number": "1055",
+    "road": "w georgia St",
+    "unit": "apt 3"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "unit"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1 Macquarie St, Sydney, NSW 2000, Australia",
+   "parsed": {
+    "house_number": "1",
+    "road": "Macquarie St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1 macquarie st sydney nsw 2000 australia",
+   "parsed": {
+    "house_number": "1",
+    "road": "macquarie St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "1 macquarie st, sydney, NSW 2000",
+   "parsed": {
+    "house_number": "1",
+    "road": "macquarie St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "apt 3, 1 macquarie st, sydney, NSW 2000",
+   "parsed": {
+    "house_number": "1",
+    "road": "macquarie St",
+    "unit": "apt 3"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "unit"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "100 St Kilda Rd, Melbourne, VIC 3004, Australia",
+   "parsed": {
+    "house_number": "100",
+    "road": "St Kilda Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "100 st kilda rd melbourne vic 3004 australia",
+   "parsed": {
+    "house_number": "100",
+    "road": "st kilda Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "100 st kilda rd, melbourne, VIC 3004",
+   "parsed": {
+    "house_number": "100",
+    "road": "st kilda Rd"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "apt 3, 100 st kilda rd, melbourne, VIC 3004",
+   "parsed": {
+    "house_number": "100",
+    "road": "st kilda Rd",
+    "unit": "apt 3"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "unit"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "Hauptstraße 5, 10115 Berlin, Germany",
+   "parsed": {
+    "road": "Hauptstra e"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "hauptstraße 5 10115 berlin germany",
+   "parsed": {
+    "road": "hauptstra e"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "hauptstraße 5, 10115 berlin",
+   "parsed": {
+    "road": "hauptstra e"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "HAUPTSTRASSE 5, 10115 BERLIN, GERMANY",
+   "parsed": {
+    "road": "HAUPTSTRASSE"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "Königstraße 12, 70173 Stuttgart, Germany",
+   "parsed": {
+    "road": "K"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "königstraße 12 70173 stuttgart germany",
+   "parsed": {
+    "road": "k"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "königstraße 12, 70173 stuttgart",
+   "parsed": {
+    "road": "k"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "KÖNIGSTRASSE 12, 70173 STUTTGART, GERMANY",
+   "parsed": {
+    "road": "K"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "Marienplatz 8, 80331 München, Germany",
+   "parsed": {
+    "road": "Marienplatz"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "marienplatz 8 80331 münchen germany",
+   "parsed": {
+    "road": "marienplatz"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "marienplatz 8, 80331 münchen",
+   "parsed": {
+    "road": "marienplatz"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "MARIENPLATZ 8, 80331 MÜNCHEN, GERMANY",
+   "parsed": {
+    "road": "MARIENPLATZ"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "Rue De La Paix 12, 75002 Paris, France",
+   "parsed": {
+    "road": "Rue De Ln"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "rue de la paix 12 75002 paris france",
+   "parsed": {
+    "road": "rue de Ln"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "rue de la paix 12, 75002 paris",
+   "parsed": {
+    "road": "rue de Ln"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "RUE DE LA PAIX 12, 75002 PARIS, FRANCE",
+   "parsed": {
+    "road": "RUE DE Ln"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "Rue De La République 45, 69002 Lyon, France",
+   "parsed": {
+    "road": "Rue De Ln"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "rue de la république 45 69002 lyon france",
+   "parsed": {
+    "road": "rue de Ln"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "rue de la république 45, 69002 lyon",
+   "parsed": {
+    "road": "rue de Ln"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "RUE DE LA RÉPUBLIQUE 45, 69002 LYON, FRANCE",
+   "parsed": {
+    "road": "RUE DE Ln"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "Calle Mayor 3, 28013 Madrid, Spain",
+   "parsed": {
+    "road": "Calle"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "calle mayor 3 28013 madrid spain",
+   "parsed": {
+    "road": "calle"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "calle mayor 3, 28013 madrid",
+   "parsed": {
+    "road": "calle"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "CALLE MAYOR 3, 28013 MADRID, SPAIN",
+   "parsed": {
+    "road": "CALLE"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "Passeig De Gràcia 92, 08008 Barcelona, Spain",
+   "parsed": {
+    "road": "Passeig"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "passeig de gràcia 92 08008 barcelona spain",
+   "parsed": {
+    "road": "passeig"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "passeig de gràcia 92, 08008 barcelona",
+   "parsed": {
+    "road": "passeig"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "PASSEIG DE GRÀCIA 92, 08008 BARCELONA, SPAIN",
+   "parsed": {
+    "road": "PASSEIG"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "Via Del Corso 10, 00186 Roma, Italy",
+   "parsed": {
+    "road": "Via"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "via del corso 10 00186 roma italy",
+   "parsed": {
+    "road": "via"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "via del corso 10, 00186 roma",
+   "parsed": {
+    "road": "via"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "VIA DEL CORSO 10, 00186 ROMA, ITALY",
+   "parsed": {
+    "road": "VIA"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "Via Montenapoleone 2, 20121 Milano, Italy",
+   "parsed": {
+    "road": "Via"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "via montenapoleone 2 20121 milano italy",
+   "parsed": {
+    "road": "via"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "via montenapoleone 2, 20121 milano",
+   "parsed": {
+    "road": "via"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "VIA MONTENAPOLEONE 2, 20121 MILANO, ITALY",
+   "parsed": {
+    "road": "VIA"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "Damrak 147, 1012 LP Amsterdam, Netherlands",
+   "parsed": {
+    "road": "Damrak"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "damrak 147 1012 lp amsterdam netherlands",
+   "parsed": {
+    "road": "damrak"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "damrak 147, 1012 lp amsterdam",
+   "parsed": {
+    "road": "damrak"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "DAMRAK 147, 1012 LP AMSTERDAM, NETHERLANDS",
+   "parsed": {
+    "road": "DAMRAK"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "28 Grafton Street, Dublin, D02 VH85, Ireland",
+   "parsed": {
+    "house_number": "28",
+    "road": "Grafton St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "28 grafton street dublin d02 vh85 ireland",
+   "parsed": {
+    "house_number": "28",
+    "road": "grafton St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "28 grafton street, dublin, D02 VH85",
+   "parsed": {
+    "house_number": "28",
+    "road": "grafton St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "apt 3, 28 grafton street, dublin, D02 VH85",
+   "parsed": {
+    "house_number": "28",
+    "road": "grafton St",
+    "unit": "apt 3"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "unit"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "50 Queen Street, Auckland, 1010, New Zealand",
+   "parsed": {
+    "house_number": "50",
+    "road": "Queen St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "50 queen street auckland 1010 new zealand",
+   "parsed": {
+    "house_number": "50",
+    "road": "queen St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "50 queen street, auckland, 1010",
+   "parsed": {
+    "house_number": "50",
+    "road": "queen St"
+   },
+   "correct": [
+    "house_number",
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "apt 3, 50 queen street, auckland, 1010",
+   "parsed": {
+    "house_number": "50",
+    "road": "queen St",
+    "unit": "apt 3"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "unit"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "Stephansplatz 1, 1010 Wien, Austria",
+   "parsed": {
+    "road": "Stephansplatz"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "stephansplatz 1 1010 wien austria",
+   "parsed": {
+    "road": "stephansplatz"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "stephansplatz 1, 1010 wien",
+   "parsed": {
+    "road": "stephansplatz"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "STEPHANSPLATZ 1, 1010 WIEN, AUSTRIA",
+   "parsed": {
+    "road": "STEPHANSPLATZ"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "Bahnhofstrasse 10, 8001 Zürich, Switzerland",
+   "parsed": {
+    "road": "Bahnhofstrasse"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "bahnhofstrasse 10 8001 zürich switzerland",
+   "parsed": {
+    "road": "bahnhofstrasse"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "bahnhofstrasse 10, 8001 zürich",
+   "parsed": {
+    "road": "bahnhofstrasse"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "BAHNHOFSTRASSE 10, 8001 ZÜRICH, SWITZERLAND",
+   "parsed": {
+    "road": "BAHNHOFSTRASSE"
+   },
+   "correct": [
+    "road"
+   ]
+  },
+  {
+   "parser": "parse-address",
+   "input": "Grote Markt 1, 1000 Brussel, Belgium",
+   "parsed": {
+    "road": "Grote"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "grote markt 1 1000 brussel belgium",
+   "parsed": {
+    "road": "grote"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "grote markt 1, 1000 brussel",
+   "parsed": {
+    "road": "grote"
+   },
+   "correct": []
+  },
+  {
+   "parser": "parse-address",
+   "input": "GROTE MARKT 1, 1000 BRUSSEL, BELGIUM",
+   "parsed": {
+    "road": "GROTE"
+   },
+   "correct": []
+  }
+ ]
+}
