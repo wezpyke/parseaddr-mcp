@@ -45,7 +45,7 @@ your key:
 }
 ```
 
-Activate the key with a first parse:
+Check your key with a first parse:
 
 ```bash
 curl -s https://api.parseaddr.com/v1/parse \
