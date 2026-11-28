@@ -1,20 +1,29 @@
 {
   "name": "parseaddr",
   "version": "0.1.0",
-  "description": "Parse & normalize messy postal addresses via the hosted ParseAddr (libpostal) API — no 2-4GB self-host. Includes an MCP server for AI agents.",
+  "description": "Parse messy postal addresses into structured fields with the hosted ParseAddr (libpostal) API. Includes a stdio MCP server.",
   "mcpName": "com.parseaddr/address-parse",
   "type": "module",
   "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": { "types": "./index.d.ts", "default": "./index.js" }
+  },
   "bin": {
     "parseaddr-mcp": "bin/parseaddr-mcp.js"
   },
-  "files": ["index.js", "bin/"],
-  "keywords": ["address", "libpostal", "parsing", "geocoding", "normalization", "mcp", "postal"],
+  "files": ["index.js", "index.d.ts", "bin/"],
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "keywords": ["address", "address-parser", "libpostal", "parsing", "postal", "normalization", "mcp"],
   "homepage": "https://parseaddr.com",
-  "repository": { "type": "git", "url": "https://github.com/wezpyke/parseaddr-mcp" },
+  "repository": { "type": "git", "url": "git+https://github.com/wezpyke/parseaddr-mcp.git", "directory": "packages/npm" },
+  "bugs": { "url": "https://github.com/wezpyke/parseaddr-mcp/issues" },
   "license": "MIT",
   "engines": { "node": ">=18" },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.0"
+    "@modelcontextprotocol/sdk": "^1.32.0",
+    "zod": "^3.25.0"
   }
 }

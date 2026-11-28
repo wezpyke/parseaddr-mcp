@@ -1,17 +1,25 @@
-// parseaddr — tiny client for the hosted ParseAddr (libpostal) API.
+// parseaddr: small client for the hosted ParseAddr (libpostal) API.
 //
 //   import { parse, expand } from "parseaddr";
-//   await parse("flat 2, 10 downing st, london sw1a 2aa"); // { parsed: {...}, components: [...] }
+//   await parse("flat 2, 10 downing st, london sw1a 2aa"); // { input, parsed: {...}, components: [...] }
 //
-// Key via PARSEADDR_API_KEY env or the apiKey option. Free tier: https://parseaddr.com
+// Key via PARSEADDR_API_KEY env or the apiKey option. Free key: https://parseaddr.com
 //
-// Scaffold: correct shape, not yet published. Calls are tagged
-// `X-Parseaddr-Client: pkg-npm/<ver>` so the package channel is attributable
-// (the MCP server tags `mcp/<ver>`). Do NOT drop the header — Phase-3 proof metric.
+// Calls are tagged `X-Parseaddr-Client: pkg-npm/<ver>` so the server can count calls from
+// this package (the MCP server tags `mcp/<ver>`). Keep the header.
 
 export const VERSION = "0.1.0";
-const API_BASE = process.env.PARSEADDR_API_BASE || "https://api.parseaddr.com";
+const DEFAULT_BASE = "https://api.parseaddr.com";
 const CLIENT = `pkg-npm/${VERSION}`;
+
+export class ParseAddrError extends Error {
+  constructor(status, detail) {
+    super(`parseaddr: ${status} ${typeof detail === "string" ? detail : JSON.stringify(detail)}`);
+    this.name = "ParseAddrError";
+    this.status = status;
+    this.detail = detail;
+  }
+}
 
 function resolveKey(apiKey) {
   const k = apiKey || process.env.PARSEADDR_API_KEY || "";
@@ -19,26 +27,37 @@ function resolveKey(apiKey) {
   return k;
 }
 
-async function post(path, address, apiKey) {
-  const res = await fetch(`${API_BASE}${path}`, {
+// `client` is internal: the MCP bin passes "mcp/<ver>" so its calls are counted separately.
+async function post(path, body, { apiKey, baseUrl, timeoutMs = 15000, client = CLIENT } = {}) {
+  if (typeof body.address !== "string" || !body.address.trim()) {
+    throw new TypeError("address must be a non-empty string");
+  }
+  const base = (baseUrl || process.env.PARSEADDR_API_BASE || DEFAULT_BASE).replace(/\/+$/, "");
+  const res = await fetch(`${base}${path}`, {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${resolveKey(apiKey)}`,
       "Content-Type": "application/json",
-      "X-Parseaddr-Client": CLIENT,
+      "X-Parseaddr-Client": client,
     },
-    body: JSON.stringify({ address }),
+    body: JSON.stringify(body),
+    signal: AbortSignal.timeout(timeoutMs),
   });
-  if (!res.ok) throw new Error(`parseaddr ${path} failed: ${res.status} ${await res.text()}`);
+  if (!res.ok) {
+    const text = await res.text();
+    let detail = text;
+    try { detail = JSON.parse(text).detail ?? text; } catch {}
+    throw new ParseAddrError(res.status, detail);
+  }
   return res.json();
 }
 
-export function parse(address, { apiKey } = {}) {
-  return post("/v1/parse", address, apiKey);
+export function parse(address, { language, ...opts } = {}) {
+  return post("/v1/parse", language ? { address, language } : { address }, opts);
 }
 
-export function expand(address, { apiKey } = {}) {
-  return post("/v1/expand", address, apiKey);
+export function expand(address, opts = {}) {
+  return post("/v1/expand", { address }, opts);
 }
 
-export default { parse, expand, VERSION };
+export default { parse, expand, ParseAddrError, VERSION };
