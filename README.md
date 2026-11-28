@@ -136,3 +136,14 @@ The server calls `https://api.parseaddr.com` on your behalf.
 ## What it is NOT
 Not authoritative deliverability validation (no Royal Mail PAF licence) — parsing/standardisation only.
 See [address validation vs parsing](https://parseaddr.com/address-validation-vs-parsing).
+
+## Publishing (maintainers)
+Both packages publish with one command. It runs both test suites, refuses a version that is
+already live, then uploads:
+
+```bash
+NPM_TOKEN=npm_... PYPI_TOKEN=pypi-... scripts/publish.sh   # DRY_RUN=1 to stop before upload
+```
+
+Tests on their own: `cd packages/npm && npm install && npm test` (8 tests, including an MCP
+stdio handshake) and `cd packages/pypi && pip install -e ".[mcp,test]" && pytest` (9 tests).
