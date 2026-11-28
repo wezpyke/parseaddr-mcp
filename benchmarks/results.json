@@ -1,0 +1,7524 @@
+{
+ "api": "https://api.parseaddr.com/v1/parse",
+ "run_at": "2026-11-28T10:57:09Z",
+ "groups": {
+  "uk": {
+   "cases": 200,
+   "all_fields_correct": 197,
+   "all_fields_rate": 0.985,
+   "per_field": {
+    "city": {
+     "cases": 200,
+     "correct": 197,
+     "rate": 0.985
+    },
+    "house_number": {
+     "cases": 200,
+     "correct": 200,
+     "rate": 1.0
+    },
+    "postcode": {
+     "cases": 200,
+     "correct": 200,
+     "rate": 1.0
+    },
+    "road": {
+     "cases": 200,
+     "correct": 200,
+     "rate": 1.0
+    },
+    "unit": {
+     "cases": 50,
+     "correct": 50,
+     "rate": 1.0
+    }
+   },
+   "latency_ms": {
+    "median": 161,
+    "p95": 198
+   }
+  },
+  "international": {
+   "cases": 100,
+   "all_fields_correct": 96,
+   "all_fields_rate": 0.96,
+   "per_field": {
+    "city": {
+     "cases": 100,
+     "correct": 96,
+     "rate": 0.96
+    },
+    "country": {
+     "cases": 63,
+     "correct": 63,
+     "rate": 1.0
+    },
+    "house_number": {
+     "cases": 100,
+     "correct": 100,
+     "rate": 1.0
+    },
+    "postcode": {
+     "cases": 100,
+     "correct": 100,
+     "rate": 1.0
+    },
+    "road": {
+     "cases": 100,
+     "correct": 100,
+     "rate": 1.0
+    },
+    "state": {
+     "cases": 40,
+     "correct": 40,
+     "rate": 1.0
+    },
+    "unit": {
+     "cases": 12,
+     "correct": 12,
+     "rate": 1.0
+    }
+   },
+   "latency_ms": {
+    "median": 160,
+    "p95": 198
+   }
+  }
+ },
+ "cases": [
+  {
+   "group": "uk",
+   "input": "14 High Street, Oxford OX1 4AG",
+   "expected": {
+    "house_number": "14",
+    "road": "high street",
+    "city": "oxford",
+    "postcode": "OX1 4AG"
+   },
+   "parsed": {
+    "house_number": "14",
+    "road": "high street",
+    "city": "oxford",
+    "postcode": "ox1 4ag"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 500.0
+  },
+  {
+   "group": "uk",
+   "input": "14 high street oxford ox1 4ag",
+   "expected": {
+    "house_number": "14",
+    "road": "high street",
+    "city": "oxford",
+    "postcode": "OX1 4AG"
+   },
+   "parsed": {
+    "house_number": "14",
+    "road": "high street",
+    "city": "oxford",
+    "postcode": "ox1 4ag"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 166.1
+  },
+  {
+   "group": "uk",
+   "input": "14 HIGH STREET, OXFORD, OX14AG",
+   "expected": {
+    "house_number": "14",
+    "road": "high street",
+    "city": "oxford",
+    "postcode": "OX1 4AG"
+   },
+   "parsed": {
+    "house_number": "14",
+    "road": "high street",
+    "city": "oxford",
+    "postcode": "ox14ag"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 162.8
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 14 high street, oxford ox1 4ag",
+   "expected": {
+    "house_number": "14",
+    "road": "high street",
+    "city": "oxford",
+    "postcode": "OX1 4AG",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "14",
+    "road": "high street",
+    "city": "oxford",
+    "postcode": "ox1 4ag"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 156.7
+  },
+  {
+   "group": "uk",
+   "input": "10 Downing Street, London SW1A 2AA",
+   "expected": {
+    "house_number": "10",
+    "road": "downing street",
+    "city": "london",
+    "postcode": "SW1A 2AA"
+   },
+   "parsed": {
+    "house_number": "10",
+    "road": "downing street",
+    "city": "london",
+    "postcode": "sw1a 2aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 160.6
+  },
+  {
+   "group": "uk",
+   "input": "10 downing street london sw1a 2aa",
+   "expected": {
+    "house_number": "10",
+    "road": "downing street",
+    "city": "london",
+    "postcode": "SW1A 2AA"
+   },
+   "parsed": {
+    "house_number": "10",
+    "road": "downing street",
+    "city": "london",
+    "postcode": "sw1a 2aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 166.8
+  },
+  {
+   "group": "uk",
+   "input": "10 DOWNING STREET, LONDON, SW1A2AA",
+   "expected": {
+    "house_number": "10",
+    "road": "downing street",
+    "city": "london",
+    "postcode": "SW1A 2AA"
+   },
+   "parsed": {
+    "house_number": "10",
+    "road": "downing street",
+    "city": "london",
+    "postcode": "sw1a2aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 159.7
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 10 downing street, london sw1a 2aa",
+   "expected": {
+    "house_number": "10",
+    "road": "downing street",
+    "city": "london",
+    "postcode": "SW1A 2AA",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "10",
+    "road": "downing street",
+    "city": "london",
+    "postcode": "sw1a 2aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 168.4
+  },
+  {
+   "group": "uk",
+   "input": "221B Baker Street, London NW1 6XE",
+   "expected": {
+    "house_number": "221b",
+    "road": "baker street",
+    "city": "london",
+    "postcode": "NW1 6XE"
+   },
+   "parsed": {
+    "house_number": "221b",
+    "road": "baker street",
+    "city": "london",
+    "postcode": "nw1 6xe"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 254.8
+  },
+  {
+   "group": "uk",
+   "input": "221b baker street london nw1 6xe",
+   "expected": {
+    "house_number": "221b",
+    "road": "baker street",
+    "city": "london",
+    "postcode": "NW1 6XE"
+   },
+   "parsed": {
+    "house_number": "221b",
+    "road": "baker street",
+    "city": "london",
+    "postcode": "nw1 6xe"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.3
+  },
+  {
+   "group": "uk",
+   "input": "221B BAKER STREET, LONDON, NW16XE",
+   "expected": {
+    "house_number": "221b",
+    "road": "baker street",
+    "city": "london",
+    "postcode": "NW1 6XE"
+   },
+   "parsed": {
+    "house_number": "221b",
+    "road": "baker street",
+    "city": "london",
+    "postcode": "nw16xe"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 159.3
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 221b baker street, london nw1 6xe",
+   "expected": {
+    "house_number": "221b",
+    "road": "baker street",
+    "city": "london",
+    "postcode": "NW1 6XE",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "221b",
+    "road": "baker street",
+    "city": "london",
+    "postcode": "nw1 6xe"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 159.6
+  },
+  {
+   "group": "uk",
+   "input": "1 Victoria Street, Bristol BS1 6AA",
+   "expected": {
+    "house_number": "1",
+    "road": "victoria street",
+    "city": "bristol",
+    "postcode": "BS1 6AA"
+   },
+   "parsed": {
+    "house_number": "1",
+    "road": "victoria street",
+    "city": "bristol",
+    "postcode": "bs1 6aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 165.2
+  },
+  {
+   "group": "uk",
+   "input": "1 victoria street bristol bs1 6aa",
+   "expected": {
+    "house_number": "1",
+    "road": "victoria street",
+    "city": "bristol",
+    "postcode": "BS1 6AA"
+   },
+   "parsed": {
+    "house_number": "1",
+    "road": "victoria street",
+    "city": "bristol",
+    "postcode": "bs1 6aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.8
+  },
+  {
+   "group": "uk",
+   "input": "1 VICTORIA STREET, BRISTOL, BS16AA",
+   "expected": {
+    "house_number": "1",
+    "road": "victoria street",
+    "city": "bristol",
+    "postcode": "BS1 6AA"
+   },
+   "parsed": {
+    "house_number": "1",
+    "road": "victoria street",
+    "city": "bristol",
+    "postcode": "bs16aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 157.9
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 1 victoria street, bristol bs1 6aa",
+   "expected": {
+    "house_number": "1",
+    "road": "victoria street",
+    "city": "bristol",
+    "postcode": "BS1 6AA",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "1",
+    "road": "victoria street",
+    "city": "bristol",
+    "postcode": "bs1 6aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 151.8
+  },
+  {
+   "group": "uk",
+   "input": "25 Deansgate, Manchester M3 4LQ",
+   "expected": {
+    "house_number": "25",
+    "road": "deansgate",
+    "city": "manchester",
+    "postcode": "M3 4LQ"
+   },
+   "parsed": {
+    "house_number": "25",
+    "road": "deansgate",
+    "city": "manchester",
+    "postcode": "m3 4lq"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 168.5
+  },
+  {
+   "group": "uk",
+   "input": "25 deansgate manchester m3 4lq",
+   "expected": {
+    "house_number": "25",
+    "road": "deansgate",
+    "city": "manchester",
+    "postcode": "M3 4LQ"
+   },
+   "parsed": {
+    "house_number": "25",
+    "road": "deansgate",
+    "city": "manchester",
+    "postcode": "m3 4lq"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 157.9
+  },
+  {
+   "group": "uk",
+   "input": "25 DEANSGATE, MANCHESTER, M34LQ",
+   "expected": {
+    "house_number": "25",
+    "road": "deansgate",
+    "city": "manchester",
+    "postcode": "M3 4LQ"
+   },
+   "parsed": {
+    "house_number": "25",
+    "road": "deansgate",
+    "city": "manchester",
+    "postcode": "m34lq"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 155.1
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 25 deansgate, manchester m3 4lq",
+   "expected": {
+    "house_number": "25",
+    "road": "deansgate",
+    "city": "manchester",
+    "postcode": "M3 4LQ",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "25",
+    "road": "deansgate",
+    "city": "manchester",
+    "postcode": "m3 4lq"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 161.0
+  },
+  {
+   "group": "uk",
+   "input": "7 Bold Street, Liverpool L1 4DJ",
+   "expected": {
+    "house_number": "7",
+    "road": "bold street",
+    "city": "liverpool",
+    "postcode": "L1 4DJ"
+   },
+   "parsed": {
+    "house_number": "7",
+    "road": "bold street",
+    "city": "liverpool",
+    "postcode": "l1 4dj"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 153.3
+  },
+  {
+   "group": "uk",
+   "input": "7 bold street liverpool l1 4dj",
+   "expected": {
+    "house_number": "7",
+    "road": "bold street",
+    "city": "liverpool",
+    "postcode": "L1 4DJ"
+   },
+   "parsed": {
+    "house_number": "7",
+    "road": "bold street",
+    "city": "liverpool",
+    "postcode": "l1 4dj"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 162.9
+  },
+  {
+   "group": "uk",
+   "input": "7 BOLD STREET, LIVERPOOL, L14DJ",
+   "expected": {
+    "house_number": "7",
+    "road": "bold street",
+    "city": "liverpool",
+    "postcode": "L1 4DJ"
+   },
+   "parsed": {
+    "house_number": "7",
+    "road": "bold street",
+    "city": "liverpool",
+    "postcode": "l14dj"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 176.7
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 7 bold street, liverpool l1 4dj",
+   "expected": {
+    "house_number": "7",
+    "road": "bold street",
+    "city": "liverpool",
+    "postcode": "L1 4DJ",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "7",
+    "road": "bold street",
+    "city": "liverpool",
+    "postcode": "l1 4dj"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 163.5
+  },
+  {
+   "group": "uk",
+   "input": "48 Princes Street, Edinburgh EH2 2YJ",
+   "expected": {
+    "house_number": "48",
+    "road": "princes street",
+    "city": "edinburgh",
+    "postcode": "EH2 2YJ"
+   },
+   "parsed": {
+    "house_number": "48",
+    "road": "princes street",
+    "city": "edinburgh",
+    "postcode": "eh2 2yj"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 152.2
+  },
+  {
+   "group": "uk",
+   "input": "48 princes street edinburgh eh2 2yj",
+   "expected": {
+    "house_number": "48",
+    "road": "princes street",
+    "city": "edinburgh",
+    "postcode": "EH2 2YJ"
+   },
+   "parsed": {
+    "house_number": "48",
+    "road": "princes street",
+    "city": "edinburgh",
+    "postcode": "eh2 2yj"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 161.0
+  },
+  {
+   "group": "uk",
+   "input": "48 PRINCES STREET, EDINBURGH, EH22YJ",
+   "expected": {
+    "house_number": "48",
+    "road": "princes street",
+    "city": "edinburgh",
+    "postcode": "EH2 2YJ"
+   },
+   "parsed": {
+    "house_number": "48",
+    "road": "princes street",
+    "city": "edinburgh",
+    "postcode": "eh22yj"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 256.0
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 48 princes street, edinburgh eh2 2yj",
+   "expected": {
+    "house_number": "48",
+    "road": "princes street",
+    "city": "edinburgh",
+    "postcode": "EH2 2YJ",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "48",
+    "road": "princes street",
+    "city": "edinburgh",
+    "postcode": "eh2 2yj"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 159.9
+  },
+  {
+   "group": "uk",
+   "input": "150 Buchanan Street, Glasgow G1 2LL",
+   "expected": {
+    "house_number": "150",
+    "road": "buchanan street",
+    "city": "glasgow",
+    "postcode": "G1 2LL"
+   },
+   "parsed": {
+    "house_number": "150",
+    "road": "buchanan street",
+    "city": "glasgow",
+    "postcode": "g1 2ll"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 171.2
+  },
+  {
+   "group": "uk",
+   "input": "150 buchanan street glasgow g1 2ll",
+   "expected": {
+    "house_number": "150",
+    "road": "buchanan street",
+    "city": "glasgow",
+    "postcode": "G1 2LL"
+   },
+   "parsed": {
+    "house_number": "150",
+    "road": "buchanan street",
+    "city": "glasgow",
+    "postcode": "g1 2ll"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 160.2
+  },
+  {
+   "group": "uk",
+   "input": "150 BUCHANAN STREET, GLASGOW, G12LL",
+   "expected": {
+    "house_number": "150",
+    "road": "buchanan street",
+    "city": "glasgow",
+    "postcode": "G1 2LL"
+   },
+   "parsed": {
+    "house_number": "150",
+    "road": "buchanan street",
+    "city": "glasgow",
+    "postcode": "g12ll"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 153.3
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 150 buchanan street, glasgow g1 2ll",
+   "expected": {
+    "house_number": "150",
+    "road": "buchanan street",
+    "city": "glasgow",
+    "postcode": "G1 2LL",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "150",
+    "road": "buchanan street",
+    "city": "glasgow",
+    "postcode": "g1 2ll"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 175.7
+  },
+  {
+   "group": "uk",
+   "input": "3 Queen Street, Cardiff CF10 2BH",
+   "expected": {
+    "house_number": "3",
+    "road": "queen street",
+    "city": "cardiff",
+    "postcode": "CF10 2BH"
+   },
+   "parsed": {
+    "house_number": "3",
+    "road": "queen street",
+    "city": "cardiff",
+    "postcode": "cf10 2bh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.8
+  },
+  {
+   "group": "uk",
+   "input": "3 queen street cardiff cf10 2bh",
+   "expected": {
+    "house_number": "3",
+    "road": "queen street",
+    "city": "cardiff",
+    "postcode": "CF10 2BH"
+   },
+   "parsed": {
+    "house_number": "3",
+    "road": "queen street",
+    "city": "cardiff",
+    "postcode": "cf10 2bh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 169.8
+  },
+  {
+   "group": "uk",
+   "input": "3 QUEEN STREET, CARDIFF, CF102BH",
+   "expected": {
+    "house_number": "3",
+    "road": "queen street",
+    "city": "cardiff",
+    "postcode": "CF10 2BH"
+   },
+   "parsed": {
+    "house_number": "3",
+    "road": "queen street",
+    "city": "cardiff",
+    "postcode": "cf102bh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 165.0
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 3 queen street, cardiff cf10 2bh",
+   "expected": {
+    "house_number": "3",
+    "road": "queen street",
+    "city": "cardiff",
+    "postcode": "CF10 2BH",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "3",
+    "road": "queen street",
+    "city": "cardiff",
+    "postcode": "cf10 2bh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 255.8
+  },
+  {
+   "group": "uk",
+   "input": "19 Donegall Place, Belfast BT1 5AB",
+   "expected": {
+    "house_number": "19",
+    "road": "donegall place",
+    "city": "belfast",
+    "postcode": "BT1 5AB"
+   },
+   "parsed": {
+    "house_number": "19",
+    "road": "donegall place",
+    "city": "belfast",
+    "postcode": "bt1 5ab"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 173.8
+  },
+  {
+   "group": "uk",
+   "input": "19 donegall place belfast bt1 5ab",
+   "expected": {
+    "house_number": "19",
+    "road": "donegall place",
+    "city": "belfast",
+    "postcode": "BT1 5AB"
+   },
+   "parsed": {
+    "house_number": "19",
+    "road": "donegall place",
+    "city": "belfast",
+    "postcode": "bt1 5ab"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 156.5
+  },
+  {
+   "group": "uk",
+   "input": "19 DONEGALL PLACE, BELFAST, BT15AB",
+   "expected": {
+    "house_number": "19",
+    "road": "donegall place",
+    "city": "belfast",
+    "postcode": "BT1 5AB"
+   },
+   "parsed": {
+    "house_number": "19",
+    "road": "donegall place",
+    "city": "belfast",
+    "postcode": "bt15ab"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 153.6
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 19 donegall place, belfast bt1 5ab",
+   "expected": {
+    "house_number": "19",
+    "road": "donegall place",
+    "city": "belfast",
+    "postcode": "BT1 5AB",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "19",
+    "road": "donegall place",
+    "city": "belfast",
+    "postcode": "bt1 5ab"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 158.5
+  },
+  {
+   "group": "uk",
+   "input": "62 New Street, Birmingham B2 4DU",
+   "expected": {
+    "house_number": "62",
+    "road": "new street",
+    "city": "birmingham",
+    "postcode": "B2 4DU"
+   },
+   "parsed": {
+    "house_number": "62",
+    "road": "new street",
+    "city": "birmingham",
+    "postcode": "b2 4du"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 158.3
+  },
+  {
+   "group": "uk",
+   "input": "62 new street birmingham b2 4du",
+   "expected": {
+    "house_number": "62",
+    "road": "new street",
+    "city": "birmingham",
+    "postcode": "B2 4DU"
+   },
+   "parsed": {
+    "house_number": "62",
+    "road": "new street",
+    "city": "birmingham",
+    "postcode": "b2 4du"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 155.6
+  },
+  {
+   "group": "uk",
+   "input": "62 NEW STREET, BIRMINGHAM, B24DU",
+   "expected": {
+    "house_number": "62",
+    "road": "new street",
+    "city": "birmingham",
+    "postcode": "B2 4DU"
+   },
+   "parsed": {
+    "house_number": "62",
+    "road": "new street",
+    "city": "birmingham",
+    "postcode": "b24du"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 156.6
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 62 new street, birmingham b2 4du",
+   "expected": {
+    "house_number": "62",
+    "road": "new street",
+    "city": "birmingham",
+    "postcode": "B2 4DU",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "62",
+    "road": "new street",
+    "city": "birmingham",
+    "postcode": "b2 4du"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 171.9
+  },
+  {
+   "group": "uk",
+   "input": "9 Briggate, Leeds LS1 6HD",
+   "expected": {
+    "house_number": "9",
+    "road": "briggate",
+    "city": "leeds",
+    "postcode": "LS1 6HD"
+   },
+   "parsed": {
+    "house_number": "9",
+    "road": "briggate",
+    "city": "leeds",
+    "postcode": "ls1 6hd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 158.5
+  },
+  {
+   "group": "uk",
+   "input": "9 briggate leeds ls1 6hd",
+   "expected": {
+    "house_number": "9",
+    "road": "briggate",
+    "city": "leeds",
+    "postcode": "LS1 6HD"
+   },
+   "parsed": {
+    "house_number": "9",
+    "road": "briggate",
+    "city": "leeds",
+    "postcode": "ls1 6hd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 255.4
+  },
+  {
+   "group": "uk",
+   "input": "9 BRIGGATE, LEEDS, LS16HD",
+   "expected": {
+    "house_number": "9",
+    "road": "briggate",
+    "city": "leeds",
+    "postcode": "LS1 6HD"
+   },
+   "parsed": {
+    "house_number": "9",
+    "road": "briggate",
+    "city": "leeds",
+    "postcode": "ls16hd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 153.6
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 9 briggate, leeds ls1 6hd",
+   "expected": {
+    "house_number": "9",
+    "road": "briggate",
+    "city": "leeds",
+    "postcode": "LS1 6HD",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "9",
+    "road": "briggate",
+    "city": "leeds",
+    "postcode": "ls1 6hd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 164.9
+  },
+  {
+   "group": "uk",
+   "input": "31 Grey Street, Newcastle Upon Tyne NE1 6EE",
+   "expected": {
+    "house_number": "31",
+    "road": "grey street",
+    "city": "newcastle upon tyne",
+    "postcode": "NE1 6EE"
+   },
+   "parsed": {
+    "house_number": "31",
+    "road": "grey street",
+    "city": "newcastle upon tyne",
+    "postcode": "ne1 6ee"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 168.0
+  },
+  {
+   "group": "uk",
+   "input": "31 grey street newcastle upon tyne ne1 6ee",
+   "expected": {
+    "house_number": "31",
+    "road": "grey street",
+    "city": "newcastle upon tyne",
+    "postcode": "NE1 6EE"
+   },
+   "parsed": {
+    "house_number": "31",
+    "road": "grey street",
+    "city": "newcastle upon tyne",
+    "postcode": "ne1 6ee"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.0
+  },
+  {
+   "group": "uk",
+   "input": "31 GREY STREET, NEWCASTLE UPON TYNE, NE16EE",
+   "expected": {
+    "house_number": "31",
+    "road": "grey street",
+    "city": "newcastle upon tyne",
+    "postcode": "NE1 6EE"
+   },
+   "parsed": {
+    "house_number": "31",
+    "road": "grey street",
+    "city": "newcastle upon tyne",
+    "postcode": "ne16ee"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 162.1
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 31 grey street, newcastle upon tyne ne1 6ee",
+   "expected": {
+    "house_number": "31",
+    "road": "grey street",
+    "city": "newcastle upon tyne",
+    "postcode": "NE1 6EE",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "31",
+    "road": "grey street",
+    "city": "newcastle upon tyne",
+    "postcode": "ne1 6ee"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 163.9
+  },
+  {
+   "group": "uk",
+   "input": "5 King Street, Cambridge CB1 1LH",
+   "expected": {
+    "house_number": "5",
+    "road": "king street",
+    "city": "cambridge",
+    "postcode": "CB1 1LH"
+   },
+   "parsed": {
+    "house_number": "5",
+    "road": "king street",
+    "city": "cambridge",
+    "postcode": "cb1 1lh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 261.8
+  },
+  {
+   "group": "uk",
+   "input": "5 king street cambridge cb1 1lh",
+   "expected": {
+    "house_number": "5",
+    "road": "king street",
+    "city": "cambridge",
+    "postcode": "CB1 1LH"
+   },
+   "parsed": {
+    "house_number": "5",
+    "road": "king street",
+    "city": "cambridge",
+    "postcode": "cb1 1lh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 156.1
+  },
+  {
+   "group": "uk",
+   "input": "5 KING STREET, CAMBRIDGE, CB11LH",
+   "expected": {
+    "house_number": "5",
+    "road": "king street",
+    "city": "cambridge",
+    "postcode": "CB1 1LH"
+   },
+   "parsed": {
+    "house_number": "5",
+    "road": "king street",
+    "city": "cambridge",
+    "postcode": "cb11lh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 164.8
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 5 king street, cambridge cb1 1lh",
+   "expected": {
+    "house_number": "5",
+    "road": "king street",
+    "city": "cambridge",
+    "postcode": "CB1 1LH",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "5",
+    "road": "king street",
+    "city": "cambridge",
+    "postcode": "cb1 1lh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 163.8
+  },
+  {
+   "group": "uk",
+   "input": "88 London Road, Brighton BN1 4JF",
+   "expected": {
+    "house_number": "88",
+    "road": "london road",
+    "city": "brighton",
+    "postcode": "BN1 4JF"
+   },
+   "parsed": {
+    "house_number": "88",
+    "road": "london road",
+    "city": "brighton",
+    "postcode": "bn1 4jf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 513.3
+  },
+  {
+   "group": "uk",
+   "input": "88 london road brighton bn1 4jf",
+   "expected": {
+    "house_number": "88",
+    "road": "london road",
+    "city": "brighton",
+    "postcode": "BN1 4JF"
+   },
+   "parsed": {
+    "house_number": "88",
+    "road": "london road",
+    "city": "brighton",
+    "postcode": "bn1 4jf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 154.3
+  },
+  {
+   "group": "uk",
+   "input": "88 LONDON ROAD, BRIGHTON, BN14JF",
+   "expected": {
+    "house_number": "88",
+    "road": "london road",
+    "city": "brighton",
+    "postcode": "BN1 4JF"
+   },
+   "parsed": {
+    "house_number": "88",
+    "road": "london road",
+    "city": "brighton",
+    "postcode": "bn14jf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 162.5
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 88 london road, brighton bn1 4jf",
+   "expected": {
+    "house_number": "88",
+    "road": "london road",
+    "city": "brighton",
+    "postcode": "BN1 4JF",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "88",
+    "road": "london road",
+    "city": "brighton",
+    "postcode": "bn1 4jf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 156.7
+  },
+  {
+   "group": "uk",
+   "input": "12 The Parade, Leamington Spa CV32 4AT",
+   "expected": {
+    "house_number": "12",
+    "road": "the parade",
+    "city": "leamington spa",
+    "postcode": "CV32 4AT"
+   },
+   "parsed": {
+    "house_number": "12",
+    "road": "the parade",
+    "city": "leamington spa",
+    "postcode": "cv32 4at"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 157.7
+  },
+  {
+   "group": "uk",
+   "input": "12 the parade leamington spa cv32 4at",
+   "expected": {
+    "house_number": "12",
+    "road": "the parade",
+    "city": "leamington spa",
+    "postcode": "CV32 4AT"
+   },
+   "parsed": {
+    "house_number": "12",
+    "road": "the parade",
+    "city": "leamington spa",
+    "postcode": "cv32 4at"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.5
+  },
+  {
+   "group": "uk",
+   "input": "12 THE PARADE, LEAMINGTON SPA, CV324AT",
+   "expected": {
+    "house_number": "12",
+    "road": "the parade",
+    "city": "leamington spa",
+    "postcode": "CV32 4AT"
+   },
+   "parsed": {
+    "house_number": "12",
+    "road": "the parade",
+    "city": "leamington spa",
+    "postcode": "cv324at"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 153.8
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 12 the parade, leamington spa cv32 4at",
+   "expected": {
+    "house_number": "12",
+    "road": "the parade",
+    "city": "leamington spa",
+    "postcode": "CV32 4AT",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "12",
+    "road": "the parade",
+    "city": "leamington spa",
+    "postcode": "cv32 4at"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 150.3
+  },
+  {
+   "group": "uk",
+   "input": "44 Fore Street, Exeter EX4 3AN",
+   "expected": {
+    "house_number": "44",
+    "road": "fore street",
+    "city": "exeter",
+    "postcode": "EX4 3AN"
+   },
+   "parsed": {
+    "house_number": "44",
+    "road": "fore street",
+    "city": "exeter",
+    "postcode": "ex4 3an"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 162.9
+  },
+  {
+   "group": "uk",
+   "input": "44 fore street exeter ex4 3an",
+   "expected": {
+    "house_number": "44",
+    "road": "fore street",
+    "city": "exeter",
+    "postcode": "EX4 3AN"
+   },
+   "parsed": {
+    "house_number": "44",
+    "road": "fore street",
+    "city": "exeter",
+    "postcode": "ex4 3an"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 155.0
+  },
+  {
+   "group": "uk",
+   "input": "44 FORE STREET, EXETER, EX43AN",
+   "expected": {
+    "house_number": "44",
+    "road": "fore street",
+    "city": "exeter",
+    "postcode": "EX4 3AN"
+   },
+   "parsed": {
+    "house_number": "44",
+    "road": "fore street",
+    "city": "exeter",
+    "postcode": "ex43an"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 153.0
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 44 fore street, exeter ex4 3an",
+   "expected": {
+    "house_number": "44",
+    "road": "fore street",
+    "city": "exeter",
+    "postcode": "EX4 3AN",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "44",
+    "road": "fore street",
+    "city": "exeter",
+    "postcode": "ex4 3an"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 159.0
+  },
+  {
+   "group": "uk",
+   "input": "2 Castle Street, York YO1 9RY",
+   "expected": {
+    "house_number": "2",
+    "road": "castle street",
+    "city": "york",
+    "postcode": "YO1 9RY"
+   },
+   "parsed": {
+    "house_number": "2",
+    "road": "castle street",
+    "city": "york",
+    "postcode": "yo1 9ry"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 173.0
+  },
+  {
+   "group": "uk",
+   "input": "2 castle street york yo1 9ry",
+   "expected": {
+    "house_number": "2",
+    "road": "castle street",
+    "city": "york",
+    "postcode": "YO1 9RY"
+   },
+   "parsed": {
+    "house_number": "2",
+    "road": "castle street",
+    "city": "york",
+    "postcode": "yo1 9ry"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 200.7
+  },
+  {
+   "group": "uk",
+   "input": "2 CASTLE STREET, YORK, YO19RY",
+   "expected": {
+    "house_number": "2",
+    "road": "castle street",
+    "city": "york",
+    "postcode": "YO1 9RY"
+   },
+   "parsed": {
+    "house_number": "2",
+    "road": "castle street",
+    "city": "york",
+    "postcode": "yo19ry"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 164.6
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 2 castle street, york yo1 9ry",
+   "expected": {
+    "house_number": "2",
+    "road": "castle street",
+    "city": "york",
+    "postcode": "YO1 9RY",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "2",
+    "road": "castle street",
+    "city": "york",
+    "postcode": "yo1 9ry"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 151.3
+  },
+  {
+   "group": "uk",
+   "input": "101 Lord Street, Southport PR8 1RH",
+   "expected": {
+    "house_number": "101",
+    "road": "lord street",
+    "city": "southport",
+    "postcode": "PR8 1RH"
+   },
+   "parsed": {
+    "house_number": "101",
+    "road": "lord street",
+    "city": "southport",
+    "postcode": "pr8 1rh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 153.1
+  },
+  {
+   "group": "uk",
+   "input": "101 lord street southport pr8 1rh",
+   "expected": {
+    "house_number": "101",
+    "road": "lord street",
+    "city": "southport",
+    "postcode": "PR8 1RH"
+   },
+   "parsed": {
+    "house_number": "101",
+    "road": "lord street",
+    "city": "southport",
+    "postcode": "pr8 1rh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.8
+  },
+  {
+   "group": "uk",
+   "input": "101 LORD STREET, SOUTHPORT, PR81RH",
+   "expected": {
+    "house_number": "101",
+    "road": "lord street",
+    "city": "southport",
+    "postcode": "PR8 1RH"
+   },
+   "parsed": {
+    "house_number": "101",
+    "road": "lord street",
+    "city": "southport",
+    "postcode": "pr81rh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 156.7
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 101 lord street, southport pr8 1rh",
+   "expected": {
+    "house_number": "101",
+    "road": "lord street",
+    "city": "southport",
+    "postcode": "PR8 1RH",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "101",
+    "road": "lord street",
+    "city": "southport",
+    "postcode": "pr8 1rh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 168.5
+  },
+  {
+   "group": "uk",
+   "input": "17 Church Road, Bath BA1 1AA",
+   "expected": {
+    "house_number": "17",
+    "road": "church road",
+    "city": "bath",
+    "postcode": "BA1 1AA"
+   },
+   "parsed": {
+    "house_number": "17",
+    "road": "church road",
+    "city": "bath",
+    "postcode": "ba1 1aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.6
+  },
+  {
+   "group": "uk",
+   "input": "17 church road bath ba1 1aa",
+   "expected": {
+    "house_number": "17",
+    "road": "church road",
+    "city": "bath",
+    "postcode": "BA1 1AA"
+   },
+   "parsed": {
+    "house_number": "17",
+    "road": "church road",
+    "city": "bath",
+    "postcode": "ba1 1aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 167.8
+  },
+  {
+   "group": "uk",
+   "input": "17 CHURCH ROAD, BATH, BA11AA",
+   "expected": {
+    "house_number": "17",
+    "road": "church road",
+    "city": "bath",
+    "postcode": "BA1 1AA"
+   },
+   "parsed": {
+    "house_number": "17",
+    "road": "church road",
+    "city": "bath",
+    "postcode": "ba11aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 151.8
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 17 church road, bath ba1 1aa",
+   "expected": {
+    "house_number": "17",
+    "road": "church road",
+    "city": "bath",
+    "postcode": "BA1 1AA",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "17",
+    "road": "church road",
+    "city": "bath",
+    "postcode": "ba1 1aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 159.9
+  },
+  {
+   "group": "uk",
+   "input": "6 Market Place, Norwich NR2 1ND",
+   "expected": {
+    "house_number": "6",
+    "road": "market place",
+    "city": "norwich",
+    "postcode": "NR2 1ND"
+   },
+   "parsed": {
+    "house_number": "6",
+    "road": "market place",
+    "city": "norwich",
+    "postcode": "nr2 1nd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 151.1
+  },
+  {
+   "group": "uk",
+   "input": "6 market place norwich nr2 1nd",
+   "expected": {
+    "house_number": "6",
+    "road": "market place",
+    "city": "norwich",
+    "postcode": "NR2 1ND"
+   },
+   "parsed": {
+    "house_number": "6",
+    "road": "market place",
+    "city": "norwich",
+    "postcode": "nr2 1nd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 155.8
+  },
+  {
+   "group": "uk",
+   "input": "6 MARKET PLACE, NORWICH, NR21ND",
+   "expected": {
+    "house_number": "6",
+    "road": "market place",
+    "city": "norwich",
+    "postcode": "NR2 1ND"
+   },
+   "parsed": {
+    "house_number": "6",
+    "road": "market place",
+    "city": "norwich",
+    "postcode": "nr21nd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 161.2
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 6 market place, norwich nr2 1nd",
+   "expected": {
+    "house_number": "6",
+    "road": "market place",
+    "city": "norwich",
+    "postcode": "NR2 1ND",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "6",
+    "road": "market place",
+    "city": "norwich",
+    "postcode": "nr2 1nd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 186.3
+  },
+  {
+   "group": "uk",
+   "input": "73 London Road, Leicester LE2 0PF",
+   "expected": {
+    "house_number": "73",
+    "road": "london road",
+    "city": "leicester",
+    "postcode": "LE2 0PF"
+   },
+   "parsed": {
+    "house_number": "73",
+    "road": "london road",
+    "city": "leicester",
+    "postcode": "le2 0pf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 162.0
+  },
+  {
+   "group": "uk",
+   "input": "73 london road leicester le2 0pf",
+   "expected": {
+    "house_number": "73",
+    "road": "london road",
+    "city": "leicester",
+    "postcode": "LE2 0PF"
+   },
+   "parsed": {
+    "house_number": "73",
+    "road": "london road",
+    "city": "leicester",
+    "postcode": "le2 0pf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 159.3
+  },
+  {
+   "group": "uk",
+   "input": "73 LONDON ROAD, LEICESTER, LE20PF",
+   "expected": {
+    "house_number": "73",
+    "road": "london road",
+    "city": "leicester",
+    "postcode": "LE2 0PF"
+   },
+   "parsed": {
+    "house_number": "73",
+    "road": "london road",
+    "city": "leicester",
+    "postcode": "le20pf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 154.0
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 73 london road, leicester le2 0pf",
+   "expected": {
+    "house_number": "73",
+    "road": "london road",
+    "city": "leicester",
+    "postcode": "LE2 0PF",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "73",
+    "road": "london road",
+    "city": "leicester",
+    "postcode": "le2 0pf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 161.0
+  },
+  {
+   "group": "uk",
+   "input": "28 Station Road, Reading RG1 1LG",
+   "expected": {
+    "house_number": "28",
+    "road": "station road",
+    "city": "reading",
+    "postcode": "RG1 1LG"
+   },
+   "parsed": {
+    "house_number": "28",
+    "road": "station road",
+    "city": "reading",
+    "postcode": "rg1 1lg"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 158.0
+  },
+  {
+   "group": "uk",
+   "input": "28 station road reading rg1 1lg",
+   "expected": {
+    "house_number": "28",
+    "road": "station road",
+    "city": "reading",
+    "postcode": "RG1 1LG"
+   },
+   "parsed": {
+    "house_number": "28",
+    "road": "station road",
+    "city": "reading",
+    "postcode": "rg1 1lg"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 156.5
+  },
+  {
+   "group": "uk",
+   "input": "28 STATION ROAD, READING, RG11LG",
+   "expected": {
+    "house_number": "28",
+    "road": "station road",
+    "city": "reading",
+    "postcode": "RG1 1LG"
+   },
+   "parsed": {
+    "house_number": "28",
+    "road": "station road",
+    "city": "reading",
+    "postcode": "rg11lg"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 151.3
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 28 station road, reading rg1 1lg",
+   "expected": {
+    "house_number": "28",
+    "road": "station road",
+    "city": "reading",
+    "postcode": "RG1 1LG",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "28",
+    "road": "station road",
+    "city": "reading",
+    "postcode": "rg1 1lg"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 160.4
+  },
+  {
+   "group": "uk",
+   "input": "11 West Street, Sheffield S1 4EW",
+   "expected": {
+    "house_number": "11",
+    "road": "west street",
+    "city": "sheffield",
+    "postcode": "S1 4EW"
+   },
+   "parsed": {
+    "house_number": "11",
+    "road": "west street",
+    "city": "sheffield",
+    "postcode": "s1 4ew"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 144.8
+  },
+  {
+   "group": "uk",
+   "input": "11 west street sheffield s1 4ew",
+   "expected": {
+    "house_number": "11",
+    "road": "west street",
+    "city": "sheffield",
+    "postcode": "S1 4EW"
+   },
+   "parsed": {
+    "house_number": "11",
+    "road": "west street",
+    "city": "sheffield",
+    "postcode": "s1 4ew"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 154.7
+  },
+  {
+   "group": "uk",
+   "input": "11 WEST STREET, SHEFFIELD, S14EW",
+   "expected": {
+    "house_number": "11",
+    "road": "west street",
+    "city": "sheffield",
+    "postcode": "S1 4EW"
+   },
+   "parsed": {
+    "house_number": "11",
+    "road": "west street",
+    "city": "sheffield",
+    "postcode": "s14ew"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 157.3
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 11 west street, sheffield s1 4ew",
+   "expected": {
+    "house_number": "11",
+    "road": "west street",
+    "city": "sheffield",
+    "postcode": "S1 4EW",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "11",
+    "road": "west street",
+    "city": "sheffield",
+    "postcode": "s1 4ew"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 163.0
+  },
+  {
+   "group": "uk",
+   "input": "39 Union Street, Aberdeen AB11 6BD",
+   "expected": {
+    "house_number": "39",
+    "road": "union street",
+    "city": "aberdeen",
+    "postcode": "AB11 6BD"
+   },
+   "parsed": {
+    "house_number": "39",
+    "road": "union street",
+    "city": "aberdeen",
+    "postcode": "ab11 6bd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 162.4
+  },
+  {
+   "group": "uk",
+   "input": "39 union street aberdeen ab11 6bd",
+   "expected": {
+    "house_number": "39",
+    "road": "union street",
+    "city": "aberdeen",
+    "postcode": "AB11 6BD"
+   },
+   "parsed": {
+    "house_number": "39",
+    "road": "union street",
+    "city": "aberdeen",
+    "postcode": "ab11 6bd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 147.1
+  },
+  {
+   "group": "uk",
+   "input": "39 UNION STREET, ABERDEEN, AB116BD",
+   "expected": {
+    "house_number": "39",
+    "road": "union street",
+    "city": "aberdeen",
+    "postcode": "AB11 6BD"
+   },
+   "parsed": {
+    "house_number": "39",
+    "road": "union street",
+    "city": "aberdeen",
+    "postcode": "ab116bd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 153.4
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 39 union street, aberdeen ab11 6bd",
+   "expected": {
+    "house_number": "39",
+    "road": "union street",
+    "city": "aberdeen",
+    "postcode": "AB11 6BD",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "39",
+    "road": "union street",
+    "city": "aberdeen",
+    "postcode": "ab11 6bd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 156.7
+  },
+  {
+   "group": "uk",
+   "input": "4 High Street, Swansea SA1 1LE",
+   "expected": {
+    "house_number": "4",
+    "road": "high street",
+    "city": "swansea",
+    "postcode": "SA1 1LE"
+   },
+   "parsed": {
+    "house_number": "4",
+    "road": "high street",
+    "city": "swansea",
+    "postcode": "sa1 1le"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 159.9
+  },
+  {
+   "group": "uk",
+   "input": "4 high street swansea sa1 1le",
+   "expected": {
+    "house_number": "4",
+    "road": "high street",
+    "city": "swansea",
+    "postcode": "SA1 1LE"
+   },
+   "parsed": {
+    "house_number": "4",
+    "road": "high street",
+    "city": "swansea",
+    "postcode": "sa1 1le"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 147.4
+  },
+  {
+   "group": "uk",
+   "input": "4 HIGH STREET, SWANSEA, SA11LE",
+   "expected": {
+    "house_number": "4",
+    "road": "high street",
+    "city": "swansea",
+    "postcode": "SA1 1LE"
+   },
+   "parsed": {
+    "house_number": "4",
+    "road": "high street",
+    "city": "swansea",
+    "postcode": "sa11le"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 176.5
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 4 high street, swansea sa1 1le",
+   "expected": {
+    "house_number": "4",
+    "road": "high street",
+    "city": "swansea",
+    "postcode": "SA1 1LE",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "4",
+    "road": "high street",
+    "city": "swansea",
+    "postcode": "sa1 1le"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 149.7
+  },
+  {
+   "group": "uk",
+   "input": "56 Commercial Road, Portsmouth PO1 1EJ",
+   "expected": {
+    "house_number": "56",
+    "road": "commercial road",
+    "city": "portsmouth",
+    "postcode": "PO1 1EJ"
+   },
+   "parsed": {
+    "house_number": "56",
+    "road": "commercial road",
+    "city": "portsmouth",
+    "postcode": "po1 1ej"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 151.1
+  },
+  {
+   "group": "uk",
+   "input": "56 commercial road portsmouth po1 1ej",
+   "expected": {
+    "house_number": "56",
+    "road": "commercial road",
+    "city": "portsmouth",
+    "postcode": "PO1 1EJ"
+   },
+   "parsed": {
+    "house_number": "56",
+    "road": "commercial road",
+    "city": "portsmouth",
+    "postcode": "po1 1ej"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 161.7
+  },
+  {
+   "group": "uk",
+   "input": "56 COMMERCIAL ROAD, PORTSMOUTH, PO11EJ",
+   "expected": {
+    "house_number": "56",
+    "road": "commercial road",
+    "city": "portsmouth",
+    "postcode": "PO1 1EJ"
+   },
+   "parsed": {
+    "house_number": "56",
+    "road": "commercial road",
+    "city": "portsmouth",
+    "postcode": "po11ej"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 160.4
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 56 commercial road, portsmouth po1 1ej",
+   "expected": {
+    "house_number": "56",
+    "road": "commercial road",
+    "city": "portsmouth",
+    "postcode": "PO1 1EJ",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "56",
+    "road": "commercial road",
+    "city": "portsmouth",
+    "postcode": "po1 1ej"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 162.3
+  },
+  {
+   "group": "uk",
+   "input": "8 Above Bar Street, Southampton SO14 7DU",
+   "expected": {
+    "house_number": "8",
+    "road": "above bar street",
+    "city": "southampton",
+    "postcode": "SO14 7DU"
+   },
+   "parsed": {
+    "house_number": "8",
+    "road": "above bar street",
+    "city": "southampton",
+    "postcode": "so14 7du"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 164.5
+  },
+  {
+   "group": "uk",
+   "input": "8 above bar street southampton so14 7du",
+   "expected": {
+    "house_number": "8",
+    "road": "above bar street",
+    "city": "southampton",
+    "postcode": "SO14 7DU"
+   },
+   "parsed": {
+    "house_number": "8",
+    "road": "above bar street",
+    "city": "southampton",
+    "postcode": "so14 7du"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 152.0
+  },
+  {
+   "group": "uk",
+   "input": "8 ABOVE BAR STREET, SOUTHAMPTON, SO147DU",
+   "expected": {
+    "house_number": "8",
+    "road": "above bar street",
+    "city": "southampton",
+    "postcode": "SO14 7DU"
+   },
+   "parsed": {
+    "house_number": "8",
+    "road": "above bar street",
+    "city": "southampton",
+    "postcode": "so147du"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 156.8
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 8 above bar street, southampton so14 7du",
+   "expected": {
+    "house_number": "8",
+    "road": "above bar street",
+    "city": "southampton",
+    "postcode": "SO14 7DU",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "8",
+    "road": "above bar street",
+    "city": "southampton",
+    "postcode": "so14 7du"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 162.9
+  },
+  {
+   "group": "uk",
+   "input": "120 Mansfield Road, Nottingham NG5 2BT",
+   "expected": {
+    "house_number": "120",
+    "road": "mansfield road",
+    "city": "nottingham",
+    "postcode": "NG5 2BT"
+   },
+   "parsed": {
+    "house_number": "120",
+    "road": "mansfield road",
+    "city": "nottingham",
+    "postcode": "ng5 2bt"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 155.3
+  },
+  {
+   "group": "uk",
+   "input": "120 mansfield road nottingham ng5 2bt",
+   "expected": {
+    "house_number": "120",
+    "road": "mansfield road",
+    "city": "nottingham",
+    "postcode": "NG5 2BT"
+   },
+   "parsed": {
+    "house_number": "120",
+    "road": "mansfield road",
+    "city": "nottingham",
+    "postcode": "ng5 2bt"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 170.7
+  },
+  {
+   "group": "uk",
+   "input": "120 MANSFIELD ROAD, NOTTINGHAM, NG52BT",
+   "expected": {
+    "house_number": "120",
+    "road": "mansfield road",
+    "city": "nottingham",
+    "postcode": "NG5 2BT"
+   },
+   "parsed": {
+    "house_number": "120",
+    "road": "mansfield road",
+    "city": "nottingham",
+    "postcode": "ng52bt"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.8
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 120 mansfield road, nottingham ng5 2bt",
+   "expected": {
+    "house_number": "120",
+    "road": "mansfield road",
+    "city": "nottingham",
+    "postcode": "NG5 2BT",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "120",
+    "road": "mansfield road",
+    "city": "nottingham",
+    "postcode": "ng5 2bt"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 173.4
+  },
+  {
+   "group": "uk",
+   "input": "15 Broad Street, Worcester WR1 3LH",
+   "expected": {
+    "house_number": "15",
+    "road": "broad street",
+    "city": "worcester",
+    "postcode": "WR1 3LH"
+   },
+   "parsed": {
+    "house_number": "15",
+    "road": "broad street",
+    "city": "worcester",
+    "postcode": "wr1 3lh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 156.5
+  },
+  {
+   "group": "uk",
+   "input": "15 broad street worcester wr1 3lh",
+   "expected": {
+    "house_number": "15",
+    "road": "broad street",
+    "city": "worcester",
+    "postcode": "WR1 3LH"
+   },
+   "parsed": {
+    "house_number": "15",
+    "road": "broad street",
+    "city": "worcester",
+    "postcode": "wr1 3lh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.8
+  },
+  {
+   "group": "uk",
+   "input": "15 BROAD STREET, WORCESTER, WR13LH",
+   "expected": {
+    "house_number": "15",
+    "road": "broad street",
+    "city": "worcester",
+    "postcode": "WR1 3LH"
+   },
+   "parsed": {
+    "house_number": "15",
+    "road": "broad street",
+    "city": "worcester",
+    "postcode": "wr13lh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 161.2
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 15 broad street, worcester wr1 3lh",
+   "expected": {
+    "house_number": "15",
+    "road": "broad street",
+    "city": "worcester",
+    "postcode": "WR1 3LH",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "15",
+    "road": "broad street",
+    "city": "worcester",
+    "postcode": "wr1 3lh"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 164.7
+  },
+  {
+   "group": "uk",
+   "input": "22 North Street, Chichester PO19 1LB",
+   "expected": {
+    "house_number": "22",
+    "road": "north street",
+    "city": "chichester",
+    "postcode": "PO19 1LB"
+   },
+   "parsed": {
+    "house_number": "22",
+    "road": "north street",
+    "city": "chichester",
+    "postcode": "po19 1lb"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 162.4
+  },
+  {
+   "group": "uk",
+   "input": "22 north street chichester po19 1lb",
+   "expected": {
+    "house_number": "22",
+    "road": "north street",
+    "city": "chichester",
+    "postcode": "PO19 1LB"
+   },
+   "parsed": {
+    "house_number": "22",
+    "road": "north street",
+    "city": "chichester",
+    "postcode": "po19 1lb"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.6
+  },
+  {
+   "group": "uk",
+   "input": "22 NORTH STREET, CHICHESTER, PO191LB",
+   "expected": {
+    "house_number": "22",
+    "road": "north street",
+    "city": "chichester",
+    "postcode": "PO19 1LB"
+   },
+   "parsed": {
+    "house_number": "22",
+    "road": "north street",
+    "city": "chichester",
+    "postcode": "po191lb"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 289.0
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 22 north street, chichester po19 1lb",
+   "expected": {
+    "house_number": "22",
+    "road": "north street",
+    "city": "chichester",
+    "postcode": "PO19 1LB",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "22",
+    "road": "north street",
+    "city": "chichester",
+    "postcode": "po19 1lb"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 167.1
+  },
+  {
+   "group": "uk",
+   "input": "67 Park Lane, Croydon CR0 1JD",
+   "expected": {
+    "house_number": "67",
+    "road": "park lane",
+    "city": "croydon",
+    "postcode": "CR0 1JD"
+   },
+   "parsed": {
+    "house_number": "67",
+    "road": "park lane",
+    "city_district": "croydon",
+    "postcode": "cr0 1jd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "postcode"
+   ],
+   "ms": 153.9
+  },
+  {
+   "group": "uk",
+   "input": "67 park lane croydon cr0 1jd",
+   "expected": {
+    "house_number": "67",
+    "road": "park lane",
+    "city": "croydon",
+    "postcode": "CR0 1JD"
+   },
+   "parsed": {
+    "house_number": "67",
+    "road": "park lane",
+    "city_district": "croydon",
+    "postcode": "cr0 1jd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "postcode"
+   ],
+   "ms": 164.3
+  },
+  {
+   "group": "uk",
+   "input": "67 PARK LANE, CROYDON, CR01JD",
+   "expected": {
+    "house_number": "67",
+    "road": "park lane",
+    "city": "croydon",
+    "postcode": "CR0 1JD"
+   },
+   "parsed": {
+    "house_number": "67",
+    "road": "park lane",
+    "city": "croydon",
+    "postcode": "cr01jd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 173.1
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 67 park lane, croydon cr0 1jd",
+   "expected": {
+    "house_number": "67",
+    "road": "park lane",
+    "city": "croydon",
+    "postcode": "CR0 1JD",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "67",
+    "road": "park lane",
+    "city_district": "croydon",
+    "postcode": "cr0 1jd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "postcode",
+    "unit"
+   ],
+   "ms": 150.1
+  },
+  {
+   "group": "uk",
+   "input": "3 Mill Lane, Derby DE1 1AA",
+   "expected": {
+    "house_number": "3",
+    "road": "mill lane",
+    "city": "derby",
+    "postcode": "DE1 1AA"
+   },
+   "parsed": {
+    "house_number": "3",
+    "road": "mill lane",
+    "city": "derby",
+    "postcode": "de1 1aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 157.5
+  },
+  {
+   "group": "uk",
+   "input": "3 mill lane derby de1 1aa",
+   "expected": {
+    "house_number": "3",
+    "road": "mill lane",
+    "city": "derby",
+    "postcode": "DE1 1AA"
+   },
+   "parsed": {
+    "house_number": "3",
+    "road": "mill lane",
+    "city": "derby",
+    "postcode": "de1 1aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 162.8
+  },
+  {
+   "group": "uk",
+   "input": "3 MILL LANE, DERBY, DE11AA",
+   "expected": {
+    "house_number": "3",
+    "road": "mill lane",
+    "city": "derby",
+    "postcode": "DE1 1AA"
+   },
+   "parsed": {
+    "house_number": "3",
+    "road": "mill lane",
+    "city": "derby",
+    "postcode": "de11aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 155.9
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 3 mill lane, derby de1 1aa",
+   "expected": {
+    "house_number": "3",
+    "road": "mill lane",
+    "city": "derby",
+    "postcode": "DE1 1AA",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "3",
+    "road": "mill lane",
+    "city": "derby",
+    "postcode": "de1 1aa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 157.1
+  },
+  {
+   "group": "uk",
+   "input": "90 Oxford Street, London W1D 1BS",
+   "expected": {
+    "house_number": "90",
+    "road": "oxford street",
+    "city": "london",
+    "postcode": "W1D 1BS"
+   },
+   "parsed": {
+    "house_number": "90",
+    "road": "oxford street",
+    "city": "london",
+    "postcode": "w1d 1bs"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.1
+  },
+  {
+   "group": "uk",
+   "input": "90 oxford street london w1d 1bs",
+   "expected": {
+    "house_number": "90",
+    "road": "oxford street",
+    "city": "london",
+    "postcode": "W1D 1BS"
+   },
+   "parsed": {
+    "house_number": "90",
+    "road": "oxford street",
+    "city": "london",
+    "postcode": "w1d 1bs"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 157.1
+  },
+  {
+   "group": "uk",
+   "input": "90 OXFORD STREET, LONDON, W1D1BS",
+   "expected": {
+    "house_number": "90",
+    "road": "oxford street",
+    "city": "london",
+    "postcode": "W1D 1BS"
+   },
+   "parsed": {
+    "house_number": "90",
+    "road": "oxford street",
+    "city": "london",
+    "postcode": "w1d1bs"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 161.4
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 90 oxford street, london w1d 1bs",
+   "expected": {
+    "house_number": "90",
+    "road": "oxford street",
+    "city": "london",
+    "postcode": "W1D 1BS",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "90",
+    "road": "oxford street",
+    "city": "london",
+    "postcode": "w1d 1bs"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 164.2
+  },
+  {
+   "group": "uk",
+   "input": "18 Regent Street, Cheltenham GL50 1HE",
+   "expected": {
+    "house_number": "18",
+    "road": "regent street",
+    "city": "cheltenham",
+    "postcode": "GL50 1HE"
+   },
+   "parsed": {
+    "house_number": "18",
+    "road": "regent street",
+    "city": "cheltenham",
+    "postcode": "gl50 1he"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 160.5
+  },
+  {
+   "group": "uk",
+   "input": "18 regent street cheltenham gl50 1he",
+   "expected": {
+    "house_number": "18",
+    "road": "regent street",
+    "city": "cheltenham",
+    "postcode": "GL50 1HE"
+   },
+   "parsed": {
+    "house_number": "18",
+    "road": "regent street",
+    "city": "cheltenham",
+    "postcode": "gl50 1he"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 162.6
+  },
+  {
+   "group": "uk",
+   "input": "18 REGENT STREET, CHELTENHAM, GL501HE",
+   "expected": {
+    "house_number": "18",
+    "road": "regent street",
+    "city": "cheltenham",
+    "postcode": "GL50 1HE"
+   },
+   "parsed": {
+    "house_number": "18",
+    "road": "regent street",
+    "city": "cheltenham",
+    "postcode": "gl501he"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 162.9
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 18 regent street, cheltenham gl50 1he",
+   "expected": {
+    "house_number": "18",
+    "road": "regent street",
+    "city": "cheltenham",
+    "postcode": "GL50 1HE",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "18",
+    "road": "regent street",
+    "city": "cheltenham",
+    "postcode": "gl50 1he"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 158.4
+  },
+  {
+   "group": "uk",
+   "input": "5 The Strand, Plymouth PL1 2RD",
+   "expected": {
+    "house_number": "5",
+    "road": "the strand",
+    "city": "plymouth",
+    "postcode": "PL1 2RD"
+   },
+   "parsed": {
+    "house_number": "5",
+    "road": "the strand",
+    "city": "plymouth",
+    "postcode": "pl1 2rd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 159.9
+  },
+  {
+   "group": "uk",
+   "input": "5 the strand plymouth pl1 2rd",
+   "expected": {
+    "house_number": "5",
+    "road": "the strand",
+    "city": "plymouth",
+    "postcode": "PL1 2RD"
+   },
+   "parsed": {
+    "house_number": "5",
+    "road": "the strand",
+    "city": "plymouth",
+    "postcode": "pl1 2rd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 164.8
+  },
+  {
+   "group": "uk",
+   "input": "5 THE STRAND, PLYMOUTH, PL12RD",
+   "expected": {
+    "house_number": "5",
+    "road": "the strand",
+    "city": "plymouth",
+    "postcode": "PL1 2RD"
+   },
+   "parsed": {
+    "house_number": "5",
+    "road": "the strand",
+    "city": "plymouth",
+    "postcode": "pl12rd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 164.0
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 5 the strand, plymouth pl1 2rd",
+   "expected": {
+    "house_number": "5",
+    "road": "the strand",
+    "city": "plymouth",
+    "postcode": "PL1 2RD",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "5",
+    "road": "the strand",
+    "city": "plymouth",
+    "postcode": "pl1 2rd"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 161.4
+  },
+  {
+   "group": "uk",
+   "input": "41 High Street, Guildford GU1 3DY",
+   "expected": {
+    "house_number": "41",
+    "road": "high street",
+    "city": "guildford",
+    "postcode": "GU1 3DY"
+   },
+   "parsed": {
+    "house_number": "41",
+    "road": "high street",
+    "city": "guildford",
+    "postcode": "gu1 3dy"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 171.9
+  },
+  {
+   "group": "uk",
+   "input": "41 high street guildford gu1 3dy",
+   "expected": {
+    "house_number": "41",
+    "road": "high street",
+    "city": "guildford",
+    "postcode": "GU1 3DY"
+   },
+   "parsed": {
+    "house_number": "41",
+    "road": "high street",
+    "city": "guildford",
+    "postcode": "gu1 3dy"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.7
+  },
+  {
+   "group": "uk",
+   "input": "41 HIGH STREET, GUILDFORD, GU13DY",
+   "expected": {
+    "house_number": "41",
+    "road": "high street",
+    "city": "guildford",
+    "postcode": "GU1 3DY"
+   },
+   "parsed": {
+    "house_number": "41",
+    "road": "high street",
+    "city": "guildford",
+    "postcode": "gu13dy"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 153.7
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 41 high street, guildford gu1 3dy",
+   "expected": {
+    "house_number": "41",
+    "road": "high street",
+    "city": "guildford",
+    "postcode": "GU1 3DY",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "41",
+    "road": "high street",
+    "city": "guildford",
+    "postcode": "gu1 3dy"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 158.6
+  },
+  {
+   "group": "uk",
+   "input": "27 Bridge Street, Chester CH1 1NQ",
+   "expected": {
+    "house_number": "27",
+    "road": "bridge street",
+    "city": "chester",
+    "postcode": "CH1 1NQ"
+   },
+   "parsed": {
+    "house_number": "27",
+    "road": "bridge street",
+    "city": "chester",
+    "postcode": "ch1 1nq"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 161.3
+  },
+  {
+   "group": "uk",
+   "input": "27 bridge street chester ch1 1nq",
+   "expected": {
+    "house_number": "27",
+    "road": "bridge street",
+    "city": "chester",
+    "postcode": "CH1 1NQ"
+   },
+   "parsed": {
+    "house_number": "27",
+    "road": "bridge street",
+    "city": "chester",
+    "postcode": "ch1 1nq"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.5
+  },
+  {
+   "group": "uk",
+   "input": "27 BRIDGE STREET, CHESTER, CH11NQ",
+   "expected": {
+    "house_number": "27",
+    "road": "bridge street",
+    "city": "chester",
+    "postcode": "CH1 1NQ"
+   },
+   "parsed": {
+    "house_number": "27",
+    "road": "bridge street",
+    "city": "chester",
+    "postcode": "ch11nq"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 160.3
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 27 bridge street, chester ch1 1nq",
+   "expected": {
+    "house_number": "27",
+    "road": "bridge street",
+    "city": "chester",
+    "postcode": "CH1 1NQ",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "27",
+    "road": "bridge street",
+    "city": "chester",
+    "postcode": "ch1 1nq"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 162.9
+  },
+  {
+   "group": "uk",
+   "input": "13 Silver Street, Lincoln LN2 1DY",
+   "expected": {
+    "house_number": "13",
+    "road": "silver street",
+    "city": "lincoln",
+    "postcode": "LN2 1DY"
+   },
+   "parsed": {
+    "house_number": "13",
+    "road": "silver street",
+    "city": "lincoln",
+    "postcode": "ln2 1dy"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.3
+  },
+  {
+   "group": "uk",
+   "input": "13 silver street lincoln ln2 1dy",
+   "expected": {
+    "house_number": "13",
+    "road": "silver street",
+    "city": "lincoln",
+    "postcode": "LN2 1DY"
+   },
+   "parsed": {
+    "house_number": "13",
+    "road": "silver street",
+    "city": "lincoln",
+    "postcode": "ln2 1dy"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 160.3
+  },
+  {
+   "group": "uk",
+   "input": "13 SILVER STREET, LINCOLN, LN21DY",
+   "expected": {
+    "house_number": "13",
+    "road": "silver street",
+    "city": "lincoln",
+    "postcode": "LN2 1DY"
+   },
+   "parsed": {
+    "house_number": "13",
+    "road": "silver street",
+    "city": "lincoln",
+    "postcode": "ln21dy"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 153.7
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 13 silver street, lincoln ln2 1dy",
+   "expected": {
+    "house_number": "13",
+    "road": "silver street",
+    "city": "lincoln",
+    "postcode": "LN2 1DY",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "13",
+    "road": "silver street",
+    "city": "lincoln",
+    "postcode": "ln2 1dy"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 157.0
+  },
+  {
+   "group": "uk",
+   "input": "70 Corporation Street, Coventry CV1 1GF",
+   "expected": {
+    "house_number": "70",
+    "road": "corporation street",
+    "city": "coventry",
+    "postcode": "CV1 1GF"
+   },
+   "parsed": {
+    "house_number": "70",
+    "road": "corporation street",
+    "city": "coventry",
+    "postcode": "cv1 1gf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 152.6
+  },
+  {
+   "group": "uk",
+   "input": "70 corporation street coventry cv1 1gf",
+   "expected": {
+    "house_number": "70",
+    "road": "corporation street",
+    "city": "coventry",
+    "postcode": "CV1 1GF"
+   },
+   "parsed": {
+    "house_number": "70",
+    "road": "corporation street",
+    "city": "coventry",
+    "postcode": "cv1 1gf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 164.2
+  },
+  {
+   "group": "uk",
+   "input": "70 CORPORATION STREET, COVENTRY, CV11GF",
+   "expected": {
+    "house_number": "70",
+    "road": "corporation street",
+    "city": "coventry",
+    "postcode": "CV1 1GF"
+   },
+   "parsed": {
+    "house_number": "70",
+    "road": "corporation street",
+    "city": "coventry",
+    "postcode": "cv11gf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 148.4
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 70 corporation street, coventry cv1 1gf",
+   "expected": {
+    "house_number": "70",
+    "road": "corporation street",
+    "city": "coventry",
+    "postcode": "CV1 1GF",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "70",
+    "road": "corporation street",
+    "city": "coventry",
+    "postcode": "cv1 1gf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 164.8
+  },
+  {
+   "group": "uk",
+   "input": "9 Victoria Road, Darlington DL1 5SF",
+   "expected": {
+    "house_number": "9",
+    "road": "victoria road",
+    "city": "darlington",
+    "postcode": "DL1 5SF"
+   },
+   "parsed": {
+    "house_number": "9",
+    "road": "victoria road",
+    "city": "darlington",
+    "postcode": "dl1 5sf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 169.0
+  },
+  {
+   "group": "uk",
+   "input": "9 victoria road darlington dl1 5sf",
+   "expected": {
+    "house_number": "9",
+    "road": "victoria road",
+    "city": "darlington",
+    "postcode": "DL1 5SF"
+   },
+   "parsed": {
+    "house_number": "9",
+    "road": "victoria road",
+    "city": "darlington",
+    "postcode": "dl1 5sf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 157.1
+  },
+  {
+   "group": "uk",
+   "input": "9 VICTORIA ROAD, DARLINGTON, DL15SF",
+   "expected": {
+    "house_number": "9",
+    "road": "victoria road",
+    "city": "darlington",
+    "postcode": "DL1 5SF"
+   },
+   "parsed": {
+    "house_number": "9",
+    "road": "victoria road",
+    "city": "darlington",
+    "postcode": "dl15sf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 164.2
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 9 victoria road, darlington dl1 5sf",
+   "expected": {
+    "house_number": "9",
+    "road": "victoria road",
+    "city": "darlington",
+    "postcode": "DL1 5SF",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "9",
+    "road": "victoria road",
+    "city": "darlington",
+    "postcode": "dl1 5sf"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 179.8
+  },
+  {
+   "group": "uk",
+   "input": "35 Albert Road, Middlesbrough TS1 2PA",
+   "expected": {
+    "house_number": "35",
+    "road": "albert road",
+    "city": "middlesbrough",
+    "postcode": "TS1 2PA"
+   },
+   "parsed": {
+    "house_number": "35",
+    "road": "albert road",
+    "city": "middlesbrough",
+    "postcode": "ts1 2pa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 158.7
+  },
+  {
+   "group": "uk",
+   "input": "35 albert road middlesbrough ts1 2pa",
+   "expected": {
+    "house_number": "35",
+    "road": "albert road",
+    "city": "middlesbrough",
+    "postcode": "TS1 2PA"
+   },
+   "parsed": {
+    "house_number": "35",
+    "road": "albert road",
+    "city": "middlesbrough",
+    "postcode": "ts1 2pa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 158.6
+  },
+  {
+   "group": "uk",
+   "input": "35 ALBERT ROAD, MIDDLESBROUGH, TS12PA",
+   "expected": {
+    "house_number": "35",
+    "road": "albert road",
+    "city": "middlesbrough",
+    "postcode": "TS1 2PA"
+   },
+   "parsed": {
+    "house_number": "35",
+    "road": "albert road",
+    "city": "middlesbrough",
+    "postcode": "ts12pa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 168.9
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 35 albert road, middlesbrough ts1 2pa",
+   "expected": {
+    "house_number": "35",
+    "road": "albert road",
+    "city": "middlesbrough",
+    "postcode": "TS1 2PA",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "35",
+    "road": "albert road",
+    "city": "middlesbrough",
+    "postcode": "ts1 2pa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 162.8
+  },
+  {
+   "group": "uk",
+   "input": "2 Abbey Road, London NW8 9AY",
+   "expected": {
+    "house_number": "2",
+    "road": "abbey road",
+    "city": "london",
+    "postcode": "NW8 9AY"
+   },
+   "parsed": {
+    "house_number": "2",
+    "road": "abbey road",
+    "city": "london",
+    "postcode": "nw8 9ay"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.0
+  },
+  {
+   "group": "uk",
+   "input": "2 abbey road london nw8 9ay",
+   "expected": {
+    "house_number": "2",
+    "road": "abbey road",
+    "city": "london",
+    "postcode": "NW8 9AY"
+   },
+   "parsed": {
+    "house_number": "2",
+    "road": "abbey road",
+    "city": "london",
+    "postcode": "nw8 9ay"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 157.9
+  },
+  {
+   "group": "uk",
+   "input": "2 ABBEY ROAD, LONDON, NW89AY",
+   "expected": {
+    "house_number": "2",
+    "road": "abbey road",
+    "city": "london",
+    "postcode": "NW8 9AY"
+   },
+   "parsed": {
+    "house_number": "2",
+    "road": "abbey road",
+    "city": "london",
+    "postcode": "nw89ay"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 149.9
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 2 abbey road, london nw8 9ay",
+   "expected": {
+    "house_number": "2",
+    "road": "abbey road",
+    "city": "london",
+    "postcode": "NW8 9AY",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "2",
+    "road": "abbey road",
+    "city": "london",
+    "postcode": "nw8 9ay"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 152.8
+  },
+  {
+   "group": "uk",
+   "input": "84 Promenade, Blackpool FY1 1HB",
+   "expected": {
+    "house_number": "84",
+    "road": "promenade",
+    "city": "blackpool",
+    "postcode": "FY1 1HB"
+   },
+   "parsed": {
+    "house_number": "84",
+    "road": "promenade",
+    "city": "blackpool",
+    "postcode": "fy1 1hb"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 156.1
+  },
+  {
+   "group": "uk",
+   "input": "84 promenade blackpool fy1 1hb",
+   "expected": {
+    "house_number": "84",
+    "road": "promenade",
+    "city": "blackpool",
+    "postcode": "FY1 1HB"
+   },
+   "parsed": {
+    "house_number": "84",
+    "road": "promenade",
+    "city": "blackpool",
+    "postcode": "fy1 1hb"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 155.3
+  },
+  {
+   "group": "uk",
+   "input": "84 PROMENADE, BLACKPOOL, FY11HB",
+   "expected": {
+    "house_number": "84",
+    "road": "promenade",
+    "city": "blackpool",
+    "postcode": "FY1 1HB"
+   },
+   "parsed": {
+    "house_number": "84",
+    "road": "promenade",
+    "city": "blackpool",
+    "postcode": "fy11hb"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 169.6
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 84 promenade, blackpool fy1 1hb",
+   "expected": {
+    "house_number": "84",
+    "road": "promenade",
+    "city": "blackpool",
+    "postcode": "FY1 1HB",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "84",
+    "road": "promenade",
+    "city": "blackpool",
+    "postcode": "fy1 1hb"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 169.9
+  },
+  {
+   "group": "uk",
+   "input": "16 Sidwell Street, Exeter EX4 6NN",
+   "expected": {
+    "house_number": "16",
+    "road": "sidwell street",
+    "city": "exeter",
+    "postcode": "EX4 6NN"
+   },
+   "parsed": {
+    "house_number": "16",
+    "road": "sidwell street",
+    "city": "exeter",
+    "postcode": "ex4 6nn"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 155.8
+  },
+  {
+   "group": "uk",
+   "input": "16 sidwell street exeter ex4 6nn",
+   "expected": {
+    "house_number": "16",
+    "road": "sidwell street",
+    "city": "exeter",
+    "postcode": "EX4 6NN"
+   },
+   "parsed": {
+    "house_number": "16",
+    "road": "sidwell street",
+    "city": "exeter",
+    "postcode": "ex4 6nn"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 154.2
+  },
+  {
+   "group": "uk",
+   "input": "16 SIDWELL STREET, EXETER, EX46NN",
+   "expected": {
+    "house_number": "16",
+    "road": "sidwell street",
+    "city": "exeter",
+    "postcode": "EX4 6NN"
+   },
+   "parsed": {
+    "house_number": "16",
+    "road": "sidwell street",
+    "city": "exeter",
+    "postcode": "ex46nn"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 172.0
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 16 sidwell street, exeter ex4 6nn",
+   "expected": {
+    "house_number": "16",
+    "road": "sidwell street",
+    "city": "exeter",
+    "postcode": "EX4 6NN",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "16",
+    "road": "sidwell street",
+    "city": "exeter",
+    "postcode": "ex4 6nn"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 160.6
+  },
+  {
+   "group": "uk",
+   "input": "53 Fishergate, Preston PR1 2NJ",
+   "expected": {
+    "house_number": "53",
+    "road": "fishergate",
+    "city": "preston",
+    "postcode": "PR1 2NJ"
+   },
+   "parsed": {
+    "house_number": "53",
+    "road": "fishergate",
+    "city": "preston",
+    "postcode": "pr1 2nj"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 161.7
+  },
+  {
+   "group": "uk",
+   "input": "53 fishergate preston pr1 2nj",
+   "expected": {
+    "house_number": "53",
+    "road": "fishergate",
+    "city": "preston",
+    "postcode": "PR1 2NJ"
+   },
+   "parsed": {
+    "house_number": "53",
+    "road": "fishergate",
+    "city": "preston",
+    "postcode": "pr1 2nj"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 160.9
+  },
+  {
+   "group": "uk",
+   "input": "53 FISHERGATE, PRESTON, PR12NJ",
+   "expected": {
+    "house_number": "53",
+    "road": "fishergate",
+    "city": "preston",
+    "postcode": "PR1 2NJ"
+   },
+   "parsed": {
+    "house_number": "53",
+    "road": "fishergate",
+    "city": "preston",
+    "postcode": "pr12nj"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 179.2
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 53 fishergate, preston pr1 2nj",
+   "expected": {
+    "house_number": "53",
+    "road": "fishergate",
+    "city": "preston",
+    "postcode": "PR1 2NJ",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "53",
+    "road": "fishergate",
+    "city": "preston",
+    "postcode": "pr1 2nj"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 166.4
+  },
+  {
+   "group": "uk",
+   "input": "7 Queens Road, Aberdeen AB15 4YL",
+   "expected": {
+    "house_number": "7",
+    "road": "queens road",
+    "city": "aberdeen",
+    "postcode": "AB15 4YL"
+   },
+   "parsed": {
+    "house_number": "7",
+    "road": "queens road",
+    "city": "aberdeen",
+    "postcode": "ab15 4yl"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 159.2
+  },
+  {
+   "group": "uk",
+   "input": "7 queens road aberdeen ab15 4yl",
+   "expected": {
+    "house_number": "7",
+    "road": "queens road",
+    "city": "aberdeen",
+    "postcode": "AB15 4YL"
+   },
+   "parsed": {
+    "house_number": "7",
+    "road": "queens road",
+    "city": "aberdeen",
+    "postcode": "ab15 4yl"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 154.7
+  },
+  {
+   "group": "uk",
+   "input": "7 QUEENS ROAD, ABERDEEN, AB154YL",
+   "expected": {
+    "house_number": "7",
+    "road": "queens road",
+    "city": "aberdeen",
+    "postcode": "AB15 4YL"
+   },
+   "parsed": {
+    "house_number": "7",
+    "road": "queens road",
+    "city": "aberdeen",
+    "postcode": "ab154yl"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 159.8
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 7 queens road, aberdeen ab15 4yl",
+   "expected": {
+    "house_number": "7",
+    "road": "queens road",
+    "city": "aberdeen",
+    "postcode": "AB15 4YL",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "7",
+    "road": "queens road",
+    "city": "aberdeen",
+    "postcode": "ab15 4yl"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 159.2
+  },
+  {
+   "group": "uk",
+   "input": "29 Marine Parade, Great Yarmouth NR30 2EN",
+   "expected": {
+    "house_number": "29",
+    "road": "marine parade",
+    "city": "great yarmouth",
+    "postcode": "NR30 2EN"
+   },
+   "parsed": {
+    "house_number": "29",
+    "road": "marine parade",
+    "city": "great yarmouth",
+    "postcode": "nr30 2en"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 293.7
+  },
+  {
+   "group": "uk",
+   "input": "29 marine parade great yarmouth nr30 2en",
+   "expected": {
+    "house_number": "29",
+    "road": "marine parade",
+    "city": "great yarmouth",
+    "postcode": "NR30 2EN"
+   },
+   "parsed": {
+    "house_number": "29",
+    "road": "marine parade",
+    "city": "great yarmouth",
+    "postcode": "nr30 2en"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 155.1
+  },
+  {
+   "group": "uk",
+   "input": "29 MARINE PARADE, GREAT YARMOUTH, NR302EN",
+   "expected": {
+    "house_number": "29",
+    "road": "marine parade",
+    "city": "great yarmouth",
+    "postcode": "NR30 2EN"
+   },
+   "parsed": {
+    "house_number": "29",
+    "road": "marine parade",
+    "city": "great yarmouth",
+    "postcode": "nr302en"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 153.6
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 29 marine parade, great yarmouth nr30 2en",
+   "expected": {
+    "house_number": "29",
+    "road": "marine parade",
+    "city": "great yarmouth",
+    "postcode": "NR30 2EN",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "29",
+    "road": "marine parade",
+    "city": "great yarmouth",
+    "postcode": "nr30 2en"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 149.3
+  },
+  {
+   "group": "uk",
+   "input": "1 The Crescent, Salford M5 4WT",
+   "expected": {
+    "house_number": "1",
+    "road": "the crescent",
+    "city": "salford",
+    "postcode": "M5 4WT"
+   },
+   "parsed": {
+    "house_number": "1",
+    "road": "the crescent",
+    "city": "salford",
+    "postcode": "m5 4wt"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 169.3
+  },
+  {
+   "group": "uk",
+   "input": "1 the crescent salford m5 4wt",
+   "expected": {
+    "house_number": "1",
+    "road": "the crescent",
+    "city": "salford",
+    "postcode": "M5 4WT"
+   },
+   "parsed": {
+    "house_number": "1",
+    "road": "the crescent",
+    "city": "salford",
+    "postcode": "m5 4wt"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 184.8
+  },
+  {
+   "group": "uk",
+   "input": "1 THE CRESCENT, SALFORD, M54WT",
+   "expected": {
+    "house_number": "1",
+    "road": "the crescent",
+    "city": "salford",
+    "postcode": "M5 4WT"
+   },
+   "parsed": {
+    "house_number": "1",
+    "road": "the crescent",
+    "city": "salford",
+    "postcode": "m54wt"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 157.4
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 1 the crescent, salford m5 4wt",
+   "expected": {
+    "house_number": "1",
+    "road": "the crescent",
+    "city": "salford",
+    "postcode": "M5 4WT",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "1",
+    "road": "the crescent",
+    "city": "salford",
+    "postcode": "m5 4wt"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 197.8
+  },
+  {
+   "group": "uk",
+   "input": "46 Northgate Street, Gloucester GL1 2AN",
+   "expected": {
+    "house_number": "46",
+    "road": "northgate street",
+    "city": "gloucester",
+    "postcode": "GL1 2AN"
+   },
+   "parsed": {
+    "house_number": "46",
+    "road": "northgate street",
+    "city": "gloucester",
+    "postcode": "gl1 2an"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 166.1
+  },
+  {
+   "group": "uk",
+   "input": "46 northgate street gloucester gl1 2an",
+   "expected": {
+    "house_number": "46",
+    "road": "northgate street",
+    "city": "gloucester",
+    "postcode": "GL1 2AN"
+   },
+   "parsed": {
+    "house_number": "46",
+    "road": "northgate street",
+    "city": "gloucester",
+    "postcode": "gl1 2an"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 165.1
+  },
+  {
+   "group": "uk",
+   "input": "46 NORTHGATE STREET, GLOUCESTER, GL12AN",
+   "expected": {
+    "house_number": "46",
+    "road": "northgate street",
+    "city": "gloucester",
+    "postcode": "GL1 2AN"
+   },
+   "parsed": {
+    "house_number": "46",
+    "road": "northgate street",
+    "city": "gloucester",
+    "postcode": "gl12an"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.4
+  },
+  {
+   "group": "uk",
+   "input": "flat 2, 46 northgate street, gloucester gl1 2an",
+   "expected": {
+    "house_number": "46",
+    "road": "northgate street",
+    "city": "gloucester",
+    "postcode": "GL1 2AN",
+    "unit": "flat 2"
+   },
+   "parsed": {
+    "unit": "flat 2",
+    "house_number": "46",
+    "road": "northgate street",
+    "city": "gloucester",
+    "postcode": "gl1 2an"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 168.8
+  },
+  {
+   "group": "international",
+   "input": "350 5Th Ave, New York, NY 10118, USA",
+   "expected": {
+    "house_number": "350",
+    "road": "5th ave",
+    "city": "new york",
+    "postcode": "10118",
+    "state": "ny",
+    "country": "usa"
+   },
+   "parsed": {
+    "house_number": "350",
+    "road": "5th ave",
+    "city": "new york",
+    "state": "ny",
+    "postcode": "10118",
+    "country": "usa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 159.8
+  },
+  {
+   "group": "international",
+   "input": "350 5th ave new york ny 10118 usa",
+   "expected": {
+    "house_number": "350",
+    "road": "5th ave",
+    "city": "new york",
+    "postcode": "10118",
+    "state": "ny",
+    "country": "usa"
+   },
+   "parsed": {
+    "house_number": "350",
+    "road": "5th ave",
+    "city": "new york",
+    "state": "ny",
+    "postcode": "10118",
+    "country": "usa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 162.0
+  },
+  {
+   "group": "international",
+   "input": "350 5th ave, new york, NY 10118",
+   "expected": {
+    "house_number": "350",
+    "road": "5th ave",
+    "city": "new york",
+    "postcode": "10118",
+    "state": "ny"
+   },
+   "parsed": {
+    "house_number": "350",
+    "road": "5th ave",
+    "city": "new york",
+    "state": "ny",
+    "postcode": "10118"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ],
+   "ms": 156.6
+  },
+  {
+   "group": "international",
+   "input": "apt 3, 350 5th ave, new york, NY 10118",
+   "expected": {
+    "house_number": "350",
+    "road": "5th ave",
+    "city": "new york",
+    "postcode": "10118",
+    "state": "ny",
+    "unit": "apt 3"
+   },
+   "parsed": {
+    "unit": "apt 3",
+    "house_number": "350",
+    "road": "5th ave",
+    "city": "new york",
+    "state": "ny",
+    "postcode": "10118"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ],
+   "ms": 158.8
+  },
+  {
+   "group": "international",
+   "input": "1600 Pennsylvania Ave Nw, Washington, DC 20500, USA",
+   "expected": {
+    "house_number": "1600",
+    "road": "pennsylvania ave nw",
+    "city": "washington",
+    "postcode": "20500",
+    "state": "dc",
+    "country": "usa"
+   },
+   "parsed": {
+    "house_number": "1600",
+    "road": "pennsylvania ave nw",
+    "city": "washington",
+    "state": "dc",
+    "postcode": "20500",
+    "country": "usa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 160.5
+  },
+  {
+   "group": "international",
+   "input": "1600 pennsylvania ave nw washington dc 20500 usa",
+   "expected": {
+    "house_number": "1600",
+    "road": "pennsylvania ave nw",
+    "city": "washington",
+    "postcode": "20500",
+    "state": "dc",
+    "country": "usa"
+   },
+   "parsed": {
+    "house_number": "1600",
+    "road": "pennsylvania ave nw",
+    "city": "washington",
+    "state": "dc",
+    "postcode": "20500",
+    "country": "usa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 164.1
+  },
+  {
+   "group": "international",
+   "input": "1600 pennsylvania ave nw, washington, DC 20500",
+   "expected": {
+    "house_number": "1600",
+    "road": "pennsylvania ave nw",
+    "city": "washington",
+    "postcode": "20500",
+    "state": "dc"
+   },
+   "parsed": {
+    "house_number": "1600",
+    "road": "pennsylvania ave nw",
+    "city": "washington",
+    "state": "dc",
+    "postcode": "20500"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ],
+   "ms": 155.6
+  },
+  {
+   "group": "international",
+   "input": "apt 3, 1600 pennsylvania ave nw, washington, DC 20500",
+   "expected": {
+    "house_number": "1600",
+    "road": "pennsylvania ave nw",
+    "city": "washington",
+    "postcode": "20500",
+    "state": "dc",
+    "unit": "apt 3"
+   },
+   "parsed": {
+    "unit": "apt 3",
+    "house_number": "1600",
+    "road": "pennsylvania ave nw",
+    "city": "washington",
+    "state": "dc",
+    "postcode": "20500"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ],
+   "ms": 157.9
+  },
+  {
+   "group": "international",
+   "input": "233 S Wacker Dr, Chicago, IL 60606, USA",
+   "expected": {
+    "house_number": "233",
+    "road": "s wacker dr",
+    "city": "chicago",
+    "postcode": "60606",
+    "state": "il",
+    "country": "usa"
+   },
+   "parsed": {
+    "house_number": "233",
+    "road": "s wacker dr",
+    "city": "chicago",
+    "state": "il",
+    "postcode": "60606",
+    "country": "usa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 207.6
+  },
+  {
+   "group": "international",
+   "input": "233 s wacker dr chicago il 60606 usa",
+   "expected": {
+    "house_number": "233",
+    "road": "s wacker dr",
+    "city": "chicago",
+    "postcode": "60606",
+    "state": "il",
+    "country": "usa"
+   },
+   "parsed": {
+    "house_number": "233",
+    "road": "s wacker dr",
+    "city": "chicago",
+    "state": "il",
+    "postcode": "60606",
+    "country": "usa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 153.5
+  },
+  {
+   "group": "international",
+   "input": "233 s wacker dr, chicago, IL 60606",
+   "expected": {
+    "house_number": "233",
+    "road": "s wacker dr",
+    "city": "chicago",
+    "postcode": "60606",
+    "state": "il"
+   },
+   "parsed": {
+    "house_number": "233",
+    "road": "s wacker dr",
+    "city": "chicago",
+    "state": "il",
+    "postcode": "60606"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ],
+   "ms": 162.4
+  },
+  {
+   "group": "international",
+   "input": "apt 3, 233 s wacker dr, chicago, IL 60606",
+   "expected": {
+    "house_number": "233",
+    "road": "s wacker dr",
+    "city": "chicago",
+    "postcode": "60606",
+    "state": "il",
+    "unit": "apt 3"
+   },
+   "parsed": {
+    "unit": "apt 3",
+    "house_number": "233",
+    "road": "s wacker dr",
+    "city": "chicago",
+    "state": "il",
+    "postcode": "60606"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ],
+   "ms": 164.1
+  },
+  {
+   "group": "international",
+   "input": "1 Infinite Loop, Cupertino, CA 95014, USA",
+   "expected": {
+    "house_number": "1",
+    "road": "infinite loop",
+    "city": "cupertino",
+    "postcode": "95014",
+    "state": "ca",
+    "country": "usa"
+   },
+   "parsed": {
+    "house_number": "1",
+    "road": "infinite loop",
+    "city": "cupertino",
+    "state": "ca",
+    "postcode": "95014",
+    "country": "usa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 158.5
+  },
+  {
+   "group": "international",
+   "input": "1 infinite loop cupertino ca 95014 usa",
+   "expected": {
+    "house_number": "1",
+    "road": "infinite loop",
+    "city": "cupertino",
+    "postcode": "95014",
+    "state": "ca",
+    "country": "usa"
+   },
+   "parsed": {
+    "house_number": "1",
+    "road": "infinite loop",
+    "city": "cupertino",
+    "state": "ca",
+    "postcode": "95014",
+    "country": "usa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 159.0
+  },
+  {
+   "group": "international",
+   "input": "1 infinite loop, cupertino, CA 95014",
+   "expected": {
+    "house_number": "1",
+    "road": "infinite loop",
+    "city": "cupertino",
+    "postcode": "95014",
+    "state": "ca"
+   },
+   "parsed": {
+    "house_number": "1",
+    "road": "infinite loop",
+    "city": "cupertino",
+    "state": "ca",
+    "postcode": "95014"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ],
+   "ms": 158.3
+  },
+  {
+   "group": "international",
+   "input": "apt 3, 1 infinite loop, cupertino, CA 95014",
+   "expected": {
+    "house_number": "1",
+    "road": "infinite loop",
+    "city": "cupertino",
+    "postcode": "95014",
+    "state": "ca",
+    "unit": "apt 3"
+   },
+   "parsed": {
+    "unit": "apt 3",
+    "house_number": "1",
+    "road": "infinite loop",
+    "city": "cupertino",
+    "state": "ca",
+    "postcode": "95014"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ],
+   "ms": 150.3
+  },
+  {
+   "group": "international",
+   "input": "400 Broad St, Seattle, WA 98109, USA",
+   "expected": {
+    "house_number": "400",
+    "road": "broad st",
+    "city": "seattle",
+    "postcode": "98109",
+    "state": "wa",
+    "country": "usa"
+   },
+   "parsed": {
+    "house_number": "400",
+    "road": "broad st",
+    "city": "seattle",
+    "state": "wa",
+    "postcode": "98109",
+    "country": "usa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 158.0
+  },
+  {
+   "group": "international",
+   "input": "400 broad st seattle wa 98109 usa",
+   "expected": {
+    "house_number": "400",
+    "road": "broad st",
+    "city": "seattle",
+    "postcode": "98109",
+    "state": "wa",
+    "country": "usa"
+   },
+   "parsed": {
+    "house_number": "400",
+    "road": "broad st",
+    "city": "seattle",
+    "state": "wa",
+    "postcode": "98109",
+    "country": "usa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 157.1
+  },
+  {
+   "group": "international",
+   "input": "400 broad st, seattle, WA 98109",
+   "expected": {
+    "house_number": "400",
+    "road": "broad st",
+    "city": "seattle",
+    "postcode": "98109",
+    "state": "wa"
+   },
+   "parsed": {
+    "house_number": "400",
+    "road": "broad st",
+    "city": "seattle",
+    "state": "wa",
+    "postcode": "98109"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ],
+   "ms": 161.1
+  },
+  {
+   "group": "international",
+   "input": "apt 3, 400 broad st, seattle, WA 98109",
+   "expected": {
+    "house_number": "400",
+    "road": "broad st",
+    "city": "seattle",
+    "postcode": "98109",
+    "state": "wa",
+    "unit": "apt 3"
+   },
+   "parsed": {
+    "unit": "apt 3",
+    "house_number": "400",
+    "road": "broad st",
+    "city": "seattle",
+    "state": "wa",
+    "postcode": "98109"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ],
+   "ms": 161.7
+  },
+  {
+   "group": "international",
+   "input": "700 Congress Ave, Austin, TX 78701, USA",
+   "expected": {
+    "house_number": "700",
+    "road": "congress ave",
+    "city": "austin",
+    "postcode": "78701",
+    "state": "tx",
+    "country": "usa"
+   },
+   "parsed": {
+    "house_number": "700",
+    "road": "congress ave",
+    "city": "austin",
+    "state": "tx",
+    "postcode": "78701",
+    "country": "usa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 152.7
+  },
+  {
+   "group": "international",
+   "input": "700 congress ave austin tx 78701 usa",
+   "expected": {
+    "house_number": "700",
+    "road": "congress ave",
+    "city": "austin",
+    "postcode": "78701",
+    "state": "tx",
+    "country": "usa"
+   },
+   "parsed": {
+    "house_number": "700",
+    "road": "congress ave",
+    "city": "austin",
+    "state": "tx",
+    "postcode": "78701",
+    "country": "usa"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 158.0
+  },
+  {
+   "group": "international",
+   "input": "700 congress ave, austin, TX 78701",
+   "expected": {
+    "house_number": "700",
+    "road": "congress ave",
+    "city": "austin",
+    "postcode": "78701",
+    "state": "tx"
+   },
+   "parsed": {
+    "house_number": "700",
+    "road": "congress ave",
+    "city": "austin",
+    "state": "tx",
+    "postcode": "78701"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ],
+   "ms": 159.0
+  },
+  {
+   "group": "international",
+   "input": "apt 3, 700 congress ave, austin, TX 78701",
+   "expected": {
+    "house_number": "700",
+    "road": "congress ave",
+    "city": "austin",
+    "postcode": "78701",
+    "state": "tx",
+    "unit": "apt 3"
+   },
+   "parsed": {
+    "unit": "apt 3",
+    "house_number": "700",
+    "road": "congress ave",
+    "city": "austin",
+    "state": "tx",
+    "postcode": "78701"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ],
+   "ms": 168.8
+  },
+  {
+   "group": "international",
+   "input": "290 Bremner Blvd, Toronto, ON M5V 3L9, Canada",
+   "expected": {
+    "house_number": "290",
+    "road": "bremner blvd",
+    "city": "toronto",
+    "postcode": "m5v 3l9",
+    "state": "on",
+    "country": "canada"
+   },
+   "parsed": {
+    "house_number": "290",
+    "road": "bremner blvd",
+    "city": "toronto",
+    "state": "on",
+    "postcode": "m5v 3l9",
+    "country": "canada"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 156.0
+  },
+  {
+   "group": "international",
+   "input": "290 bremner blvd toronto on m5v 3l9 canada",
+   "expected": {
+    "house_number": "290",
+    "road": "bremner blvd",
+    "city": "toronto",
+    "postcode": "m5v 3l9",
+    "state": "on",
+    "country": "canada"
+   },
+   "parsed": {
+    "house_number": "290",
+    "road": "bremner blvd",
+    "city": "toronto",
+    "state": "on",
+    "postcode": "m5v 3l9",
+    "country": "canada"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 153.7
+  },
+  {
+   "group": "international",
+   "input": "290 bremner blvd, toronto, ON M5V 3L9",
+   "expected": {
+    "house_number": "290",
+    "road": "bremner blvd",
+    "city": "toronto",
+    "postcode": "m5v 3l9",
+    "state": "on"
+   },
+   "parsed": {
+    "house_number": "290",
+    "road": "bremner blvd",
+    "city": "toronto",
+    "state": "on",
+    "postcode": "m5v 3l9"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ],
+   "ms": 162.3
+  },
+  {
+   "group": "international",
+   "input": "apt 3, 290 bremner blvd, toronto, ON M5V 3L9",
+   "expected": {
+    "house_number": "290",
+    "road": "bremner blvd",
+    "city": "toronto",
+    "postcode": "m5v 3l9",
+    "state": "on",
+    "unit": "apt 3"
+   },
+   "parsed": {
+    "unit": "apt 3",
+    "house_number": "290",
+    "road": "bremner blvd",
+    "city": "toronto",
+    "state": "on",
+    "postcode": "m5v 3l9"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ],
+   "ms": 151.6
+  },
+  {
+   "group": "international",
+   "input": "1055 W Georgia St, Vancouver, BC V6E 3P3, Canada",
+   "expected": {
+    "house_number": "1055",
+    "road": "w georgia st",
+    "city": "vancouver",
+    "postcode": "v6e 3p3",
+    "state": "bc",
+    "country": "canada"
+   },
+   "parsed": {
+    "house_number": "1055",
+    "road": "w georgia st",
+    "city": "vancouver",
+    "state": "bc",
+    "postcode": "v6e 3p3",
+    "country": "canada"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 163.1
+  },
+  {
+   "group": "international",
+   "input": "1055 w georgia st vancouver bc v6e 3p3 canada",
+   "expected": {
+    "house_number": "1055",
+    "road": "w georgia st",
+    "city": "vancouver",
+    "postcode": "v6e 3p3",
+    "state": "bc",
+    "country": "canada"
+   },
+   "parsed": {
+    "house_number": "1055",
+    "road": "w georgia st",
+    "city": "vancouver",
+    "state": "bc",
+    "postcode": "v6e 3p3",
+    "country": "canada"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 145.8
+  },
+  {
+   "group": "international",
+   "input": "1055 w georgia st, vancouver, BC V6E 3P3",
+   "expected": {
+    "house_number": "1055",
+    "road": "w georgia st",
+    "city": "vancouver",
+    "postcode": "v6e 3p3",
+    "state": "bc"
+   },
+   "parsed": {
+    "house_number": "1055",
+    "road": "w georgia st",
+    "city": "vancouver",
+    "state": "bc",
+    "postcode": "v6e 3p3"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ],
+   "ms": 159.5
+  },
+  {
+   "group": "international",
+   "input": "apt 3, 1055 w georgia st, vancouver, BC V6E 3P3",
+   "expected": {
+    "house_number": "1055",
+    "road": "w georgia st",
+    "city": "vancouver",
+    "postcode": "v6e 3p3",
+    "state": "bc",
+    "unit": "apt 3"
+   },
+   "parsed": {
+    "unit": "apt 3",
+    "house_number": "1055",
+    "road": "w georgia st",
+    "city": "vancouver",
+    "state": "bc",
+    "postcode": "v6e 3p3"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ],
+   "ms": 158.0
+  },
+  {
+   "group": "international",
+   "input": "1 Macquarie St, Sydney, NSW 2000, Australia",
+   "expected": {
+    "house_number": "1",
+    "road": "macquarie st",
+    "city": "sydney",
+    "postcode": "2000",
+    "state": "nsw",
+    "country": "australia"
+   },
+   "parsed": {
+    "house_number": "1",
+    "road": "macquarie st",
+    "suburb": "sydney",
+    "state": "nsw",
+    "postcode": "2000",
+    "country": "australia"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 161.9
+  },
+  {
+   "group": "international",
+   "input": "1 macquarie st sydney nsw 2000 australia",
+   "expected": {
+    "house_number": "1",
+    "road": "macquarie st",
+    "city": "sydney",
+    "postcode": "2000",
+    "state": "nsw",
+    "country": "australia"
+   },
+   "parsed": {
+    "house_number": "1",
+    "road": "macquarie st",
+    "suburb": "sydney",
+    "state": "nsw",
+    "postcode": "2000",
+    "country": "australia"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 153.0
+  },
+  {
+   "group": "international",
+   "input": "1 macquarie st, sydney, NSW 2000",
+   "expected": {
+    "house_number": "1",
+    "road": "macquarie st",
+    "city": "sydney",
+    "postcode": "2000",
+    "state": "nsw"
+   },
+   "parsed": {
+    "house_number": "1",
+    "road": "macquarie st",
+    "suburb": "sydney",
+    "state": "nsw",
+    "postcode": "2000"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "postcode",
+    "state"
+   ],
+   "ms": 154.0
+  },
+  {
+   "group": "international",
+   "input": "apt 3, 1 macquarie st, sydney, NSW 2000",
+   "expected": {
+    "house_number": "1",
+    "road": "macquarie st",
+    "city": "sydney",
+    "postcode": "2000",
+    "state": "nsw",
+    "unit": "apt 3"
+   },
+   "parsed": {
+    "unit": "apt 3",
+    "house_number": "1",
+    "road": "macquarie st",
+    "suburb": "sydney",
+    "state": "nsw",
+    "postcode": "2000"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "postcode",
+    "state",
+    "unit"
+   ],
+   "ms": 163.1
+  },
+  {
+   "group": "international",
+   "input": "100 St Kilda Rd, Melbourne, VIC 3004, Australia",
+   "expected": {
+    "house_number": "100",
+    "road": "st kilda rd",
+    "city": "melbourne",
+    "postcode": "3004",
+    "state": "vic",
+    "country": "australia"
+   },
+   "parsed": {
+    "house_number": "100",
+    "road": "st kilda rd",
+    "city": "melbourne",
+    "state": "vic",
+    "postcode": "3004",
+    "country": "australia"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 154.0
+  },
+  {
+   "group": "international",
+   "input": "100 st kilda rd melbourne vic 3004 australia",
+   "expected": {
+    "house_number": "100",
+    "road": "st kilda rd",
+    "city": "melbourne",
+    "postcode": "3004",
+    "state": "vic",
+    "country": "australia"
+   },
+   "parsed": {
+    "house_number": "100",
+    "road": "st kilda rd",
+    "city": "melbourne",
+    "state": "vic",
+    "postcode": "3004",
+    "country": "australia"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "country"
+   ],
+   "ms": 159.0
+  },
+  {
+   "group": "international",
+   "input": "100 st kilda rd, melbourne, VIC 3004",
+   "expected": {
+    "house_number": "100",
+    "road": "st kilda rd",
+    "city": "melbourne",
+    "postcode": "3004",
+    "state": "vic"
+   },
+   "parsed": {
+    "house_number": "100",
+    "road": "st kilda rd",
+    "city": "melbourne",
+    "state": "vic",
+    "postcode": "3004"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state"
+   ],
+   "ms": 151.5
+  },
+  {
+   "group": "international",
+   "input": "apt 3, 100 st kilda rd, melbourne, VIC 3004",
+   "expected": {
+    "house_number": "100",
+    "road": "st kilda rd",
+    "city": "melbourne",
+    "postcode": "3004",
+    "state": "vic",
+    "unit": "apt 3"
+   },
+   "parsed": {
+    "unit": "apt 3",
+    "house_number": "100",
+    "road": "st kilda rd",
+    "city": "melbourne",
+    "state": "vic",
+    "postcode": "3004"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "state",
+    "unit"
+   ],
+   "ms": 161.6
+  },
+  {
+   "group": "international",
+   "input": "Hauptstraße 5, 10115 Berlin, Germany",
+   "expected": {
+    "house_number": "5",
+    "road": "hauptstraße",
+    "city": "berlin",
+    "postcode": "10115",
+    "country": "germany"
+   },
+   "parsed": {
+    "road": "hauptstraße",
+    "house_number": "5",
+    "postcode": "10115",
+    "city": "berlin",
+    "country": "germany"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 196.7
+  },
+  {
+   "group": "international",
+   "input": "hauptstraße 5 10115 berlin germany",
+   "expected": {
+    "house_number": "5",
+    "road": "hauptstraße",
+    "city": "berlin",
+    "postcode": "10115",
+    "country": "germany"
+   },
+   "parsed": {
+    "road": "hauptstraße",
+    "house_number": "5",
+    "postcode": "10115",
+    "city": "berlin",
+    "country": "germany"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 263.1
+  },
+  {
+   "group": "international",
+   "input": "hauptstraße 5, 10115 berlin",
+   "expected": {
+    "house_number": "5",
+    "road": "hauptstraße",
+    "city": "berlin",
+    "postcode": "10115"
+   },
+   "parsed": {
+    "road": "hauptstraße",
+    "house_number": "5",
+    "postcode": "10115",
+    "city": "berlin"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 166.6
+  },
+  {
+   "group": "international",
+   "input": "HAUPTSTRASSE 5, 10115 BERLIN, GERMANY",
+   "expected": {
+    "house_number": "5",
+    "road": "hauptstraße",
+    "city": "berlin",
+    "postcode": "10115",
+    "country": "germany"
+   },
+   "parsed": {
+    "road": "hauptstrasse",
+    "house_number": "5",
+    "postcode": "10115",
+    "city": "berlin",
+    "country": "germany"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 156.5
+  },
+  {
+   "group": "international",
+   "input": "Königstraße 12, 70173 Stuttgart, Germany",
+   "expected": {
+    "house_number": "12",
+    "road": "königstraße",
+    "city": "stuttgart",
+    "postcode": "70173",
+    "country": "germany"
+   },
+   "parsed": {
+    "road": "königstraße",
+    "house_number": "12",
+    "postcode": "70173",
+    "city": "stuttgart",
+    "country": "germany"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 153.0
+  },
+  {
+   "group": "international",
+   "input": "königstraße 12 70173 stuttgart germany",
+   "expected": {
+    "house_number": "12",
+    "road": "königstraße",
+    "city": "stuttgart",
+    "postcode": "70173",
+    "country": "germany"
+   },
+   "parsed": {
+    "road": "königstraße",
+    "house_number": "12",
+    "postcode": "70173",
+    "city": "stuttgart",
+    "country": "germany"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 149.9
+  },
+  {
+   "group": "international",
+   "input": "königstraße 12, 70173 stuttgart",
+   "expected": {
+    "house_number": "12",
+    "road": "königstraße",
+    "city": "stuttgart",
+    "postcode": "70173"
+   },
+   "parsed": {
+    "road": "königstraße",
+    "house_number": "12",
+    "postcode": "70173",
+    "city": "stuttgart"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 161.1
+  },
+  {
+   "group": "international",
+   "input": "KÖNIGSTRASSE 12, 70173 STUTTGART, GERMANY",
+   "expected": {
+    "house_number": "12",
+    "road": "königstraße",
+    "city": "stuttgart",
+    "postcode": "70173",
+    "country": "germany"
+   },
+   "parsed": {
+    "road": "königstrasse",
+    "house_number": "12",
+    "postcode": "70173",
+    "city": "stuttgart",
+    "country": "germany"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 155.1
+  },
+  {
+   "group": "international",
+   "input": "Marienplatz 8, 80331 München, Germany",
+   "expected": {
+    "house_number": "8",
+    "road": "marienplatz",
+    "city": "münchen",
+    "postcode": "80331",
+    "country": "germany"
+   },
+   "parsed": {
+    "road": "marienplatz",
+    "house_number": "8",
+    "postcode": "80331",
+    "city": "münchen",
+    "country": "germany"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 152.7
+  },
+  {
+   "group": "international",
+   "input": "marienplatz 8 80331 münchen germany",
+   "expected": {
+    "house_number": "8",
+    "road": "marienplatz",
+    "city": "münchen",
+    "postcode": "80331",
+    "country": "germany"
+   },
+   "parsed": {
+    "road": "marienplatz",
+    "house_number": "8",
+    "postcode": "80331",
+    "city": "münchen",
+    "country": "germany"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 156.5
+  },
+  {
+   "group": "international",
+   "input": "marienplatz 8, 80331 münchen",
+   "expected": {
+    "house_number": "8",
+    "road": "marienplatz",
+    "city": "münchen",
+    "postcode": "80331"
+   },
+   "parsed": {
+    "road": "marienplatz",
+    "house_number": "8",
+    "postcode": "80331",
+    "city": "münchen"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 151.7
+  },
+  {
+   "group": "international",
+   "input": "MARIENPLATZ 8, 80331 MÜNCHEN, GERMANY",
+   "expected": {
+    "house_number": "8",
+    "road": "marienplatz",
+    "city": "münchen",
+    "postcode": "80331",
+    "country": "germany"
+   },
+   "parsed": {
+    "road": "marienplatz",
+    "house_number": "8",
+    "postcode": "80331",
+    "city": "münchen",
+    "country": "germany"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 157.5
+  },
+  {
+   "group": "international",
+   "input": "Rue De La Paix 12, 75002 Paris, France",
+   "expected": {
+    "house_number": "12",
+    "road": "rue de la paix",
+    "city": "paris",
+    "postcode": "75002",
+    "country": "france"
+   },
+   "parsed": {
+    "road": "rue de la paix",
+    "house_number": "12",
+    "postcode": "75002",
+    "city": "paris",
+    "country": "france"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 153.3
+  },
+  {
+   "group": "international",
+   "input": "rue de la paix 12 75002 paris france",
+   "expected": {
+    "house_number": "12",
+    "road": "rue de la paix",
+    "city": "paris",
+    "postcode": "75002",
+    "country": "france"
+   },
+   "parsed": {
+    "road": "rue de la paix",
+    "house_number": "12",
+    "postcode": "75002",
+    "city": "paris",
+    "country": "france"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 153.9
+  },
+  {
+   "group": "international",
+   "input": "rue de la paix 12, 75002 paris",
+   "expected": {
+    "house_number": "12",
+    "road": "rue de la paix",
+    "city": "paris",
+    "postcode": "75002"
+   },
+   "parsed": {
+    "road": "rue de la paix",
+    "house_number": "12",
+    "postcode": "75002",
+    "city": "paris"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 153.6
+  },
+  {
+   "group": "international",
+   "input": "RUE DE LA PAIX 12, 75002 PARIS, FRANCE",
+   "expected": {
+    "house_number": "12",
+    "road": "rue de la paix",
+    "city": "paris",
+    "postcode": "75002",
+    "country": "france"
+   },
+   "parsed": {
+    "road": "rue de la paix",
+    "house_number": "12",
+    "postcode": "75002",
+    "city": "paris",
+    "country": "france"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 161.6
+  },
+  {
+   "group": "international",
+   "input": "Rue De La République 45, 69002 Lyon, France",
+   "expected": {
+    "house_number": "45",
+    "road": "rue de la république",
+    "city": "lyon",
+    "postcode": "69002",
+    "country": "france"
+   },
+   "parsed": {
+    "road": "rue de la république",
+    "house_number": "45",
+    "postcode": "69002",
+    "city": "lyon",
+    "country": "france"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 166.8
+  },
+  {
+   "group": "international",
+   "input": "rue de la république 45 69002 lyon france",
+   "expected": {
+    "house_number": "45",
+    "road": "rue de la république",
+    "city": "lyon",
+    "postcode": "69002",
+    "country": "france"
+   },
+   "parsed": {
+    "road": "rue de la république",
+    "house_number": "45",
+    "postcode": "69002",
+    "city": "lyon",
+    "country": "france"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 152.4
+  },
+  {
+   "group": "international",
+   "input": "rue de la république 45, 69002 lyon",
+   "expected": {
+    "house_number": "45",
+    "road": "rue de la république",
+    "city": "lyon",
+    "postcode": "69002"
+   },
+   "parsed": {
+    "road": "rue de la république",
+    "house_number": "45",
+    "postcode": "69002",
+    "city": "lyon"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 257.7
+  },
+  {
+   "group": "international",
+   "input": "RUE DE LA RÉPUBLIQUE 45, 69002 LYON, FRANCE",
+   "expected": {
+    "house_number": "45",
+    "road": "rue de la république",
+    "city": "lyon",
+    "postcode": "69002",
+    "country": "france"
+   },
+   "parsed": {
+    "road": "rue de la république",
+    "house_number": "45",
+    "postcode": "69002",
+    "city": "lyon",
+    "country": "france"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 147.4
+  },
+  {
+   "group": "international",
+   "input": "Calle Mayor 3, 28013 Madrid, Spain",
+   "expected": {
+    "house_number": "3",
+    "road": "calle mayor",
+    "city": "madrid",
+    "postcode": "28013",
+    "country": "spain"
+   },
+   "parsed": {
+    "road": "calle mayor",
+    "house_number": "3",
+    "postcode": "28013",
+    "city": "madrid",
+    "country": "spain"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 156.0
+  },
+  {
+   "group": "international",
+   "input": "calle mayor 3 28013 madrid spain",
+   "expected": {
+    "house_number": "3",
+    "road": "calle mayor",
+    "city": "madrid",
+    "postcode": "28013",
+    "country": "spain"
+   },
+   "parsed": {
+    "road": "calle mayor",
+    "house_number": "3",
+    "postcode": "28013",
+    "city": "madrid",
+    "country": "spain"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 197.8
+  },
+  {
+   "group": "international",
+   "input": "calle mayor 3, 28013 madrid",
+   "expected": {
+    "house_number": "3",
+    "road": "calle mayor",
+    "city": "madrid",
+    "postcode": "28013"
+   },
+   "parsed": {
+    "road": "calle mayor",
+    "house_number": "3",
+    "postcode": "28013",
+    "city": "madrid"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 167.5
+  },
+  {
+   "group": "international",
+   "input": "CALLE MAYOR 3, 28013 MADRID, SPAIN",
+   "expected": {
+    "house_number": "3",
+    "road": "calle mayor",
+    "city": "madrid",
+    "postcode": "28013",
+    "country": "spain"
+   },
+   "parsed": {
+    "road": "calle mayor",
+    "house_number": "3",
+    "postcode": "28013",
+    "city": "madrid",
+    "country": "spain"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 157.5
+  },
+  {
+   "group": "international",
+   "input": "Passeig De Gràcia 92, 08008 Barcelona, Spain",
+   "expected": {
+    "house_number": "92",
+    "road": "passeig de gràcia",
+    "city": "barcelona",
+    "postcode": "08008",
+    "country": "spain"
+   },
+   "parsed": {
+    "road": "passeig de gràcia",
+    "house_number": "92",
+    "postcode": "08008",
+    "city": "barcelona",
+    "country": "spain"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 177.5
+  },
+  {
+   "group": "international",
+   "input": "passeig de gràcia 92 08008 barcelona spain",
+   "expected": {
+    "house_number": "92",
+    "road": "passeig de gràcia",
+    "city": "barcelona",
+    "postcode": "08008",
+    "country": "spain"
+   },
+   "parsed": {
+    "road": "passeig de gràcia",
+    "house_number": "92",
+    "postcode": "08008",
+    "city": "barcelona",
+    "country": "spain"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 154.2
+  },
+  {
+   "group": "international",
+   "input": "passeig de gràcia 92, 08008 barcelona",
+   "expected": {
+    "house_number": "92",
+    "road": "passeig de gràcia",
+    "city": "barcelona",
+    "postcode": "08008"
+   },
+   "parsed": {
+    "road": "passeig de gràcia",
+    "house_number": "92",
+    "postcode": "08008",
+    "city": "barcelona"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 163.9
+  },
+  {
+   "group": "international",
+   "input": "PASSEIG DE GRÀCIA 92, 08008 BARCELONA, SPAIN",
+   "expected": {
+    "house_number": "92",
+    "road": "passeig de gràcia",
+    "city": "barcelona",
+    "postcode": "08008",
+    "country": "spain"
+   },
+   "parsed": {
+    "road": "passeig de gràcia",
+    "house_number": "92",
+    "postcode": "08008",
+    "city": "barcelona",
+    "country": "spain"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 167.5
+  },
+  {
+   "group": "international",
+   "input": "Via Del Corso 10, 00186 Roma, Italy",
+   "expected": {
+    "house_number": "10",
+    "road": "via del corso",
+    "city": "roma",
+    "postcode": "00186",
+    "country": "italy"
+   },
+   "parsed": {
+    "road": "via del corso",
+    "house_number": "10",
+    "postcode": "00186",
+    "city": "roma",
+    "country": "italy"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 175.6
+  },
+  {
+   "group": "international",
+   "input": "via del corso 10 00186 roma italy",
+   "expected": {
+    "house_number": "10",
+    "road": "via del corso",
+    "city": "roma",
+    "postcode": "00186",
+    "country": "italy"
+   },
+   "parsed": {
+    "road": "via del corso",
+    "house_number": "10",
+    "postcode": "00186",
+    "city": "roma",
+    "country": "italy"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 162.8
+  },
+  {
+   "group": "international",
+   "input": "via del corso 10, 00186 roma",
+   "expected": {
+    "house_number": "10",
+    "road": "via del corso",
+    "city": "roma",
+    "postcode": "00186"
+   },
+   "parsed": {
+    "road": "via del corso",
+    "house_number": "10",
+    "postcode": "00186",
+    "city": "roma"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 170.8
+  },
+  {
+   "group": "international",
+   "input": "VIA DEL CORSO 10, 00186 ROMA, ITALY",
+   "expected": {
+    "house_number": "10",
+    "road": "via del corso",
+    "city": "roma",
+    "postcode": "00186",
+    "country": "italy"
+   },
+   "parsed": {
+    "road": "via del corso",
+    "house_number": "10",
+    "postcode": "00186",
+    "city": "roma",
+    "country": "italy"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 167.1
+  },
+  {
+   "group": "international",
+   "input": "Via Montenapoleone 2, 20121 Milano, Italy",
+   "expected": {
+    "house_number": "2",
+    "road": "via montenapoleone",
+    "city": "milano",
+    "postcode": "20121",
+    "country": "italy"
+   },
+   "parsed": {
+    "road": "via montenapoleone",
+    "house_number": "2",
+    "postcode": "20121",
+    "city": "milano",
+    "country": "italy"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 174.5
+  },
+  {
+   "group": "international",
+   "input": "via montenapoleone 2 20121 milano italy",
+   "expected": {
+    "house_number": "2",
+    "road": "via montenapoleone",
+    "city": "milano",
+    "postcode": "20121",
+    "country": "italy"
+   },
+   "parsed": {
+    "road": "via montenapoleone",
+    "house_number": "2",
+    "postcode": "20121",
+    "city": "milano",
+    "country": "italy"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 157.0
+  },
+  {
+   "group": "international",
+   "input": "via montenapoleone 2, 20121 milano",
+   "expected": {
+    "house_number": "2",
+    "road": "via montenapoleone",
+    "city": "milano",
+    "postcode": "20121"
+   },
+   "parsed": {
+    "road": "via montenapoleone",
+    "house_number": "2",
+    "postcode": "20121",
+    "city": "milano"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 161.5
+  },
+  {
+   "group": "international",
+   "input": "VIA MONTENAPOLEONE 2, 20121 MILANO, ITALY",
+   "expected": {
+    "house_number": "2",
+    "road": "via montenapoleone",
+    "city": "milano",
+    "postcode": "20121",
+    "country": "italy"
+   },
+   "parsed": {
+    "road": "via montenapoleone",
+    "house_number": "2",
+    "postcode": "20121",
+    "city": "milano",
+    "country": "italy"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 173.9
+  },
+  {
+   "group": "international",
+   "input": "Damrak 147, 1012 LP Amsterdam, Netherlands",
+   "expected": {
+    "house_number": "147",
+    "road": "damrak",
+    "city": "amsterdam",
+    "postcode": "1012 lp",
+    "country": "netherlands"
+   },
+   "parsed": {
+    "road": "damrak",
+    "house_number": "147",
+    "postcode": "1012 lp",
+    "city": "amsterdam",
+    "country": "netherlands"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 151.3
+  },
+  {
+   "group": "international",
+   "input": "damrak 147 1012 lp amsterdam netherlands",
+   "expected": {
+    "house_number": "147",
+    "road": "damrak",
+    "city": "amsterdam",
+    "postcode": "1012 lp",
+    "country": "netherlands"
+   },
+   "parsed": {
+    "road": "damrak",
+    "house_number": "147",
+    "postcode": "1012 lp",
+    "city": "amsterdam",
+    "country": "netherlands"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 154.8
+  },
+  {
+   "group": "international",
+   "input": "damrak 147, 1012 lp amsterdam",
+   "expected": {
+    "house_number": "147",
+    "road": "damrak",
+    "city": "amsterdam",
+    "postcode": "1012 lp"
+   },
+   "parsed": {
+    "road": "damrak",
+    "house_number": "147",
+    "postcode": "1012 lp",
+    "city": "amsterdam"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 160.9
+  },
+  {
+   "group": "international",
+   "input": "DAMRAK 147, 1012 LP AMSTERDAM, NETHERLANDS",
+   "expected": {
+    "house_number": "147",
+    "road": "damrak",
+    "city": "amsterdam",
+    "postcode": "1012 lp",
+    "country": "netherlands"
+   },
+   "parsed": {
+    "road": "damrak",
+    "house_number": "147",
+    "postcode": "1012 lp",
+    "city": "amsterdam",
+    "country": "netherlands"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 165.7
+  },
+  {
+   "group": "international",
+   "input": "28 Grafton Street, Dublin, D02 VH85, Ireland",
+   "expected": {
+    "house_number": "28",
+    "road": "grafton street",
+    "city": "dublin",
+    "postcode": "d02 vh85",
+    "country": "ireland"
+   },
+   "parsed": {
+    "house_number": "28",
+    "road": "grafton street",
+    "city": "dublin",
+    "postcode": "d02 vh85",
+    "country": "ireland"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 155.6
+  },
+  {
+   "group": "international",
+   "input": "28 grafton street dublin d02 vh85 ireland",
+   "expected": {
+    "house_number": "28",
+    "road": "grafton street",
+    "city": "dublin",
+    "postcode": "d02 vh85",
+    "country": "ireland"
+   },
+   "parsed": {
+    "house_number": "28",
+    "road": "grafton street",
+    "city": "dublin",
+    "postcode": "d02 vh85",
+    "country": "ireland"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 343.8
+  },
+  {
+   "group": "international",
+   "input": "28 grafton street, dublin, D02 VH85",
+   "expected": {
+    "house_number": "28",
+    "road": "grafton street",
+    "city": "dublin",
+    "postcode": "d02 vh85"
+   },
+   "parsed": {
+    "house_number": "28",
+    "road": "grafton street",
+    "city": "dublin",
+    "postcode": "d02 vh85"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 162.3
+  },
+  {
+   "group": "international",
+   "input": "apt 3, 28 grafton street, dublin, D02 VH85",
+   "expected": {
+    "house_number": "28",
+    "road": "grafton street",
+    "city": "dublin",
+    "postcode": "d02 vh85",
+    "unit": "apt 3"
+   },
+   "parsed": {
+    "unit": "apt 3",
+    "house_number": "28",
+    "road": "grafton street",
+    "city": "dublin",
+    "postcode": "d02 vh85"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 159.3
+  },
+  {
+   "group": "international",
+   "input": "50 Queen Street, Auckland, 1010, New Zealand",
+   "expected": {
+    "house_number": "50",
+    "road": "queen street",
+    "city": "auckland",
+    "postcode": "1010",
+    "country": "new zealand"
+   },
+   "parsed": {
+    "house_number": "50",
+    "road": "queen street",
+    "city": "auckland",
+    "postcode": "1010",
+    "country": "new zealand"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 165.7
+  },
+  {
+   "group": "international",
+   "input": "50 queen street auckland 1010 new zealand",
+   "expected": {
+    "house_number": "50",
+    "road": "queen street",
+    "city": "auckland",
+    "postcode": "1010",
+    "country": "new zealand"
+   },
+   "parsed": {
+    "house_number": "50",
+    "road": "queen street",
+    "city": "auckland",
+    "postcode": "1010",
+    "country": "new zealand"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 164.7
+  },
+  {
+   "group": "international",
+   "input": "50 queen street, auckland, 1010",
+   "expected": {
+    "house_number": "50",
+    "road": "queen street",
+    "city": "auckland",
+    "postcode": "1010"
+   },
+   "parsed": {
+    "house_number": "50",
+    "road": "queen street",
+    "city": "auckland",
+    "postcode": "1010"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 166.0
+  },
+  {
+   "group": "international",
+   "input": "apt 3, 50 queen street, auckland, 1010",
+   "expected": {
+    "house_number": "50",
+    "road": "queen street",
+    "city": "auckland",
+    "postcode": "1010",
+    "unit": "apt 3"
+   },
+   "parsed": {
+    "unit": "apt 3",
+    "house_number": "50",
+    "road": "queen street",
+    "city": "auckland",
+    "postcode": "1010"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "unit"
+   ],
+   "ms": 159.7
+  },
+  {
+   "group": "international",
+   "input": "Stephansplatz 1, 1010 Wien, Austria",
+   "expected": {
+    "house_number": "1",
+    "road": "stephansplatz",
+    "city": "wien",
+    "postcode": "1010",
+    "country": "austria"
+   },
+   "parsed": {
+    "road": "stephansplatz",
+    "house_number": "1",
+    "postcode": "1010",
+    "city": "wien",
+    "country": "austria"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 159.0
+  },
+  {
+   "group": "international",
+   "input": "stephansplatz 1 1010 wien austria",
+   "expected": {
+    "house_number": "1",
+    "road": "stephansplatz",
+    "city": "wien",
+    "postcode": "1010",
+    "country": "austria"
+   },
+   "parsed": {
+    "road": "stephansplatz",
+    "house_number": "1",
+    "postcode": "1010",
+    "city": "wien",
+    "country": "austria"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 151.0
+  },
+  {
+   "group": "international",
+   "input": "stephansplatz 1, 1010 wien",
+   "expected": {
+    "house_number": "1",
+    "road": "stephansplatz",
+    "city": "wien",
+    "postcode": "1010"
+   },
+   "parsed": {
+    "road": "stephansplatz",
+    "house_number": "1",
+    "postcode": "1010",
+    "city": "wien"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 156.9
+  },
+  {
+   "group": "international",
+   "input": "STEPHANSPLATZ 1, 1010 WIEN, AUSTRIA",
+   "expected": {
+    "house_number": "1",
+    "road": "stephansplatz",
+    "city": "wien",
+    "postcode": "1010",
+    "country": "austria"
+   },
+   "parsed": {
+    "road": "stephansplatz",
+    "house_number": "1",
+    "postcode": "1010",
+    "city": "wien",
+    "country": "austria"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 167.0
+  },
+  {
+   "group": "international",
+   "input": "Bahnhofstrasse 10, 8001 Zürich, Switzerland",
+   "expected": {
+    "house_number": "10",
+    "road": "bahnhofstrasse",
+    "city": "zürich",
+    "postcode": "8001",
+    "country": "switzerland"
+   },
+   "parsed": {
+    "road": "bahnhofstrasse",
+    "house_number": "10",
+    "postcode": "8001",
+    "city": "zürich",
+    "country": "switzerland"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 166.5
+  },
+  {
+   "group": "international",
+   "input": "bahnhofstrasse 10 8001 zürich switzerland",
+   "expected": {
+    "house_number": "10",
+    "road": "bahnhofstrasse",
+    "city": "zürich",
+    "postcode": "8001",
+    "country": "switzerland"
+   },
+   "parsed": {
+    "road": "bahnhofstrasse",
+    "house_number": "10",
+    "postcode": "8001",
+    "city": "zürich",
+    "country": "switzerland"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 166.0
+  },
+  {
+   "group": "international",
+   "input": "bahnhofstrasse 10, 8001 zürich",
+   "expected": {
+    "house_number": "10",
+    "road": "bahnhofstrasse",
+    "city": "zürich",
+    "postcode": "8001"
+   },
+   "parsed": {
+    "road": "bahnhofstrasse",
+    "house_number": "10",
+    "postcode": "8001",
+    "city": "zürich"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 171.5
+  },
+  {
+   "group": "international",
+   "input": "BAHNHOFSTRASSE 10, 8001 ZÜRICH, SWITZERLAND",
+   "expected": {
+    "house_number": "10",
+    "road": "bahnhofstrasse",
+    "city": "zürich",
+    "postcode": "8001",
+    "country": "switzerland"
+   },
+   "parsed": {
+    "road": "bahnhofstrasse",
+    "house_number": "10",
+    "postcode": "8001",
+    "city": "zürich",
+    "country": "switzerland"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 158.4
+  },
+  {
+   "group": "international",
+   "input": "Grote Markt 1, 1000 Brussel, Belgium",
+   "expected": {
+    "house_number": "1",
+    "road": "grote markt",
+    "city": "brussel",
+    "postcode": "1000",
+    "country": "belgium"
+   },
+   "parsed": {
+    "road": "grote markt",
+    "house_number": "1",
+    "postcode": "1000",
+    "city": "brussel",
+    "country": "belgium"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 163.3
+  },
+  {
+   "group": "international",
+   "input": "grote markt 1 1000 brussel belgium",
+   "expected": {
+    "house_number": "1",
+    "road": "grote markt",
+    "city": "brussel",
+    "postcode": "1000",
+    "country": "belgium"
+   },
+   "parsed": {
+    "road": "grote markt",
+    "house_number": "1",
+    "postcode": "1000",
+    "city": "brussel",
+    "country": "belgium"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 419.6
+  },
+  {
+   "group": "international",
+   "input": "grote markt 1, 1000 brussel",
+   "expected": {
+    "house_number": "1",
+    "road": "grote markt",
+    "city": "brussel",
+    "postcode": "1000"
+   },
+   "parsed": {
+    "road": "grote markt",
+    "house_number": "1",
+    "postcode": "1000",
+    "city": "brussel"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode"
+   ],
+   "ms": 160.4
+  },
+  {
+   "group": "international",
+   "input": "GROTE MARKT 1, 1000 BRUSSEL, BELGIUM",
+   "expected": {
+    "house_number": "1",
+    "road": "grote markt",
+    "city": "brussel",
+    "postcode": "1000",
+    "country": "belgium"
+   },
+   "parsed": {
+    "road": "grote markt",
+    "house_number": "1",
+    "postcode": "1000",
+    "city": "brussel",
+    "country": "belgium"
+   },
+   "correct": [
+    "house_number",
+    "road",
+    "city",
+    "postcode",
+    "country"
+   ],
+   "ms": 161.8
+  }
+ ],
+ "all": {
+  "cases": 300,
+  "all_fields_correct": 293,
+  "all_fields_rate": 0.977,
+  "per_field": {
+   "city": {
+    "cases": 300,
+    "correct": 293,
+    "rate": 0.977
+   },
+   "country": {
+    "cases": 63,
+    "correct": 63,
+    "rate": 1.0
+   },
+   "house_number": {
+    "cases": 300,
+    "correct": 300,
+    "rate": 1.0
+   },
+   "postcode": {
+    "cases": 300,
+    "correct": 300,
+    "rate": 1.0
+   },
+   "road": {
+    "cases": 300,
+    "correct": 300,
+    "rate": 1.0
+   },
+   "state": {
+    "cases": 40,
+    "correct": 40,
+    "rate": 1.0
+   },
+   "unit": {
+    "cases": 62,
+    "correct": 62,
+    "rate": 1.0
+   }
+  },
+  "latency_ms": {
+   "median": 161,
+   "p95": 198
+  }
+ }
+}
